@@ -126,6 +126,24 @@ def test_prompt_builder_renders_all_stage3_sections() -> None:
     assert "<br/>" not in messages.user
     assert "Subject: Duplicate billing charge" in messages.user
 
+    chat_with_shots = messages.to_chat_messages()
+    assert len(chat_with_shots) == 6
+    assert [m["role"] for m in chat_with_shots] == [
+        "system",
+        "user",
+        "assistant",
+        "user",
+        "assistant",
+        "user",
+    ]
+    assert "[DOC901]" in chat_with_shots[1]["content"]
+    assert "[DOC902]" in chat_with_shots[4]["content"]
+
+    no_shot_messages = builder.render(email, clf, context, use_few_shot=False)
+    assert len(no_shot_messages.to_chat_messages()) == 2
+    no_rag_messages = builder.render(email, clf, RetrievedContext(), use_few_shot=True)
+    assert len(no_rag_messages.to_chat_messages()) == 2
+
 
 def test_mock_ollama_and_openai_generators() -> None:
     """Verify MockGenerator, OllamaGenerator, and OpenAICompatibleGenerator with mocks."""

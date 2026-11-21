@@ -14,6 +14,7 @@ from draft.data.org_docs import build_default_org_docs
 from draft.evaluation.evaluator import PipelineEvaluator
 from draft.evaluation.metrics import (
     build_policy_eval_suite,
+    compute_placeholder_leakage_rate,
     compute_policy_adherence,
     compute_rouge_l,
 )
@@ -199,6 +200,10 @@ def test_evaluation_metrics_and_policy_suite() -> None:
     assert adherence["valid_citation_precision"] == pytest.approx(0.75)
     assert adherence["urgency_alignment_rate"] == pytest.approx(1.0)
     assert adherence["policy_lexical_overlap"] > 0.0
+    assert adherence["placeholder_leakage_rate"] == pytest.approx(0.0)
+    assert compute_placeholder_leakage_rate(
+        ["Hello <name>, check <acc_num>.", "Hello Jordan, invoices are Net 15."]
+    ) == pytest.approx(0.5)
 
 
 def test_pipeline_evaluator_tickets_policy_and_ablation(tmp_path: Path) -> None:

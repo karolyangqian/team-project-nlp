@@ -52,6 +52,14 @@ def _load_shared_components(
     return cfg, classifier, retriever, prompt_builder
 
 
+@st.cache_resource(show_spinner="Loading Hugging Face model and LoRA adapter...")
+def _load_hf_generator(config_path: str, adapter_dir: str) -> object:
+    """Load and cache the Hugging Face causal LLM generator across Streamlit reruns."""
+    cfg = load_config(Path(config_path))
+    resolved_adapter = Path(adapter_dir.strip()) if adapter_dir.strip() else None
+    return DraftPipeline.load_generator(cfg, backend="hf", adapter_dir=resolved_adapter)
+
+
 def _apply_preset(preset_name: str) -> None:
     """Populate subject and body session state from a preset email template."""
     subject, body = PRESET_EMAILS[preset_name]
@@ -80,7 +88,7 @@ def main() -> None:
         )
         generator_backend = st.selectbox(
             "Stage 3 Generator",
-            options=["ollama", "mock", "openai"],
+            options=["ollama", "hf", "mock", "openai"],
             index=0,
         )
 
@@ -90,10 +98,20 @@ def main() -> None:
         api_key: str | None = None
         ollama_model = default_cfg.generation.ollama_model
         ollama_url = default_cfg.generation.ollama_base_url
+        default_adapter = default_cfg.paths.artifacts_dir / "llm" / "lora_adapter"
+        hf_adapter_dir = str(default_adapter) if default_adapter.exists() else ""
 
         if generator_backend == "ollama":
-            ollama_model = st.text_input("Ollama Model", value=ollama_model)
+            ollama_options = list(dict.fromkeys([ollama_model, "qwen2.5:3b", "Custom..."]))
+            selected_ollama = st.selectbox("Ollama Model", options=ollama_options, index=0)
+            if selected_ollama == "Custom...":
+                ollama_model = st.text_input("Custom Ollama Model", value=ollama_model)
+            else:
+                ollama_model = selected_ollama
             ollama_url = st.text_input("Ollama Base URL", value=ollama_url)
+        elif generator_backend == "hf":
+            st.caption(f"Base model: {default_cfg.generation.base_model}")
+            hf_adapter_dir = st.text_input("LoRA Adapter Dir (optional)", value=hf_adapter_dir)
         elif generator_backend == "openai":
             api_base_url = st.text_input("API Base URL", value="http://localhost:8000/v1")
             api_model = st.text_input("API Model Name", value=default_cfg.generation.base_model)
@@ -101,6 +119,7 @@ def main() -> None:
 
         use_rag = st.checkbox("Enable Dual-Source RAG", value=True)
         use_reranker = st.checkbox("Enable Cross-Encoder Reranker", value=True)
+        use_few_shot = st.checkbox("Enable 2-Shot Policy Grounding", value=True)
 
         st.divider()
         st.subheader("Sample Emails")
@@ -126,13 +145,16 @@ def main() -> None:
         )
         cfg.generation.ollama_model = ollama_model
         cfg.generation.ollama_base_url = ollama_url
-        generator = DraftPipeline.load_generator(
-            cfg,
-            backend=generator_backend,
-            api_base_url=api_base_url,
-            api_model=api_model,
-            api_key=api_key,
-        )
+        if generator_backend == "hf":
+            generator = _load_hf_generator(config_path=config_path, adapter_dir=hf_adapter_dir)
+        else:
+            generator = DraftPipeline.load_generator(
+                cfg,
+                backend=generator_backend,
+                api_base_url=api_base_url,
+                api_model=api_model,
+                api_key=api_key,
+            )
         pipeline = DraftPipeline(cfg, classifier, retriever, prompt_builder, generator)
 
         with st.spinner("Running classification, dual-source retrieval, and draft generation..."):
@@ -140,6 +162,7 @@ def main() -> None:
                 email=IncomingEmail(subject=subject_input, body=body_input),
                 use_rag=use_rag,
                 use_reranker=use_reranker,
+                use_few_shot=use_few_shot,
             )
     except Exception as exc:
         st.error(f"Pipeline execution failed: {exc}")

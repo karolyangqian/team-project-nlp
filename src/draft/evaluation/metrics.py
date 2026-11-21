@@ -17,6 +17,7 @@ _URGENCY_CUES = (
     "escalat",
     "right away",
 )
+_PLACEHOLDER_PATTERN = re.compile(r"<[a-z]+(?:_[a-z]+)*>")
 
 _RAW_POLICY_SCENARIOS: list[tuple[str, str, str, str, list[str]]] = [
     (
@@ -203,14 +204,23 @@ def _policy_terms(text: str) -> set[str]:
     return numbers | words
 
 
+def compute_placeholder_leakage_rate(texts: list[str]) -> float:
+    """Compute fraction of generated texts leaking dataset anonymization placeholders."""
+    if not texts:
+        return 0.0
+    leaked = sum(1 for text in texts if _PLACEHOLDER_PATTERN.search(text))
+    return leaked / float(len(texts))
+
+
 def compute_policy_adherence(drafts: list[DraftResponse]) -> dict[str, float]:
-    """Compute citation rate, valid citation precision, lexical overlap, and urgency alignment."""
+    """Compute citation, precision, lexical overlap, urgency, and leakage metrics."""
     if not drafts:
         return {
             "citation_rate": 0.0,
             "valid_citation_precision": 0.0,
             "policy_lexical_overlap": 0.0,
-            "urgency_alignment_rate": 0.0,
+            "urgency_alignment_rate": 1.0,
+            "placeholder_leakage_rate": 0.0,
         }
 
     citation_hits = 0
@@ -251,6 +261,9 @@ def compute_policy_adherence(drafts: list[DraftResponse]) -> dict[str, float]:
         "valid_citation_precision": sum(citation_precisions) / n,
         "policy_lexical_overlap": sum(overlaps) / n,
         "urgency_alignment_rate": (high_aligned / float(high_total)) if high_total > 0 else 1.0,
+        "placeholder_leakage_rate": compute_placeholder_leakage_rate(
+            [draft.body for draft in drafts]
+        ),
     }
 
 

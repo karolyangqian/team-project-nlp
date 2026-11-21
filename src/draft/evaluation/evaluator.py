@@ -8,6 +8,7 @@ from draft.classifier.base import LabelEncoderPair, compute_classification_metri
 from draft.evaluation.metrics import (
     build_policy_eval_suite,
     compute_bertscore,
+    compute_placeholder_leakage_rate,
     compute_policy_adherence,
     compute_rouge_l,
 )
@@ -61,6 +62,7 @@ class PipelineEvaluator:
         max_samples: int = 50,
         use_rag: bool = True,
         use_reranker: bool = True,
+        use_few_shot: bool = True,
         include_bertscore: bool = False,
         seed: int = 42,
     ) -> dict[str, Any]:
@@ -84,6 +86,7 @@ class PipelineEvaluator:
                 email=email,
                 use_rag=use_rag,
                 use_reranker=use_reranker,
+                use_few_shot=use_few_shot,
                 exclude_email_ids={str(row["email_id"])},
             )
             drafts.append(draft)
@@ -95,6 +98,7 @@ class PipelineEvaluator:
             "num_samples": len(rows),
             "use_rag": use_rag,
             "use_reranker": use_reranker,
+            "use_few_shot": use_few_shot,
             "model_name": self.pipeline.generator.model_name,
             "classification": self._classification_summary(rows, drafts),
             "rouge": compute_rouge_l(predictions, references),
@@ -124,6 +128,7 @@ class PipelineEvaluator:
         org_docs: list[OrgDocument],
         use_rag: bool = True,
         use_reranker: bool = True,
+        use_few_shot: bool = True,
     ) -> dict[str, Any]:
         """Evaluate factual adherence across 12 unseen policy test scenarios."""
         suite = build_policy_eval_suite(org_docs)
@@ -133,12 +138,14 @@ class PipelineEvaluator:
                 "doc_retrieval_hit_rate": 0.0,
                 "target_citation_rate": 0.0,
                 "policy_fact_recall": 0.0,
+                "placeholder_leakage_rate": 0.0,
                 "scenarios": [],
             }
 
         retrieval_hits = 0
         citation_hits = 0
         fact_recalls: list[float] = []
+        draft_bodies: list[str] = []
         details: list[dict[str, Any]] = []
 
         for item in suite:
@@ -147,7 +154,9 @@ class PipelineEvaluator:
                 email=email,
                 use_rag=use_rag,
                 use_reranker=use_reranker,
+                use_few_shot=use_few_shot,
             )
+            draft_bodies.append(draft.body)
             retrieved_ids = [d.doc_id for d in draft.retrieved_context.top_k_docs]
             doc_hit = item["expected_doc_id"] in retrieved_ids
             cite_hit = item["expected_doc_id"] in draft.cited_doc_ids
@@ -170,6 +179,7 @@ class PipelineEvaluator:
                     "target_citation_hit": cite_hit,
                     "fact_recall": recall,
                     "matched_facts": matched_facts,
+                    "draft_body": draft.body,
                 }
             )
 
@@ -177,9 +187,11 @@ class PipelineEvaluator:
         return {
             "num_scenarios": len(suite),
             "use_rag": use_rag,
+            "use_few_shot": use_few_shot,
             "doc_retrieval_hit_rate": retrieval_hits / n,
             "target_citation_rate": citation_hits / n,
             "policy_fact_recall": sum(fact_recalls) / n,
+            "placeholder_leakage_rate": compute_placeholder_leakage_rate(draft_bodies),
             "scenarios": details,
         }
 
@@ -189,6 +201,7 @@ class PipelineEvaluator:
         org_docs: list[OrgDocument],
         max_samples: int = 50,
         use_reranker: bool = True,
+        use_few_shot: bool = True,
         include_bertscore: bool = False,
         seed: int = 42,
     ) -> dict[str, Any]:
@@ -201,6 +214,7 @@ class PipelineEvaluator:
                     max_samples=max_samples,
                     use_rag=rag_enabled,
                     use_reranker=use_reranker,
+                    use_few_shot=use_few_shot,
                     include_bertscore=include_bertscore,
                     seed=seed,
                 ),
@@ -208,6 +222,7 @@ class PipelineEvaluator:
                     org_docs=org_docs,
                     use_rag=rag_enabled,
                     use_reranker=use_reranker,
+                    use_few_shot=use_few_shot,
                 ),
             }
         return results

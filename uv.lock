@@ -835,6 +835,7 @@ eval = [
     { name = "rouge-score" },
 ]
 inference = [
+    { name = "peft" },
     { name = "protobuf" },
     { name = "safetensors" },
     { name = "sentence-transformers" },
@@ -871,6 +872,7 @@ requires-dist = [
     { name = "jinja2", specifier = ">=3.1" },
     { name = "joblib", specifier = ">=1.4" },
     { name = "pandas", specifier = ">=2.2" },
+    { name = "peft", marker = "extra == 'inference'", specifier = ">=0.13" },
     { name = "peft", marker = "extra == 'train'", specifier = ">=0.13" },
     { name = "protobuf", marker = "extra == 'inference'", specifier = ">=4.25" },
     { name = "protobuf", marker = "extra == 'train'", specifier = ">=4.25" },

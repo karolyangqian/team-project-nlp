@@ -74,10 +74,12 @@ def _echo_pipeline_eval(label: str, ticket_res: dict, policy_res: dict) -> None:
     bscore = ticket_res.get("bertscore", {}).get("f1")
     bscore_str = f" bertscore_f1={bscore:.4f}" if bscore is not None else ""
     mean_ms = ticket_res["latency_ms"]["total_ms"]["mean"]
+    leak_rate = adherence.get("placeholder_leakage_rate", 0.0)
     typer.echo(
         f"  [{label}] "
         f"rougeL={rouge['rougeL_f1']:.4f}{bscore_str} "
         f"cite_rate={adherence['citation_rate']:.4f} "
+        f"leak_rate={leak_rate:.4f} "
         f"policy_fact_recall={policy_res['policy_fact_recall']:.4f} "
         f"mean_latency_ms={mean_ms:.1f}"
     )
@@ -380,11 +382,17 @@ def generate_draft(
     generator_backend: Annotated[
         GeneratorBackend, typer.Option(help="Stage 3 generator backend.")
     ] = GeneratorBackend.MOCK,
+    ollama_model: Annotated[
+        str | None, typer.Option(help="Override Ollama model tag for Stage 3.")
+    ] = None,
     adapter_dir: Annotated[
         Path | None, typer.Option(help="Optional LoRA adapter directory for HF backend.")
     ] = None,
     rerank: Annotated[
         bool, typer.Option(help="Apply Cross-Encoder reranking on retrieved org docs.")
+    ] = True,
+    few_shot: Annotated[
+        bool, typer.Option(help="Include 2-shot policy-grounding turns in prompt.")
     ] = True,
     config: Annotated[
         Path, typer.Option(help="Path to YAML config file.")
@@ -398,9 +406,15 @@ def generate_draft(
         generator_backend=generator_backend.value,
         adapter_dir=adapter_dir,
         enable_reranker=rerank,
+        ollama_model=ollama_model,
     )
     email = IncomingEmail(subject=subject, body=body)
-    draft, timings = pipeline.run_with_timing(email=email, use_rag=True, use_reranker=rerank)
+    draft, timings = pipeline.run_with_timing(
+        email=email,
+        use_rag=True,
+        use_reranker=rerank,
+        use_few_shot=few_shot,
+    )
 
     typer.echo(
         f"Stage 1: intent={draft.classification.intent} "
@@ -434,11 +448,17 @@ def eval_pipeline(
     generator_backend: Annotated[
         GeneratorBackend, typer.Option(help="Stage 3 generator backend.")
     ] = GeneratorBackend.MOCK,
+    ollama_model: Annotated[
+        str | None, typer.Option(help="Override Ollama model tag for Stage 3.")
+    ] = None,
     adapter_dir: Annotated[
         Path | None, typer.Option(help="Optional LoRA adapter directory for HF backend.")
     ] = None,
     rerank: Annotated[
         bool, typer.Option(help="Enable Cross-Encoder reranking in Stage 2.")
+    ] = True,
+    few_shot: Annotated[
+        bool, typer.Option(help="Include 2-shot policy-grounding turns in prompt.")
     ] = True,
     bertscore: Annotated[
         bool, typer.Option(help="Compute BERTScore over generated drafts.")
@@ -463,6 +483,7 @@ def eval_pipeline(
         generator_backend=generator_backend.value,
         adapter_dir=adapter_dir,
         enable_reranker=rerank,
+        ollama_model=ollama_model,
     )
     evaluator = PipelineEvaluator(pipeline)
 
@@ -474,6 +495,7 @@ def eval_pipeline(
                 org_docs=org_docs,
                 max_samples=max_samples,
                 use_reranker=rerank,
+                use_few_shot=few_shot,
                 include_bertscore=bertscore,
                 seed=cfg.data.random_seed,
             ),
@@ -487,6 +509,7 @@ def eval_pipeline(
             max_samples=max_samples,
             use_rag=True,
             use_reranker=rerank,
+            use_few_shot=few_shot,
             include_bertscore=bertscore,
             seed=cfg.data.random_seed,
         )
@@ -494,6 +517,7 @@ def eval_pipeline(
             org_docs=org_docs,
             use_rag=True,
             use_reranker=rerank,
+            use_few_shot=few_shot,
         )
         report = {"split": split.value, "tickets": tickets_res, "policy_suite": policy_res}
         typer.echo(f"Pipeline evaluation ({split.value}, max_samples={max_samples}):")

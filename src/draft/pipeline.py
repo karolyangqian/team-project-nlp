@@ -39,6 +39,7 @@ class DraftPipeline:
         email: IncomingEmail,
         use_rag: bool = True,
         use_reranker: bool = True,
+        use_few_shot: bool = True,
         exclude_email_ids: set[str] | None = None,
         max_new_tokens: int | None = None,
         temperature: float | None = None,
@@ -59,7 +60,12 @@ class DraftPipeline:
             context = RetrievedContext()
         t2 = time.perf_counter()
 
-        messages = self.prompt_builder.render(email, classification, context)
+        messages = self.prompt_builder.render(
+            email,
+            classification,
+            context,
+            use_few_shot=use_few_shot,
+        )
         draft_body = self.generator.generate(
             messages,
             max_new_tokens=max_new_tokens,
@@ -89,6 +95,7 @@ class DraftPipeline:
         email: IncomingEmail,
         use_rag: bool = True,
         use_reranker: bool = True,
+        use_few_shot: bool = True,
         exclude_email_ids: set[str] | None = None,
         max_new_tokens: int | None = None,
         temperature: float | None = None,
@@ -98,6 +105,7 @@ class DraftPipeline:
             email=email,
             use_rag=use_rag,
             use_reranker=use_reranker,
+            use_few_shot=use_few_shot,
             exclude_email_ids=exclude_email_ids,
             max_new_tokens=max_new_tokens,
             temperature=temperature,
@@ -131,6 +139,7 @@ class DraftPipeline:
         config: AppConfig,
         backend: str = "ollama",
         adapter_dir: Path | None = None,
+        ollama_model: str | None = None,
         api_base_url: str | None = None,
         api_model: str | None = None,
         api_key: str | None = None,
@@ -141,7 +150,7 @@ class DraftPipeline:
             return MockGenerator()
         if mode == "ollama":
             return OllamaGenerator(
-                model_name=config.generation.ollama_model,
+                model_name=ollama_model or config.generation.ollama_model,
                 base_url=config.generation.ollama_base_url,
                 default_max_new_tokens=config.generation.max_new_tokens,
                 default_temperature=config.generation.temperature,
@@ -179,6 +188,7 @@ class DraftPipeline:
         generator_backend: str = "ollama",
         adapter_dir: Path | None = None,
         enable_reranker: bool = True,
+        ollama_model: str | None = None,
         api_base_url: str | None = None,
         api_model: str | None = None,
         api_key: str | None = None,
@@ -191,6 +201,7 @@ class DraftPipeline:
             config,
             backend=generator_backend,
             adapter_dir=adapter_dir,
+            ollama_model=ollama_model,
             api_base_url=api_base_url,
             api_model=api_model,
             api_key=api_key,

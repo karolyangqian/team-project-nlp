@@ -132,6 +132,7 @@ def build_policy_grounded_examples(
             email,
             clf,
             RetrievedContext(top_k_docs=docs, top_k_responses=responses),
+            use_few_shot=False,
         )
         examples.append(
             {
@@ -218,6 +219,7 @@ class SftDatasetBuilder:
                 incoming,
                 clf,
                 RetrievedContext(top_k_docs=docs, top_k_responses=responses),
+                use_few_shot=False,
             )
             target = normalize_target_reply(str(row["answer"]))
             examples.append(

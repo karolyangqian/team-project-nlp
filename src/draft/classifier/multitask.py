@@ -44,9 +44,12 @@ class MultiTaskEmailClassifier(nn.Module):
         if backbone_config is not None:
             self.backbone = AutoModel.from_config(backbone_config)
         elif backbone_name is not None:
-            self.backbone = AutoModel.from_pretrained(backbone_name)
+            # Force float32 so Hub configs declaring dtype="float16" (e.g. deberta-v3) do not
+            # overflow during fine-tuning.
+            self.backbone = AutoModel.from_pretrained(backbone_name, dtype=torch.float32)
         else:
             raise ValueError("Provide either backbone_name or backbone_config.")
+        self.backbone = self.backbone.float()
 
         hidden_size = int(self.backbone.config.hidden_size)
         self.dropout = nn.Dropout(dropout)
@@ -167,7 +170,11 @@ class MultiTaskTrainer:
         """Select safe mixed-precision dtype, guarding DeBERTa-v3 against FP16 overflow on T4."""
         if not self.use_amp or self.device.type != "cuda":
             return None
-        if torch.cuda.is_bf16_supported():
+        try:
+            bf16_hardware = torch.cuda.is_bf16_supported(including_emulation=False)
+        except TypeError:
+            bf16_hardware = torch.cuda.is_bf16_supported()
+        if bf16_hardware:
             return torch.bfloat16
         model_type = str(getattr(self.model.backbone.config, "model_type", "")).lower()
         backbone_name = self.config.classifier.backbone_model.lower()
@@ -242,6 +249,12 @@ class MultiTaskTrainer:
                 intent_logits, urgency_logits = self.model(input_ids, attention_mask)
                 loss = intent_loss_fn(intent_logits, intent_targets) + (
                     urgency_weight * urgency_loss_fn(urgency_logits, urgency_targets)
+                )
+
+            if not torch.isfinite(loss):
+                raise RuntimeError(
+                    "Non-finite training loss detected. Disable mixed precision (--no-amp) "
+                    "or verify backbone weights are loaded in float32."
                 )
 
             if scaler.is_enabled():

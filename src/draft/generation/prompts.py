@@ -1,5 +1,6 @@
 """Prompt templates, reply normalization, and citation helpers for Stage 3."""
 
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,17 +15,19 @@ _DOC_ID_RE = re.compile(r"\b(DOC\d{3})\b")
 
 @dataclass(frozen=True)
 class PromptMessages:
-    """Rendered system and user prompts for chat-based draft generation."""
+    """Rendered system, optional few-shot turns, and user prompts for draft generation."""
 
     system: str
     user: str
+    few_shot_examples: tuple[tuple[str, str], ...] = ()
 
     def to_chat_messages(self, assistant: str | None = None) -> list[dict[str, str]]:
         """Format prompt as standard role/content chat messages."""
-        messages = [
-            {"role": "system", "content": self.system},
-            {"role": "user", "content": self.user},
-        ]
+        messages: list[dict[str, str]] = [{"role": "system", "content": self.system}]
+        for shot_user, shot_assistant in self.few_shot_examples:
+            messages.append({"role": "user", "content": shot_user})
+            messages.append({"role": "assistant", "content": shot_assistant})
+        messages.append({"role": "user", "content": self.user})
         if assistant is not None:
             messages.append({"role": "assistant", "content": assistant})
         return messages
@@ -63,7 +66,7 @@ def build_reply_subject(incoming_subject: str) -> str:
 
 
 class PromptBuilder:
-    """Renders Stage 3 system and user prompts from Jinja2 templates."""
+    """Renders Stage 3 system, few-shot, and user prompts from template files."""
 
     def __init__(self, prompts_dir: Path) -> None:
         env = Environment(
@@ -74,12 +77,22 @@ class PromptBuilder:
         )
         self._system_tpl = env.get_template("system.j2")
         self._user_tpl = env.get_template("user_draft.j2")
+        self._few_shot_examples = self._load_few_shot(prompts_dir / "few_shot.json")
+
+    @staticmethod
+    def _load_few_shot(path: Path) -> tuple[tuple[str, str], ...]:
+        """Load optional few-shot chat turns from JSON."""
+        if not path.exists():
+            return ()
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        return tuple((str(item["user"]), str(item["assistant"])) for item in raw)
 
     def render(
         self,
         email: IncomingEmail,
         classification: ClassificationResult,
         context: RetrievedContext,
+        use_few_shot: bool = True,
     ) -> PromptMessages:
         """Render complete chat messages from email, Stage 1 labels, and Stage 2 context."""
         docs_ctx = [
@@ -107,4 +120,5 @@ class PromptBuilder:
             responses=responses_ctx,
             email_text=email.formatted_text,
         ).strip()
-        return PromptMessages(system=system_text, user=user_text)
+        few_shot = self._few_shot_examples if (use_few_shot and context.top_k_docs) else ()
+        return PromptMessages(system=system_text, user=user_text, few_shot_examples=few_shot)
