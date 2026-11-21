@@ -34,7 +34,7 @@ class OllamaGenerator:
         self,
         model_name: str,
         base_url: str = "http://localhost:11434",
-        timeout: float = 120.0,
+        timeout: float = 300.0,
         default_max_new_tokens: int = 384,
         default_temperature: float = 0.2,
         transport: httpx.BaseTransport | None = None,

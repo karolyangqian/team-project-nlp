@@ -1,0 +1,2278 @@
+{
+  "split": "test",
+  "stratified_per_intent": 1,
+  "num_ticket_samples": 10,
+  "num_policy_scenarios": 12,
+  "classifier_backend": "baseline",
+  "reranker": true,
+  "modes": {
+    "qwen25_no_rag": {
+      "label": "Base Qwen2.5-3B (No RAG)",
+      "ollama_model": "qwen2.5:3b",
+      "use_rag": false,
+      "use_few_shot": false,
+      "tickets": {
+        "num_samples": 10,
+        "use_rag": false,
+        "use_reranker": true,
+        "use_few_shot": false,
+        "model_name": "qwen2.5:3b",
+        "classification": {
+          "intent_accuracy": 0.5,
+          "intent_macro_f1": 0.41666666666666663,
+          "urgency_accuracy": 0.7,
+          "urgency_macro_f1": 0.7111111111111111,
+          "combined_macro_f1": 0.5638888888888889
+        },
+        "rouge": {
+          "rouge1_f1": 0.3575019440080438,
+          "rouge2_f1": 0.11846393313602654,
+          "rougeL_f1": 0.21080705807766612
+        },
+        "policy_adherence": {
+          "citation_rate": 0.0,
+          "valid_citation_precision": 0.7,
+          "policy_lexical_overlap": 0.0,
+          "urgency_alignment_rate": 0.6666666666666666,
+          "placeholder_leakage_rate": 0.7
+        },
+        "placeholder_leakage_rate": 0.7,
+        "latency_ms": {
+          "stage1_ms": {
+            "mean": 4.908520000390126,
+            "p90": 6.996050000452669
+          },
+          "stage2_ms": {
+            "mean": 0.014009999722475186,
+            "p90": 0.020419999418663792
+          },
+          "stage3_ms": {
+            "mean": 34571.150869999474,
+            "p90": 52879.6339600005
+          },
+          "total_ms": {
+            "mean": 34576.07339999959,
+            "p90": 52886.53091000124
+          }
+        },
+        "samples": [
+          {
+            "email_id": "EML10784",
+            "subject": "Inquiry on Pricing for BenQ TK850 Projector",
+            "body": "I am interested in purchasing the BenQ TK850 Projector and would like to know the pricing options, its compatibility with IFTTT, and any available discounts or promotions. Please inform me about any additional costs related to accessories and maintenance.",
+            "true_intent": "Billing and Payments",
+            "pred_intent": "Billing and Payments",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "We can provide you with pricing options for the BenQ TK850 Projector, information on its compatibility with IFTTT, and details about available discounts and promotions. Please allow us some time to gather this information and we will contact you soon to discuss the details.",
+            "draft_body": "Subject: Re: Inquiry on Pricing for BenQ TK850 Projector\n\nHello <name>,\n\nThank you for your inquiry about the BenQ TK850 Projector. Here is the information you requested:\n\n**Pricing Options:**\n- The standard price for the BenQ TK850 Projector is $599.99.\n- We offer a 5% discount for purchases made within the next 7 days. To avail this discount, please mention this email in your purchase request.\n\n**Compatibility with IFTTT:**\n- The BenQ TK850 Projector is compatible with IFTTT. You can use IFTTT to automate tasks and control the projector via your smart devices.\n\n**Available Discounts and Promotions:**\n- No current promotions are available for this product.\n\n**Additional Costs:**\n- There are no additional costs related to accessories or maintenance for the BenQ TK850 Projector. However, we do offer a maintenance plan for a fee if you wish to ensure your projector remains in optimal condition.\n\nIf you have any further questions or need additional information, please do not hesitate to ask.\n\nThank you for considering BenQ for your projector needs.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 50686.6
+          },
+          {
+            "email_id": "EML05360",
+            "subject": "DataRobot and Cassandra Integration for Enhanced Investment Analytics",
+            "body": "Dear Customer Support, I am seeking guidance on integrating DataRobot with Cassandra 4.0 to improve our investment analytics capabilities. Could you please provide comprehensive instructions for the integration process, including necessary configuration steps and optimization techniques? Examples and relevant documentation would be very helpful to facilitate a smooth setup. Our objective is to harness DataRobot's automation features alongside Cassandra's data management to make more informed investment decisions. Thank you for your assistance; I look forward to your response.",
+            "true_intent": "Customer Service",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>, thank you for contacting the Service Desk. I am happy to assist you with integrating DataRobot Cassandra 4.0. To provide detailed instructions, I will need some information about your current setup environment. Could you please share details regarding your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques; however, specific steps may vary based on your system. If you prefer, we can schedule a call at <tel_num> to discuss your requirements and provide tailored support. Please let me know a convenient time.",
+            "draft_body": "Subject: Re: DataRobot and Cassandra Integration for Enhanced Investment Analytics\n\nDear [Name],\n\nThank you for reaching out to us regarding the integration of DataRobot with Cassandra 4.0. We appreciate your interest in improving your investment analytics capabilities.\n\nTo assist you with the integration process, I have reviewed our Organization Policy Documents (DOC123) and found relevant information that can guide you through the setup. Here are the key steps and resources you can use:\n\n### Integration Steps:\n1. **Data Preparation**: Ensure that your data is in a format compatible with DataRobot. [DOC123] provides detailed instructions on how to prepare your data for the integration.\n2. **DataRobot Setup**: Follow the [DOC456] document to set up DataRobot. This includes configuring the DataRobot environment to connect with Cassandra.\n3. **Cassandra Configuration**: Refer to [DOC789] for detailed instructions on configuring Cassandra 4.0 to work with DataRobot. This document covers setting up the Cassandra cluster and connecting it to DataRobot.\n4. **Optimization Techniques**: [DOC1011] offers best practices for optimizing the integration, including tips on data loading, model training, and model deployment.\n\n### Documentation and Examples:\n- [DOC123] provides comprehensive guides on setting up DataRobot and connecting it with various data sources.\n- [DOC456] includes detailed instructions on configuring DataRobot for Cassandra integration.\n- [DOC789] offers detailed configuration steps for Cassandra 4.0.\n- [DOC1011] provides optimization techniques and examples for improving the performance of your integration.\n\nIf you need further assistance or have any specific questions, please do not hesitate to reach out. We are here to help you achieve your goal of enhancing your investment analytics capabilities.\n\nThank you for your patience, and we look forward to your positive feedback",
+            "stage3_ms": 54724.6
+          },
+          {
+            "email_id": "EML21556",
+            "subject": "Enhancements to Investment Portfolio Analysis Tool",
+            "body": "Dear Customer Support, I am contacting you to propose improvements to the investment portfolio analysis tool. Currently, the tool offers a useful summary of my portfolio, but I need additional advanced analytical functionalities. I am particularly interested in detailed metrics such as risk assessment and performance monitoring. These enhancements would enable me to make more educated investment choices and improve my portfolio's optimization. We should consider incorporating these features in the tool. Furthermore, I would like to request more regular data updates to stay abreast of market trends. Thank you for your attention to this matter. I eagerly await your response. Warm regards, [Your Name]",
+            "true_intent": "General Inquiry",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [Your Name], thank you for your feedback regarding the investment portfolio analysis tool. We value your suggestions for enhancements, including advanced analytics features such as risk assessment and performance tracking, as well as more frequent data updates. Our team will evaluate your requests and consider them for future development plans. To better understand your specific needs, we would like to discuss this further. Would you be available for a call at a convenient time? Please provide a suitable time and we'll reach out to you at [tel_num]. We appreciate your patience and look forward to speaking with you about your account [acc_num] and the investment portfolio analysis tool. Best regards, [Support Team Name]",
+            "draft_body": "Subject: Re: Enhancements to Investment Portfolio Analysis Tool\n\nDear [Your Name],\n\nThank you for reaching out to us with your feedback and suggestions for the investment portfolio analysis tool. We appreciate your interest in making it more comprehensive and user-friendly.\n\nBased on [DOC123], we do offer the ability to request additional features for our tools. We will consider incorporating detailed metrics such as risk assessment and performance monitoring into the tool. This enhancement will help you make more informed investment decisions.\n\nAdditionally, we understand the importance of regular data updates to stay informed about market trends. We will review our data update schedule and ensure that we provide you with more frequent updates as per [DOC456].\n\nWe look forward to implementing these changes and improving the tool for you. If you have any further suggestions or concerns, please do not hesitate to let us know.\n\nWarm regards,\n\n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 29836.3
+          },
+          {
+            "email_id": "EML04765",
+            "subject": "Complete Failure of Digital Strategies",
+            "body": "The digital strategies employed by the marketing agency did not succeed in enhancing brand growth, likely due to ineffective targeting. Efforts such as campaign modifications were made, yet results remained unchanged. Despite these efforts, the brand's online visibility improved only marginally, with engagement metrics still falling short. It is crucial to reevaluate the targeting strategy and consider alternative approaches to reach the intended audience. A thorough analysis of the campaign's performance and a revised action plan are necessary to achieve the desired results.",
+            "true_intent": "Human Resources",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> understands the concerns regarding the digital strategies implemented by the marketing agency and their limited impact on brand growth. To provide better assistance, I would like to schedule a call to discuss the campaign details and the targeting approach used. Please let me know a convenient time for the call at <tel_num>. During the call, we can identify areas needing improvement and explore alternative strategies to reach the target audience. I will also provide a detailed analysis of the campaign's performance.",
+            "draft_body": "Subject: Re: Complete Failure of Digital Strategies\n\nHi <name>,\n\nThank you for reaching out with your concerns. I understand the importance of achieving the desired results for your brand's online visibility and engagement metrics.\n\nBased on the information provided, it seems that the current digital strategies have not met the expected outcomes. We will conduct a thorough analysis of the campaign's performance to identify any areas that may need adjustment. This includes reevaluating the targeting strategy and exploring alternative approaches to better reach your intended audience.\n\nWe will also develop a revised action plan to address the issues identified. This process will involve reviewing the campaign's performance metrics and making necessary changes to improve the effectiveness of the strategies.\n\nPlease expect a detailed report and the revised action plan within the next 7 business days. If you have any specific questions or need further assistance during this process, please do not hesitate to reach out.\n\nThank you for your patience and understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 30622.0
+          },
+          {
+            "email_id": "EML03450",
+            "subject": "Setup Assistance Needed for Zoho Books",
+            "body": "Could you supply comprehensive step-by-step instructions for integrating Zoho Books with Eclipse IDE via Pluralsight? I am seeking detailed guidance to ensure a smooth and seamless connection between the tools.",
+            "true_intent": "IT Support",
+            "pred_intent": "IT Support",
+            "true_urgency": "medium",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>,\n\nThank you for your interest in configuring Zoho Books with Eclipse IDE through Pluralsight. To assist with the integration process, we need some information about your current setup and the specific features you wish to connect. Please provide details about your Eclipse IDE and Pluralsight accounts, including account types and the tools you are currently using.\n\nWe offer a general guide for integrating Zoho Books applications. However, a customized approach requires a clearer understanding of your particular requirements.",
+            "draft_body": "Subject: Re: Setup Assistance Needed for Zoho Books\n\nHi <name>,\n\nThank you for reaching out. I will provide you with comprehensive step-by-step instructions for integrating Zoho Books with Eclipse IDE via Pluralsight. \n\nTo ensure a smooth and seamless connection, I will walk you through the process in detail. Please provide your Zoho Books account credentials so we can proceed.\n\nPlease let me know if you have any specific questions or if there are any additional tools or integrations you need assistance with.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 18674.0
+          },
+          {
+            "email_id": "EML12029",
+            "subject": "Concerns Over Digital Campaign Performance",
+            "body": "Customer Support,<br><br>The marketing agency's recent digital campaign strategies are underperforming, which is adversely affecting the brand's growth initiatives. The underperformance might be due to a misalignment with the target audience's preferences. To date, we have analyzed engagement metrics and adjusted the targeting parameters accordingly. Despite these efforts, the results have not been satisfactory.<br><br>We are seeking your assistance to identify the root cause of the issue and explore potential solutions to enhance the campaign's performance.",
+            "true_intent": "Product Support",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "I would be happy to assist with the digital campaign issue. Please provide details on the current targeting parameters and the engagement metrics that have been analyzed so far. We can schedule a call to discuss this further.",
+            "draft_body": "Subject: Re: Concerns Over Digital Campaign Performance\n\nDear <name>,\n\nThank you for reaching out to us regarding the underperformance of your recent digital campaign. We appreciate your efforts to analyze engagement metrics and adjust targeting parameters. \n\nTo assist you further, I will review the campaign data and analytics to identify any potential issues. I will also look into the alignment with the target audience's preferences and any other contributing factors.\n\nI will provide you with a detailed report on the findings within the next 5 business days. Based on the analysis, we will explore potential solutions to enhance the campaign's performance.\n\nPlease let me know if you have any specific questions or if there are any additional details you would like me to consider.\n\nBest regards,  \n[Your Full Name]  \n[Your Contact Information]",
+            "stage3_ms": 26342.0
+          },
+          {
+            "email_id": "EML07320",
+            "subject": "Problems with Several Products Not Resolved",
+            "body": "Several items such as the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon are not functioning properly. Steps taken to resolve the issue include restarting the devices and checking the connections, but the issues still persist. I am seeking further guidance on the next steps to resolve the problem.",
+            "true_intent": "Returns and Exchanges",
+            "pred_intent": "Technical Support",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "Hello, sorry to hear about the issues you're experiencing with your products. To better assist you, could you please provide more details about the malfunctions, any error messages, and the symptoms you're seeing? Additionally, I have contacted the manufacturers of the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. I would be happy to help with troubleshooting or facilitate any repairs or replacements needed. Please call me at <tel_num> at your convenience to discuss this further.",
+            "draft_body": "Subject: Re: Problems with Several Products Not Resolved\n\nHi <name>,\n\nThank you for reaching out to us regarding the issues with your Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. I understand you've already tried restarting the devices and checking the connections, but the problems still persist.\n\nGiven the issues you're experiencing, I would recommend the following steps:\n\n1. **Check for Firmware Updates**: Ensure that both devices are up to date with the latest firmware versions. You can check this by visiting the manufacturer's support websites for both Cooler Master and Lenovo.\n\n2. **Run Hardware Diagnostics**: Use the manufacturer's diagnostic tools to run a hardware check on both devices. This can help identify any hardware issues that might be causing the problems.\n\n3. **Contact Manufacturer Support**: If the issues continue after updating the firmware and running diagnostics, it would be best to contact the manufacturers directly for further assistance. You can find contact information on their respective websites.\n\nIf you need any more guidance or assistance, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 32803.2
+          },
+          {
+            "email_id": "EML20942",
+            "subject": "Cyber Security",
+            "body": "Dear Customer Support, I am inquiring about the recommended cybersecurity measures for securing medical data in healthcare settings. As you are aware, medical data is highly sensitive and needs strong protection to avoid unauthorized access and breaches. Could you please inform me about the best practices currently recognized in the industry? Are there specific protocols or technologies that are advised for securing medical data? I would also appreciate any guidance on how to implement these measures effectively. Additionally, are there any resources or guidelines available to ensure compliance with relevant regulations for healthcare organizations? I am looking forward to your response with more information on this topic. Thank you for your time and assistance.",
+            "true_intent": "Sales and Pre-Sales",
+            "pred_intent": "Customer Service",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [name], we value your interest in cybersecurity measures for securing medical data. Best practices include implementing strong access controls, encrypting sensitive data, and keeping software up to date. We recommend healthcare organizations adhere to industry standards such as HIPAA guidelines. For more detailed information and implementation guidance, we can provide additional resources and guidelines to ensure compliance with relevant regulations. If you wish to discuss further, please let us know a convenient time for a call at [tel_num].",
+            "draft_body": "Subject: Re: Cyber Security\n\nDear [Name],\n\nThank you for your email regarding cybersecurity measures for securing medical data in healthcare settings. I appreciate your interest in ensuring the protection of sensitive medical information.\n\nBased on industry best practices, here are some recommended measures and technologies for securing medical data:\n\n1. **Access Controls**: Implement strict access controls to ensure that only authorized personnel have access to medical data. Use strong authentication methods such as multi-factor authentication (MFA) and role-based access control (RBAC).\n\n2. **Encryption**: Encrypt sensitive data both at rest and in transit to protect it from unauthorized access. Use strong encryption standards such as AES-256.\n\n3. **Data Masking and Tokenization**: Use data masking and tokenization to protect personally identifiable information (PII) and other sensitive data. This can help reduce the risk of data breaches.\n\n4. **Regular Audits and Monitoring**: Conduct regular security audits and continuous monitoring to detect and respond to potential security incidents promptly.\n\n5. **Incident Response Plan**: Develop and maintain an incident response plan to quickly address any security breaches or threats.\n\n6. **Regular Training and Awareness**: Provide regular training and awareness programs for staff to ensure they are aware of the latest security threats and best practices.\n\nFor compliance with relevant regulations, you should refer to the Health Insurance Portability and Accountability Act (HIPAA) guidelines. The U.S. Department of Health and Human Services (HHS) provides detailed guidance on HIPAA compliance, including specific requirements for protecting electronic protected health information (ePHI).\n\nYou can find more resources and guidelines on the HHS website at [HHS Website Link].\n\nIf you need further assistance or specific recommendations for your organization, please let me know.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 52674.6
+          },
+          {
+            "email_id": "EML12058",
+            "subject": "Report on Significant Service Interruptions",
+            "body": "We encountered significant service outages impacting various tools.",
+            "true_intent": "Service Outages and Maintenance",
+            "pred_intent": "Service Outages and Maintenance",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> sincerely apologizes for the service outages experienced, which affected multiple tools. Could you please provide details on the times these outages occurred and any error messages you received? This information will help us investigate and resolve the issue promptly. If you need to discuss further, please contact <tel_num>.",
+            "draft_body": "Subject: Acknowledgment of Significant Service Interruptions\n\nDear <name>,\n\nThank you for bringing this to our attention. We are currently reviewing the details of the service outages that impacted various tools. Please provide any specific dates or timelines you remember, as this will help us identify the exact incidents and take appropriate action.\n\nWe will prioritize this matter and provide an update as soon as possible. If you have any specific questions or need further assistance, please do not hesitate to reach out.\n\nThank you for your patience and understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 17868.3
+          },
+          {
+            "email_id": "EML16397",
+            "subject": "Guidelines for Securing Medical Data in OBS Studio Software",
+            "body": "Seek information on securing medical data using OBS Studio 27 and Smart-Home-Kamera applications to maintain confidentiality and comply with regulations.",
+            "true_intent": "Technical Support",
+            "pred_intent": "Sales and Pre-Sales",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "reference_answer": "Offer general security guidelines for OBS Studio and Smart-Home-Kamera applications to ensure confidentiality and regulatory compliance for medical data.",
+            "draft_body": "Subject: Guidelines for Securing Medical Data Using OBS Studio 27 and Smart-Home-Kamera\n\nHello <name>,\n\nThank you for reaching out regarding the guidelines for securing medical data using OBS Studio 27 and Smart-Home-Kamera applications. I will provide you with the necessary information based on our organization's policies.\n\n[DOC123] outlines the procedures for handling sensitive data, including medical information. It is important to ensure that all data transmissions and storage are encrypted to protect patient confidentiality. \n\nFor OBS Studio 27, we recommend enabling the built-in encryption feature to secure video streams. Additionally, [DOC456] provides detailed instructions on configuring OBS Studio to meet our security standards.\n\nRegarding Smart-Home-Kamera, we recommend using end-to-end encryption for all data transmitted between the camera and the server. This can be configured through the application settings.\n\nPlease review these documents and let me know if you need further assistance. We will prioritize addressing any security concerns to ensure compliance with our regulations.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 31479.8
+          }
+        ],
+        "bertscore": {
+          "precision": 0.7737106680870056,
+          "recall": 0.8432032465934753,
+          "f1": 0.8065860867500305
+        }
+      },
+      "policy_suite": {
+        "num_scenarios": 12,
+        "use_rag": false,
+        "use_few_shot": false,
+        "doc_retrieval_hit_rate": 0.0,
+        "target_citation_rate": 0.0,
+        "policy_fact_recall": 0.3055555555555555,
+        "placeholder_leakage_rate": 0.9166666666666666,
+        "scenarios": [
+          {
+            "scenario_id": "POL_TEST_01",
+            "expected_doc_id": "DOC001",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Subject: Re: When do monthly statements go out and what are payment terms?\n\nHello <name>,\n\nThank you for your email. Based on our Organization Policy Documents (DOC123), invoices typically arrive on the 15th of each month. Payment terms are as follows: you have 30 days from the date of the invoice to settle your balance without incurring any overdue reminders.\n\nIf you have any further questions or need additional assistance, please don't hesitate to let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_02",
+            "expected_doc_id": "DOC006",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "Multi-Factor Authentication"
+            ],
+            "draft_body": "Subject: Re: Lost phone with authenticator app\n\nHi <name>,\n\nThank you for reaching out. I understand this is a high priority issue and will address it immediately.\n\nFor workspace admins who have lost their phones and cannot sign in using Multi-Factor Authentication (MFA), here are the steps we can take:\n\n1. **Contact Support**: I will escalate this issue to our support team for immediate assistance. They will be able to reset the MFA for the workspace admin.\n2. **Reset MFA**: Our support team will guide you through the process of resetting the MFA. This may involve providing them with the workspace admin's account details and any necessary information to complete the reset.\n3. **Follow Up**: Once the reset is complete, I will follow up with you to ensure that the workspace admin can now sign in using MFA.\n\nPlease let me know if you need any additional information or assistance. I will keep you updated on the progress.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_03",
+            "expected_doc_id": "DOC009",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Subject: Re: Hitting HTTP 429 on REST endpoints\n\nHi <name>,\n\nThank you for reaching out. I have reviewed our Organization Policy Documents and found the following information which should help with your query:\n\n[DOC123] outlines the per-minute API quotas for both standard and enterprise plans. Standard plans have a quota of 100 requests per minute, while enterprise plans have a quota of 500 requests per minute.\n\nFor handling retries, [DOC456] specifies that if your integration script hits a rate limit error (HTTP 429), it should retry the request after a delay of 15 seconds. If the error persists, the script should retry again after 30 seconds, and if the error still persists, it should retry after 60 seconds.\n\nPlease ensure to follow these guidelines to avoid further rate limit errors.\n\nIf you have any further questions or need additional assistance, feel free to let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_04",
+            "expected_doc_id": "DOC014",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "500,000"
+            ],
+            "draft_body": "Subject: Re: Uploading a large customer CSV migration\n\nHello <name>,\n\nThank you for reaching out. Based on our Organization Policy Document [DOC123], the import limit for CSV files is 500,000 rows. Since your CSV file contains 400,000 rows, it should not exceed this limit.\n\nRegarding the upload process, it will run synchronously. This means that the upload will occur in real-time and will not be processed in the background. You will be able to monitor the progress of the upload.\n\nPlease proceed with the upload and let us know if you need any further assistance.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_05",
+            "expected_doc_id": "DOC017",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "Sundays"
+            ],
+            "draft_body": "Subject: Planned Weekend Maintenance Schedule\n\nHi <name>,\n\nThank you for reaching out regarding our regular maintenance window. Our standard maintenance schedule includes planned maintenance on weekends, specifically on Saturdays and Sundays.\n\nWe typically provide at least 24 hours of advance notice for these maintenance windows to ensure minimal disruption to our services. This notice is sent via email to our operations team and key stakeholders.\n\nIf you have any specific concerns or need more information, please let me know. We are always looking to improve our communication and service reliability.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_06",
+            "expected_doc_id": "DOC021",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "30 days"
+            ],
+            "draft_body": "Subject: Response to Account Erasure Request\n\nDear [Customer Name],\n\nThank you for reaching out regarding your GDPR right to erasure request. I understand the importance of promptly addressing this matter to comply with your rights under the General Data Protection Regulation (GDPR).\n\n[DOC123] outlines our policy for erasure requests, which includes the following details:\n\n- **Production Records**: Production records are purged within 30 days of receiving an erasure request.\n- **Backups**: Backups are retained for a minimum of 180 days after the production records are purged.\n- **Financial Audit Logs**: Financial audit logs are retained for a minimum of 5 years.\n\nI will ensure that all relevant records are processed as per these timelines. \n\nPlease let me know if you have any further questions or need additional information.\n\nBest regards,  \n[Your Full Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_07",
+            "expected_doc_id": "DOC024",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "CSV"
+            ],
+            "draft_body": "Hi <name>,\n\nThank you for reaching out. Dashboard exports support CSV and JSON file formats. For exports over 100,000 rows, we deliver the data in a compressed ZIP file to ensure a smooth download experience. This file can be easily unzipped and used for further analysis.\n\nIf you have any more questions or need assistance with anything else, feel free to let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_08",
+            "expected_doc_id": "DOC027",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "SPF"
+            ],
+            "draft_body": "Subject: Re: Outbound email domain authentication rules\n\nHello <name>,\n\nThank you for reaching out. Before launching marketing sends on a new domain, it is important to ensure that the domain has the necessary DNS records in place to authenticate your emails. According to [DOC123], the following DNS records are mandatory:\n\n1. SPF (Sender Policy Framework) record\n2. DKIM (DomainKeys Identified Mail) record\n3. DMARC (Domain-based Message Authentication, Reporting & Conformance) record\n\nThese records help prevent your emails from being marked as spam and ensure that your domain is properly authenticated.\n\nRegarding bounce rate triggers, [DOC456] states that if the bounce rate exceeds 1%, a pause of 7 days is required before resuming marketing sends. If the bounce rate is below 1%, no pause is necessary.\n\nPlease ensure that your domain has all the required DNS records in place and monitor your bounce rate closely. If you have any questions or need further assistance, feel free to reach out.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_09",
+            "expected_doc_id": "DOC031",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "30 days"
+            ],
+            "draft_body": "Subject: Re: Evaluating the product with a trial workspace\n\nHello <name>,\n\nThank you for reaching out to us regarding your trial evaluation of our product. I will address each of your questions based on our organization's policies.\n\n1. **Credit Card Requirement for Trial**: Prospects do not need to provide a credit card for a trial workspace. This is a standard feature to ensure smooth access during the trial period.\n\n2. **Duration of Evaluations**: \n   - **Standard POC Evaluations**: These typically last for 30 days. After this period, the workspace will be automatically expired.\n   - **Guided POC Evaluations**: These are similar to standard POC evaluations and also last for 30 days. \n\n3. **Configuration After Expiry**: Configuration settings will be reset to their default state after the trial workspace expires. Any customizations made during the trial will not be retained.\n\nIf you have any further questions or need additional assistance, please let me know.\n\nThank you for choosing our product.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_10",
+            "expected_doc_id": "DOC034",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "RMA"
+            ],
+            "draft_body": "Subject: Re: Shipping back faulty hardware for replacement\n\nHi <name>,\n\nThank you for reaching out regarding your return process for the faulty hardware unit. Here are the steps you need to follow:\n\n1. **Authorization**: Before shipping the faulty hardware, you will need to obtain authorization from our support team. Please provide the following details: [DOC123]. Once we approve, you can proceed with the return.\n\n2. **Prepaid Label**: After authorization, we will issue you a prepaid shipping label to return the faulty unit. Please ensure you use this label for the return shipment to avoid any delays.\n\nWe aim to process your request as quickly as possible. Please provide the required information so we can move forward with your return.\n\nIf you have any further questions, feel free to reach out.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_11",
+            "expected_doc_id": "DOC038",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.5,
+            "matched_facts": [
+              "5 business days"
+            ],
+            "draft_body": "Subject: Re: Laptop and access setup for new employee\n\nHi <name>,\n\nThank you for reaching out. According to our Organization Policy Document [DOC123], IT provisioning for new employees should be submitted at least 5 business days before the start date to ensure timely access setup.\n\nFor any missed onboarding access, our Service Level Agreement (SLA) [DOC456] states that we aim to resolve such issues within 2 business days. However, if the issue is due to unforeseen circumstances, we will work with the team to expedite the resolution.\n\nPlease let me know if you have any other questions or need further assistance.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_12",
+            "expected_doc_id": "DOC041",
+            "retrieved_doc_ids": [],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": false,
+            "target_citation_hit": false,
+            "fact_recall": 0.5,
+            "matched_facts": [
+              "Tier-2"
+            ],
+            "draft_body": "Subject: Re: Requesting a supervisor review on stalled ticket\n\nHi <name>,\n\nThank you for reaching out regarding your stalled ticket. I understand the urgency of your situation and will ensure that it is escalated appropriately.\n\nAccording to our [DOC123] policy, any ticket that has not been resolved within the Service Level Agreement (SLA) timeframe should be escalated to a Tier-2 Lead for review. Typically, a Tier-2 Lead responds within 24 hours of receiving an escalated ticket.\n\nTo proceed, please provide your account number and a brief summary of the issue so we can initiate the escalation process. We will then ensure that the Tier-2 Lead reviews your ticket promptly.\n\nPlease let me know how you would like to proceed.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          }
+        ]
+      }
+    },
+    "qwen25_rag_0shot": {
+      "label": "Base Qwen2.5-3B + RAG (0-Shot)",
+      "ollama_model": "qwen2.5:3b",
+      "use_rag": true,
+      "use_few_shot": false,
+      "tickets": {
+        "num_samples": 10,
+        "use_rag": true,
+        "use_reranker": true,
+        "use_few_shot": false,
+        "model_name": "qwen2.5:3b",
+        "classification": {
+          "intent_accuracy": 0.5,
+          "intent_macro_f1": 0.41666666666666663,
+          "urgency_accuracy": 0.7,
+          "urgency_macro_f1": 0.7111111111111111,
+          "combined_macro_f1": 0.5638888888888889
+        },
+        "rouge": {
+          "rouge1_f1": 0.41370076398327527,
+          "rouge2_f1": 0.23386105154956752,
+          "rougeL_f1": 0.2929664976844775
+        },
+        "policy_adherence": {
+          "citation_rate": 0.4,
+          "valid_citation_precision": 1.0,
+          "policy_lexical_overlap": 0.22313071916577928,
+          "urgency_alignment_rate": 0.3333333333333333,
+          "placeholder_leakage_rate": 0.8
+        },
+        "placeholder_leakage_rate": 0.8,
+        "latency_ms": {
+          "stage1_ms": {
+            "mean": 7.425159999911557,
+            "p90": 9.315420000712038
+          },
+          "stage2_ms": {
+            "mean": 1955.6786900000589,
+            "p90": 2998.5066100012773
+          },
+          "stage3_ms": {
+            "mean": 64653.76933000006,
+            "p90": 86880.80940999826
+          },
+          "total_ms": {
+            "mean": 66616.87318000004,
+            "p90": 88377.74808999893
+          }
+        },
+        "samples": [
+          {
+            "email_id": "EML10784",
+            "subject": "Inquiry on Pricing for BenQ TK850 Projector",
+            "body": "I am interested in purchasing the BenQ TK850 Projector and would like to know the pricing options, its compatibility with IFTTT, and any available discounts or promotions. Please inform me about any additional costs related to accessories and maintenance.",
+            "true_intent": "Billing and Payments",
+            "pred_intent": "Billing and Payments",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC032",
+              "DOC030",
+              "DOC033"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "We can provide you with pricing options for the BenQ TK850 Projector, information on its compatibility with IFTTT, and details about available discounts and promotions. Please allow us some time to gather this information and we will contact you soon to discuss the details.",
+            "draft_body": "Subject: Pricing and Compatibility Inquiry for BenQ TK850 Projector\n\nHello <name>,\n\nThank you for reaching out to us regarding the BenQ TK850 Projector. We can provide pricing options for the BenQ TK850 Projector and information on its compatibility with IFTTT. \n\nThe BenQ TK850 Projector is compatible with IFTTT, which allows you to automate tasks and integrate the projector with other smart devices. \n\nRegarding discounts or promotions, formal price quotes for the BenQ TK850 Projector are valid for 30 calendar days from the date of issue unless marked as a limited promotional offer. Volume tier discounts apply starting at 50 licensed seats or multi-year annual commitments.\n\nFor any additional costs related to accessories and maintenance, please let us know the specific requirements so we can provide you with a detailed breakdown.\n\nPlease allow us some time to review your request and we will contact you shortly to discuss the details.\n\nThank you for choosing our services.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 78558.7
+          },
+          {
+            "email_id": "EML05360",
+            "subject": "DataRobot and Cassandra Integration for Enhanced Investment Analytics",
+            "body": "Dear Customer Support, I am seeking guidance on integrating DataRobot with Cassandra 4.0 to improve our investment analytics capabilities. Could you please provide comprehensive instructions for the integration process, including necessary configuration steps and optimization techniques? Examples and relevant documentation would be very helpful to facilitate a smooth setup. Our objective is to harness DataRobot's automation features alongside Cassandra's data management to make more informed investment decisions. Thank you for your assistance; I look forward to your response.",
+            "true_intent": "Customer Service",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC040",
+              "DOC026",
+              "DOC042"
+            ],
+            "cited_doc_ids": [
+              "DOC026",
+              "DOC040"
+            ],
+            "reference_answer": "<name>, thank you for contacting the Service Desk. I am happy to assist you with integrating DataRobot Cassandra 4.0. To provide detailed instructions, I will need some information about your current setup environment. Could you please share details regarding your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques; however, specific steps may vary based on your system. If you prefer, we can schedule a call at <tel_num> to discuss your requirements and provide tailored support. Please let me know a convenient time.",
+            "draft_body": "Subject: Re: DataRobot and Cassandra Integration for Enhanced Investment Analytics\n\nDear <name>,\n\nThank you for reaching out to the Service Desk with your request for guidance on integrating DataRobot with Cassandra 4.0. I am happy to assist with this integration process.\n\nTo provide detailed instructions, I will need to understand your current setup environment. Could you please share information about your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques, but specific steps may vary based on your system.\n\nIf preferred, we can schedule a call at <tel_num> to discuss and provide tailored support. Please let me know a convenient time.\n\nAdditionally, you may find the following resources helpful for your integration process:\n- [DOC026] Warehouse Sync and SQL Query Quotas (Data Analytics)\n- [DOC040] Support Operating Hours and Response Targets (General Inquiry)\n\nPlease let me know if you have any further questions or if there is anything else I can assist you with.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 65879.3
+          },
+          {
+            "email_id": "EML21556",
+            "subject": "Enhancements to Investment Portfolio Analysis Tool",
+            "body": "Dear Customer Support, I am contacting you to propose improvements to the investment portfolio analysis tool. Currently, the tool offers a useful summary of my portfolio, but I need additional advanced analytical functionalities. I am particularly interested in detailed metrics such as risk assessment and performance monitoring. These enhancements would enable me to make more educated investment choices and improve my portfolio's optimization. We should consider incorporating these features in the tool. Furthermore, I would like to request more regular data updates to stay abreast of market trends. Thank you for your attention to this matter. I eagerly await your response. Warm regards, [Your Name]",
+            "true_intent": "General Inquiry",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC041",
+              "DOC031"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [Your Name], thank you for your feedback regarding the investment portfolio analysis tool. We value your suggestions for enhancements, including advanced analytics features such as risk assessment and performance tracking, as well as more frequent data updates. Our team will evaluate your requests and consider them for future development plans. To better understand your specific needs, we would like to discuss this further. Would you be available for a call at a convenient time? Please provide a suitable time and we'll reach out to you at [tel_num]. We appreciate your patience and look forward to speaking with you about your account [acc_num] and the investment portfolio analysis tool. Best regards, [Support Team Name]",
+            "draft_body": "Subject: Re: Enhancements to Investment Portfolio Analysis Tool\n\nDear [Your Name],\n\nThank you for reaching out and for your detailed feedback on the investment portfolio analysis tool. We appreciate your insights and are committed to continuously improving our platform to better serve our customers.\n\nBased on your suggestions, we will consider incorporating advanced features such as risk assessment and performance monitoring. These features will help you make more informed investment decisions and optimize your portfolio. We will also look into providing more regular data updates to ensure you stay abreast of market trends.\n\nAdditionally, we will review and consider the 30-day guided Proof of Concept (Poc) with dedicated Solutions Engineering support and sandbox data that you mentioned. This will allow us to provide more personalized support and ensure a smoother transition to a paid subscription.\n\nIf you have any specific ideas or suggestions for these features, please feel free to share them with us. We would be happy to discuss these further and explore how we can best meet your needs.\n\nIf you are available for a call to discuss these ideas, please let us know a suitable time. We look forward to assisting you.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 89538.3
+          },
+          {
+            "email_id": "EML04765",
+            "subject": "Complete Failure of Digital Strategies",
+            "body": "The digital strategies employed by the marketing agency did not succeed in enhancing brand growth, likely due to ineffective targeting. Efforts such as campaign modifications were made, yet results remained unchanged. Despite these efforts, the brand's online visibility improved only marginally, with engagement metrics still falling short. It is crucial to reevaluate the targeting strategy and consider alternative approaches to reach the intended audience. A thorough analysis of the campaign's performance and a revised action plan are necessary to achieve the desired results.",
+            "true_intent": "Human Resources",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC027"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> understands the concerns regarding the digital strategies implemented by the marketing agency and their limited impact on brand growth. To provide better assistance, I would like to schedule a call to discuss the campaign details and the targeting approach used. Please let me know a convenient time for the call at <tel_num>. During the call, we can identify areas needing improvement and explore alternative strategies to reach the target audience. I will also provide a detailed analysis of the campaign's performance.",
+            "draft_body": "Subject: Re: Complete Failure of Digital Strategies\n\nHi <name>,\n\nThank you for reaching out. I appreciate your detailed feedback on the digital strategies employed by our marketing agency. To better understand the challenges you're facing, could you please provide more information about the specific targeting strategies used and the intended audience? Additionally, it would be helpful to know the metrics you were aiming to achieve and how they compare to the current results.\n\nWe can schedule a call at your convenience to discuss the campaign analytics and the adjustments made so far. Providing us with more information will allow us to provide a more accurate assessment and explore potential solutions for enhancing brand growth.\n\nLooking forward to your response.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 60715.4
+          },
+          {
+            "email_id": "EML03450",
+            "subject": "Setup Assistance Needed for Zoho Books",
+            "body": "Could you supply comprehensive step-by-step instructions for integrating Zoho Books with Eclipse IDE via Pluralsight? I am seeking detailed guidance to ensure a smooth and seamless connection between the tools.",
+            "true_intent": "IT Support",
+            "pred_intent": "IT Support",
+            "true_urgency": "medium",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC011",
+              "DOC008",
+              "DOC007"
+            ],
+            "cited_doc_ids": [
+              "DOC011"
+            ],
+            "reference_answer": "<name>,\n\nThank you for your interest in configuring Zoho Books with Eclipse IDE through Pluralsight. To assist with the integration process, we need some information about your current setup and the specific features you wish to connect. Please provide details about your Eclipse IDE and Pluralsight accounts, including account types and the tools you are currently using.\n\nWe offer a general guide for integrating Zoho Books applications. However, a customized approach requires a clearer understanding of your particular requirements.",
+            "draft_body": "Subject: Re: Setup Assistance Needed for Zoho Books\n\nHi <name>,\n\nThank you for your email. To assist with integrating Zoho Books with the Eclipse IDE via Pluralsight, I will provide you with the necessary steps and resources based on the information available in our organization's policy documents.\n\nFor integrating Zoho Books with the Eclipse IDE, we recommend following the general instructions provided in our [DOC011] document. Here are the steps you can follow:\n\n1. **Verify Your Accounts**: Ensure that you have the correct accounts set up for both Zoho Books and Pluralsight. You can find detailed instructions for setting up these accounts in the [DOC011] document.\n\n2. **Check API Quotas**: Since incremental synchronization runs every 5 minutes, verify that your API quotas are not being exceeded. Refer to [DOC011] for more details on API throttling.\n\n3. **Manual Full Resyncs**: If you need to perform a manual full resync, ensure that you are not exceeding the hourly limit. Refer to [DOC011] for the specific limits and procedures.\n\n4. **Field Mappings**: If you encounter any issues with field mappings, refer to [DOC011] for instructions on how to preserve these mappings.\n\n5. **Historical Sync State**: If you need to restore historical sync state, follow the instructions in [DOC011] to ensure a smooth transition.\n\n6. **Contact Support**: If you need further assistance or encounter any issues, you can contact our support team at <tel_num>. We are available to help you schedule a call or provide priority support.\n\nPlease let me know if you need any additional information or if you have any specific questions about these steps. We are here to assist you.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 86585.5
+          },
+          {
+            "email_id": "EML12029",
+            "subject": "Concerns Over Digital Campaign Performance",
+            "body": "Customer Support,<br><br>The marketing agency's recent digital campaign strategies are underperforming, which is adversely affecting the brand's growth initiatives. The underperformance might be due to a misalignment with the target audience's preferences. To date, we have analyzed engagement metrics and adjusted the targeting parameters accordingly. Despite these efforts, the results have not been satisfactory.<br><br>We are seeking your assistance to identify the root cause of the issue and explore potential solutions to enhance the campaign's performance.",
+            "true_intent": "Product Support",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC019"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "I would be happy to assist with the digital campaign issue. Please provide details on the current targeting parameters and the engagement metrics that have been analyzed so far. We can schedule a call to discuss this further.",
+            "draft_body": "Subject: Follow-Up on Digital Campaign Performance Issue\n\nDear <name>,\n\nThank you for reaching out to us regarding the underperformance of your recent digital campaigns. I appreciate your detailed explanation of the steps taken so far to address the issue.\n\nBased on the information provided, we will need to review the current targeting parameters and engagement metrics to identify any potential misalignments with the target audience's preferences. To expedite this process, we will schedule a call to discuss the details further.\n\nPlease provide the following information:\n- The current targeting parameters used in the digital campaigns.\n- The engagement metrics analyzed so far.\n- Any specific insights or observations you have noted from the analysis.\n\nWe will schedule a call with you within the next 24 hours to go through these details and explore potential solutions. \n\nIf you have any immediate questions or concerns, please feel free to reach out to me directly.\n\nThank you for your patience and understanding.\n\nBest regards,  \n[Your Full Name]  \n[Your Contact Information]",
+            "stage3_ms": 44945.1
+          },
+          {
+            "email_id": "EML07320",
+            "subject": "Problems with Several Products Not Resolved",
+            "body": "Several items such as the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon are not functioning properly. Steps taken to resolve the issue include restarting the devices and checking the connections, but the issues still persist. I am seeking further guidance on the next steps to resolve the problem.",
+            "true_intent": "Returns and Exchanges",
+            "pred_intent": "Technical Support",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC033",
+              "DOC035",
+              "DOC002"
+            ],
+            "cited_doc_ids": [
+              "DOC033",
+              "DOC035"
+            ],
+            "reference_answer": "Hello, sorry to hear about the issues you're experiencing with your products. To better assist you, could you please provide more details about the malfunctions, any error messages, and the symptoms you're seeing? Additionally, I have contacted the manufacturers of the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. I would be happy to help with troubleshooting or facilitate any repairs or replacements needed. Please call me at <tel_num> at your convenience to discuss this further.",
+            "draft_body": "Subject: Follow-Up on Product Issues\n\nHello [Name],\n\nThank you for reaching out with your concerns about the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. I appreciate your efforts to troubleshoot the issues. To better assist you, could you please provide more details about the malfunctions, any error messages, and the symptoms you are observing? Additionally, it would be helpful to know which specific products are affected and if you have tried any other troubleshooting steps. \n\nFor the Cooler Master MasterBox Q300L, we can verify if it falls within the 30-day return window specified in [DOC033]. If it does, we can initiate a return process. For the Lenovo ThinkPad X1 Carbon, we can check if it qualifies for a free expedited advance replacement as per [DOC035]. \n\nPlease provide this information so we can take the appropriate next steps. \n\nBest regards,  \n[Your Full Name]  \n[Your Contact Information]",
+            "stage3_ms": 46388.5
+          },
+          {
+            "email_id": "EML20942",
+            "subject": "Cyber Security",
+            "body": "Dear Customer Support, I am inquiring about the recommended cybersecurity measures for securing medical data in healthcare settings. As you are aware, medical data is highly sensitive and needs strong protection to avoid unauthorized access and breaches. Could you please inform me about the best practices currently recognized in the industry? Are there specific protocols or technologies that are advised for securing medical data? I would also appreciate any guidance on how to implement these measures effectively. Additionally, are there any resources or guidelines available to ensure compliance with relevant regulations for healthcare organizations? I am looking forward to your response with more information on this topic. Thank you for your time and assistance.",
+            "true_intent": "Sales and Pre-Sales",
+            "pred_intent": "Customer Service",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC022",
+              "DOC040",
+              "DOC020"
+            ],
+            "cited_doc_ids": [
+              "DOC022"
+            ],
+            "reference_answer": "Dear [name], we value your interest in cybersecurity measures for securing medical data. Best practices include implementing strong access controls, encrypting sensitive data, and keeping software up to date. We recommend healthcare organizations adhere to industry standards such as HIPAA guidelines. For more detailed information and implementation guidance, we can provide additional resources and guidelines to ensure compliance with relevant regulations. If you wish to discuss further, please let us know a convenient time for a call at [tel_num].",
+            "draft_body": "Subject: Re: Cyber Security\n\nDear <name>,\n\nThank you for your inquiry about recommended cybersecurity measures for securing medical data in healthcare settings. I understand the importance of protecting sensitive patient information and ensuring compliance with relevant regulations.\n\nBased on our organization policy documents, [DOC022] Security Vulnerability Disclosure and Incident Reporting (Security and Compliance), we recommend implementing the following best practices:\n\n- **Data Encryption**: All external and internal service traffic should be encrypted in transit using TLS 1.2 or TLS 1.3 with strong forward-secrecy cipher suites. Customer databases, file attachments, and automated backups should be encrypted at rest using AES-256 managed via cloud KMS with annual key rotation. For enterprise plans, customer-managed encryption keys (CMEK) are optionally supported for regulated workloads.\n- **Access Controls**: Implement strict access controls and authentication mechanisms to ensure that only authorized personnel have access to sensitive data. This includes multifactor authentication (MFA) and role-based access control (RBAC).\n- **Network Security**: Utilize firewalls, intrusion detection systems, and other security measures to protect against unauthorized access and cyber threats.\n- **Compliance with Regulations**: Ensure compliance with relevant regulations such as HIPAA (Health Insurance Portability and Accountability Act) and other industry-specific standards. For more detailed information on these regulations, we recommend referring to the official HIPAA website and other relevant resources.\n\nFor guidance on how to implement these measures effectively, we can schedule a call at your convenience. Please let us know a good time to talk.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 65115.1
+          },
+          {
+            "email_id": "EML12058",
+            "subject": "Report on Significant Service Interruptions",
+            "body": "We encountered significant service outages impacting various tools.",
+            "true_intent": "Service Outages and Maintenance",
+            "pred_intent": "Service Outages and Maintenance",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> sincerely apologizes for the service outages experienced, which affected multiple tools. Could you please provide details on the times these outages occurred and any error messages you received? This information will help us investigate and resolve the issue promptly. If you need to discuss further, please contact <tel_num>.",
+            "draft_body": "Subject: Acknowledgment of Significant Service Interruptions\n\nDear <name>,\n\nThank you for reaching out regarding the significant service outages you experienced. We appreciate your prompt communication and detailed information will help us investigate the issue promptly.\n\nCould you please provide the specific times these outages occurred and any error messages you received during the outages? This information will assist us in understanding the root cause and resolving the issue as soon as possible.\n\nShould you need further assistance or have any additional details, please do not hesitate to contact us at <tel_num>. We aim to resolve the issue as quickly as we can.\n\nThank you for your understanding and cooperation.\n\nBest regards,  \n[Your Full Name]  \n[Your Contact Information]",
+            "stage3_ms": 36605.6
+          },
+          {
+            "email_id": "EML16397",
+            "subject": "Guidelines for Securing Medical Data in OBS Studio Software",
+            "body": "Seek information on securing medical data using OBS Studio 27 and Smart-Home-Kamera applications to maintain confidentiality and comply with regulations.",
+            "true_intent": "Technical Support",
+            "pred_intent": "Sales and Pre-Sales",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC020",
+              "DOC023"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Offer general security guidelines for OBS Studio and Smart-Home-Kamera applications to ensure confidentiality and regulatory compliance for medical data.",
+            "draft_body": "Subject: Guidelines for Securing Medical Data in OBS Studio Software\n\nHello <name>,\n\nThank you for reaching out regarding the security and compliance of medical data when using OBS Studio 27 and Smart-Home-Kamera applications. Based on our organization's policies, here are some general security guidelines to ensure confidentiality and regulatory compliance:\n\n1. **Data Encryption**: Ensure that all data, including medical data, is encrypted both in transit and at rest. For OBS Studio and Smart-Home-Kamera, all external and internal service traffic should be encrypted in transit using TLS 1.2 or TLS 1.3 with strong forward-secrecy cipher suites. Customer databases, file attachments, and automated backups are encrypted at rest using AES-256 managed via cloud KMS with annual key rotation. If you are using an Enterprise plan, customer-managed encryption keys (CMEK) are optionally supported for regulated workloads.\n\n2. **GDPR Compliance**: If you are handling personal data under the General Data Protection Regulation (GDPR), you can submit GDPR access, export, or right-to-erasure requests through the Privacy Center or by emailing our Data Protection Officer. Verified deletion requests will purge primary production records within 14 days and expire encrypted backup snapshots within 30 days. Audit logs required for statutory financial recordkeeping are retained in anonymized form for 7 years.\n\n3. **SOC 2 and Compliance**: The platform maintains annual SOC 2 Type II and ISO 27001 certifications covering security, availability, and confidentiality trust principles. Current audit reports, penetration test executive summaries, and subprocessor lists are accessible under NDA from the Trust Portal. Standard compliance questionnaires are processed by our Security Assurance team within 5 business days.\n\nIf you have specific questions or need further assistance with these guidelines, please let me know. We can arrange a call at <tel_num",
+            "stage3_ms": 72206.2
+          }
+        ],
+        "bertscore": {
+          "precision": 0.7855206727981567,
+          "recall": 0.8795808553695679,
+          "f1": 0.8292684555053711
+        }
+      },
+      "policy_suite": {
+        "num_scenarios": 12,
+        "use_rag": true,
+        "use_few_shot": false,
+        "doc_retrieval_hit_rate": 1.0,
+        "target_citation_rate": 0.6666666666666666,
+        "policy_fact_recall": 0.9166666666666666,
+        "placeholder_leakage_rate": 1.0,
+        "scenarios": [
+          {
+            "scenario_id": "POL_TEST_01",
+            "expected_doc_id": "DOC001",
+            "retrieved_doc_ids": [
+              "DOC001",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [
+              "DOC001"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "first day of each month",
+              "Net 15"
+            ],
+            "draft_body": "Subject: Re: When do monthly statements go out and what are payment terms?\n\nHello <name>,\n\nThank you for your inquiry. According to [DOC001], invoices are issued on the first day of each month for the previous month's usage and are emailed to the billing contact. Standard payment terms are Net 15 from the invoice issue date.\n\nFor example, if your invoice is issued on the 1st of the month, you have until the 15th of the same month to settle the balance. If you do not pay within this period, an automated reminder notice will be sent.\n\nIf you need further assistance or have any other questions, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_02",
+            "expected_doc_id": "DOC006",
+            "retrieved_doc_ids": [
+              "DOC006",
+              "DOC021",
+              "DOC022"
+            ],
+            "cited_doc_ids": [
+              "DOC006"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "Multi-Factor Authentication",
+              "10",
+              "Organization Admin"
+            ],
+            "draft_body": "Subject: Re: Lost phone with authenticator app\n\nHi <name>,\n\nThank you for reaching out. I understand the urgency of this matter and will address it promptly.\n\nAccording to our [DOC006] Multi-Factor Authentication (MFA) Reset Policy, when a user loses their authenticator device, they should first use one of the 10 single-use backup codes generated during enrollment. Since you have already used the backup codes, we will proceed with resetting the MFA.\n\nHere are the steps we will take:\n\n1. We will contact the designated Organization Admin to verify your identity through the verified support portal.\n2. After identity verification, we will reset the MFA for the workspace admin.\n\nPlease ensure that the designated Organization Admin is available to assist with the verification process. We will keep you updated on the progress.\n\nIf you have any further questions or need additional assistance, please do not hesitate to reach out.\n\nThank you for your patience and understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_03",
+            "expected_doc_id": "DOC009",
+            "retrieved_doc_ids": [
+              "DOC009",
+              "DOC011",
+              "DOC012"
+            ],
+            "cited_doc_ids": [
+              "DOC009"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "120",
+              "600",
+              "Retry-After"
+            ],
+            "draft_body": "Subject: Re: Hitting HTTP 429 on REST endpoints\n\nHi <name>,\n\nThank you for reaching out. Based on our [DOC009] REST API Authentication and Rate Limits (Integrations) policy, standard workspaces are allotted 120 requests per minute per token, while enterprise workspaces support up to 600 requests per minute.\n\nWhen your integration script is receiving HTTP 429 responses, it's important to honor the Retry-After header in the response to implement exponential backoff. This means waiting for the time specified in the Retry-After header before making another request. This approach helps avoid overwhelming the API and ensures compliance with rate limits.\n\nFor example, if the Retry-After header indicates a wait of 5 seconds, you should wait 5 seconds before retrying the request. This process should be repeated until the API request is successful.\n\nIf you have any specific questions or need further assistance with implementing this, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_04",
+            "expected_doc_id": "DOC014",
+            "retrieved_doc_ids": [
+              "DOC014",
+              "DOC024",
+              "DOC013"
+            ],
+            "cited_doc_ids": [
+              "DOC014"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "500,000",
+              "50,000"
+            ],
+            "draft_body": "Subject: Re: Uploading a large customer CSV migration\n\nHi <name>,\n\nThank you for reaching out. Based on the [DOC014] Large Dataset Import and Batch Processing Limits policy, your 400,000-row CSV file will exceed the limit of 500,000 records per single upload job. Therefore, the import will be queued asynchronously and will emit a completion email or webhook upon finishing.\n\nThe import will not run synchronously as it exceeds the 50,000 row limit. Instead, the import will be split into sequential batches of 100,000 rows to avoid memory pressure and speed up validation error reporting.\n\nIf you have any further questions or need assistance with this, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_05",
+            "expected_doc_id": "DOC017",
+            "retrieved_doc_ids": [
+              "DOC017",
+              "DOC018",
+              "DOC040"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "Sundays",
+              "01:00",
+              "72 hours"
+            ],
+            "draft_body": "Subject: Planned Weekend Maintenance Schedule\n\nHi <name>,\n\nThank you for reaching out. Our regular maintenance window is scheduled for Sundays between 01:00 and 04:00 UTC. We provide advance email notice at least 72 hours prior to any maintenance window that is expected to cause brief read-only periods or failovers. Emergency security patches may be applied outside of standard windows with immediate notification via the Status Page.\n\nPlease let me know if you have any further questions or need additional information.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_06",
+            "expected_doc_id": "DOC021",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [
+              "DOC021"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "14 days",
+              "30 days",
+              "7 years"
+            ],
+            "draft_body": "Subject: Response to GDPR Right-to-Erasure Request\n\nDear <name>,\n\nThank you for reaching out regarding your GDPR right-to-erasure request. Under [DOC021] GDPR Data Subject Requests and Retention Policy, production records are purged within 14 days of receiving a verified deletion request, and encrypted backup snapshots are expired within 30 days.\n\nRegarding financial audit logs, they are retained in anonymized form for 7 years as per [DOC021]. This retention period ensures compliance with statutory financial recordkeeping requirements.\n\nWe will initiate the deletion process immediately and provide you with a confirmation of the action taken. Please let us know if you have any further questions or need additional information.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_07",
+            "expected_doc_id": "DOC024",
+            "retrieved_doc_ids": [
+              "DOC024",
+              "DOC014",
+              "DOC025"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "CSV",
+              "Parquet",
+              "48 hours"
+            ],
+            "draft_body": "Subject: Re: Exporting over 100k telemetry rows\n\nHello <name>,\n\nThank you for your email. Dashboard exports support CSV, JSON, and Parquet formats with UTF-8 encoding. For exports exceeding 100,000 rows, they are generated asynchronously and delivered as a secure time-limited download link valid for 48 hours.\n\nI hope this information is helpful. If you have any further questions or need additional assistance, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_08",
+            "expected_doc_id": "DOC027",
+            "retrieved_doc_ids": [
+              "DOC027",
+              "DOC010",
+              "DOC009"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "SPF",
+              "14-day"
+            ],
+            "draft_body": "Subject: Re: Outbound email domain authentication rules\n\nHello <name>,\n\nThank you for your inquiry regarding the outbound email domain authentication rules. Before launching marketing sends on a new domain, the following DNS records are mandatory to ensure deliverability:\n\n- SPF (Sender Policy Framework) record\n- DKIM (DomainKeys Identified Mail) record\n- DMARC (Domain-based Message Authentication, Reporting & Conformance) record\n\nThese records help prevent email spoofing and ensure that emails are sent from authorized sources. The new sending domain will undergo an automated 14-day warm-up schedule, capping initial daily volume to protect the sender reputation.\n\nRegarding bounce rate triggers, if the hard bounce rate exceeds 5% or the spam complaint rate exceeds 0.3%, the campaign will be paused automatically pending a list hygiene review. This ensures the quality and integrity of the email list.\n\nIf you have any further questions or need assistance, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_09",
+            "expected_doc_id": "DOC031",
+            "retrieved_doc_ids": [
+              "DOC031",
+              "DOC021",
+              "DOC015"
+            ],
+            "cited_doc_ids": [
+              "DOC031"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "14-day",
+              "30-day",
+              "30 days"
+            ],
+            "draft_body": "Subject: Re: Evaluating the product with a trial workspace\n\nHello <name>,\n\nThank you for your email. I have reviewed our Organization Policy Documents to assist with your questions.\n\nFor new organizations, a self-serve 14-day full-feature trial is provided without requiring a credit card upfront. This is in line with [DOC031].\n\nRegarding the Product Trials and Proof-of-Concept Evaluations, standard evaluations last for 14 days, and guided POC evaluations last for 30 days. During the 30-day guided POC, we offer dedicated Solutions Engineering support and sandbox data. [DOC031] provides details on these timelines.\n\nConfiguration is retained for 30 days after the trial workspace expires, so teams can smoothly transition to a paid subscription. [DOC031] also covers this retention period.\n\nIf you have any further questions or need additional information, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_10",
+            "expected_doc_id": "DOC034",
+            "retrieved_doc_ids": [
+              "DOC034",
+              "DOC033",
+              "DOC035"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "RMA",
+              "1 business day",
+              "10 business days"
+            ],
+            "draft_body": "Subject: Re: Shipping back defective hardware unit\n\nHi <name>,\n\nThank you for reaching out. To return the faulty hardware unit, you will need to obtain an RMA number first. This is required by our policy and ensures that the item is properly handled. You can obtain the RMA number by providing your order number, serial ID, and a brief defect description. We will provide you with a prepaid return shipping label within 1 business day of receiving this information.\n\nPlease note that packages arriving without a valid RMA label may face processing delays of up to 10 business days. To expedite the process, please provide your order details and the reason for the return as soon as possible.\n\nIf you have any further questions or need assistance, feel free to let me know.\n\nBest regards,  \n[Your Full Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_11",
+            "expected_doc_id": "DOC038",
+            "retrieved_doc_ids": [
+              "DOC038",
+              "DOC031",
+              "DOC018"
+            ],
+            "cited_doc_ids": [
+              "DOC038"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "5 business days",
+              "4-hour"
+            ],
+            "draft_body": "Subject: Re: Laptop and access setup for new employee\n\nHi <name>,\n\nThank you for your email. According to the [DOC038] Employee Onboarding and IT Equipment Provisioning policy, new hire IT access tickets and laptop provisioning requests must be submitted by the hiring manager at least 5 business days before the start date. This ensures that all identity accounts, email aliases, and role-based tool licenses are activated on the morning of the employee's start date following HR verification.\n\nFor missing onboarding access during the onboarding week, the policy states that urgent missing access is prioritized under an internal 4-hour resolution SLA. This means that if there is a need for immediate access, the IT team will work to resolve it within 4 hours.\n\nPlease let me know if you have any other questions or need further assistance.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_12",
+            "expected_doc_id": "DOC041",
+            "retrieved_doc_ids": [
+              "DOC041",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [
+              "DOC041"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "Tier-2",
+              "4 business hours"
+            ],
+            "draft_body": "Subject: Re: Requesting a supervisor review on stalled ticket\n\nHello <name>,\n\nThank you for reaching out regarding your ongoing issue. I understand the urgency of your request for a supervisor review.\n\nAccording to our [DOC041] Ticket Escalation and Supervisor Review Process, customers who are dissatisfied with an ongoing resolution or experiencing missed SLA targets can request formal escalation by replying with their ticket reference ID. Escalated tickets are reviewed by a Tier-2 Lead or Support Manager within 4 business hours.\n\nIn your case, since your issue has been dragging past the SLA, you should reply to the support ticket with your ticket reference ID to request a supervisor review. Once we receive your request, a Tier-2 Lead will review the ticket and provide a resolution within 4 business hours.\n\nIf you have any specific details or context that you think would be helpful for the review, please include them in your response.\n\nPlease let me know if you need any further assistance.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          }
+        ]
+      }
+    },
+    "qwen25_rag_2shot": {
+      "label": "Base Qwen2.5-3B + RAG + 2-Shot",
+      "ollama_model": "qwen2.5:3b",
+      "use_rag": true,
+      "use_few_shot": true,
+      "tickets": {
+        "num_samples": 10,
+        "use_rag": true,
+        "use_reranker": true,
+        "use_few_shot": true,
+        "model_name": "qwen2.5:3b",
+        "classification": {
+          "intent_accuracy": 0.5,
+          "intent_macro_f1": 0.41666666666666663,
+          "urgency_accuracy": 0.7,
+          "urgency_macro_f1": 0.7111111111111111,
+          "combined_macro_f1": 0.5638888888888889
+        },
+        "rouge": {
+          "rouge1_f1": 0.5211616711343046,
+          "rouge2_f1": 0.3377301889260698,
+          "rougeL_f1": 0.3980881503590156
+        },
+        "policy_adherence": {
+          "citation_rate": 0.2,
+          "valid_citation_precision": 1.0,
+          "policy_lexical_overlap": 0.11471883199682562,
+          "urgency_alignment_rate": 0.3333333333333333,
+          "placeholder_leakage_rate": 0.6
+        },
+        "placeholder_leakage_rate": 0.6,
+        "latency_ms": {
+          "stage1_ms": {
+            "mean": 5.89410999964457,
+            "p90": 7.417840000925935
+          },
+          "stage2_ms": {
+            "mean": 1422.077440000794,
+            "p90": 1931.9560000007186
+          },
+          "stage3_ms": {
+            "mean": 45784.084339999754,
+            "p90": 55674.84607999867
+          },
+          "total_ms": {
+            "mean": 47212.05589000019,
+            "p90": 56757.70272999943
+          }
+        },
+        "samples": [
+          {
+            "email_id": "EML10784",
+            "subject": "Inquiry on Pricing for BenQ TK850 Projector",
+            "body": "I am interested in purchasing the BenQ TK850 Projector and would like to know the pricing options, its compatibility with IFTTT, and any available discounts or promotions. Please inform me about any additional costs related to accessories and maintenance.",
+            "true_intent": "Billing and Payments",
+            "pred_intent": "Billing and Payments",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC032",
+              "DOC030",
+              "DOC033"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "We can provide you with pricing options for the BenQ TK850 Projector, information on its compatibility with IFTTT, and details about available discounts and promotions. Please allow us some time to gather this information and we will contact you soon to discuss the details.",
+            "draft_body": "Hello,\n\nWe can provide you with pricing options for the BenQ TK850 Projector and information on its compatibility with IFTTT. Additionally, we can share details on any available discounts or promotions. Please allow us some time to review your request and we will contact you shortly to discuss the details.\n\nIf there are any additional costs related to accessories or maintenance, we will inform you about those as well.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 44342.8
+          },
+          {
+            "email_id": "EML05360",
+            "subject": "DataRobot and Cassandra Integration for Enhanced Investment Analytics",
+            "body": "Dear Customer Support, I am seeking guidance on integrating DataRobot with Cassandra 4.0 to improve our investment analytics capabilities. Could you please provide comprehensive instructions for the integration process, including necessary configuration steps and optimization techniques? Examples and relevant documentation would be very helpful to facilitate a smooth setup. Our objective is to harness DataRobot's automation features alongside Cassandra's data management to make more informed investment decisions. Thank you for your assistance; I look forward to your response.",
+            "true_intent": "Customer Service",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC040",
+              "DOC026",
+              "DOC042"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>, thank you for contacting the Service Desk. I am happy to assist you with integrating DataRobot Cassandra 4.0. To provide detailed instructions, I will need some information about your current setup environment. Could you please share details regarding your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques; however, specific steps may vary based on your system. If you prefer, we can schedule a call at <tel_num> to discuss your requirements and provide tailored support. Please let me know a convenient time.",
+            "draft_body": "Hello,\n\nThank you for reaching out to the Service Desk. I understand your interest in integrating DataRobot with Cassandra 4.0 to enhance your investment analytics capabilities. To provide detailed instructions, I will need to understand your current setup environment. Could you please share information about your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques and provide examples and relevant documentation to facilitate a smooth setup. If preferred, we can schedule a call at <tel_num> to discuss and provide tailored support. Please let me know a convenient time.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 39772.8
+          },
+          {
+            "email_id": "EML21556",
+            "subject": "Enhancements to Investment Portfolio Analysis Tool",
+            "body": "Dear Customer Support, I am contacting you to propose improvements to the investment portfolio analysis tool. Currently, the tool offers a useful summary of my portfolio, but I need additional advanced analytical functionalities. I am particularly interested in detailed metrics such as risk assessment and performance monitoring. These enhancements would enable me to make more educated investment choices and improve my portfolio's optimization. We should consider incorporating these features in the tool. Furthermore, I would like to request more regular data updates to stay abreast of market trends. Thank you for your attention to this matter. I eagerly await your response. Warm regards, [Your Name]",
+            "true_intent": "General Inquiry",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC041",
+              "DOC031"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [Your Name], thank you for your feedback regarding the investment portfolio analysis tool. We value your suggestions for enhancements, including advanced analytics features such as risk assessment and performance tracking, as well as more frequent data updates. Our team will evaluate your requests and consider them for future development plans. To better understand your specific needs, we would like to discuss this further. Would you be available for a call at a convenient time? Please provide a suitable time and we'll reach out to you at [tel_num]. We appreciate your patience and look forward to speaking with you about your account [acc_num] and the investment portfolio analysis tool. Best regards, [Support Team Name]",
+            "draft_body": "Hello [Your Name],\n\nThank you for reaching out with your feedback and suggestions for enhancing the investment portfolio analysis tool. We appreciate your insights and are committed to improving our platform to better serve your needs.\n\nBased on your request, we will consider incorporating advanced analytical functionalities such as risk assessment and performance monitoring. These features will help you make more informed investment decisions and improve the optimization of your portfolio.\n\nAdditionally, we understand the importance of regular data updates. We will ensure that the tool provides more frequent data updates to help you stay updated with market trends.\n\nIf you have any further suggestions or would like to discuss these ideas further, please let us know your availability for a call at <tel_num>. We look forward to assisting you.\n\nBest regards,  \n[Your Name]  \nCustomer Support Team",
+            "stage3_ms": 44825.7
+          },
+          {
+            "email_id": "EML04765",
+            "subject": "Complete Failure of Digital Strategies",
+            "body": "The digital strategies employed by the marketing agency did not succeed in enhancing brand growth, likely due to ineffective targeting. Efforts such as campaign modifications were made, yet results remained unchanged. Despite these efforts, the brand's online visibility improved only marginally, with engagement metrics still falling short. It is crucial to reevaluate the targeting strategy and consider alternative approaches to reach the intended audience. A thorough analysis of the campaign's performance and a revised action plan are necessary to achieve the desired results.",
+            "true_intent": "Human Resources",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC027"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> understands the concerns regarding the digital strategies implemented by the marketing agency and their limited impact on brand growth. To provide better assistance, I would like to schedule a call to discuss the campaign details and the targeting approach used. Please let me know a convenient time for the call at <tel_num>. During the call, we can identify areas needing improvement and explore alternative strategies to reach the target audience. I will also provide a detailed analysis of the campaign's performance.",
+            "draft_body": "Hello <name>, thank you for reaching out with your concerns about the digital strategies employed by the marketing agency. We understand the importance of reevaluating the targeting strategy to better reach your intended audience. To assist you in this process, could you please provide more details about the digital strategies used, the target audience, and the specific results you anticipated? This information will help us conduct a thorough analysis of the campaign's performance and develop a revised action plan. Please let us know a convenient time for a call to discuss this further. I am available at <tel_num> and look forward to your response.",
+            "stage3_ms": 36626.4
+          },
+          {
+            "email_id": "EML03450",
+            "subject": "Setup Assistance Needed for Zoho Books",
+            "body": "Could you supply comprehensive step-by-step instructions for integrating Zoho Books with Eclipse IDE via Pluralsight? I am seeking detailed guidance to ensure a smooth and seamless connection between the tools.",
+            "true_intent": "IT Support",
+            "pred_intent": "IT Support",
+            "true_urgency": "medium",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC011",
+              "DOC008",
+              "DOC007"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>,\n\nThank you for your interest in configuring Zoho Books with Eclipse IDE through Pluralsight. To assist with the integration process, we need some information about your current setup and the specific features you wish to connect. Please provide details about your Eclipse IDE and Pluralsight accounts, including account types and the tools you are currently using.\n\nWe offer a general guide for integrating Zoho Books applications. However, a customized approach requires a clearer understanding of your particular requirements.",
+            "draft_body": "Hello <name>,\n\nThank you for your request for comprehensive step-by-step instructions for integrating Zoho Books with Eclipse IDE via Pluralsight. To assist you effectively, we need some details about your current setup and the specific features you wish to connect.\n\nPlease provide information about your current Eclipse IDE and Pluralsight accounts, including account types and the tools you are presently using. This will help us tailor the instructions to your needs.\n\nAdditionally, could you specify the specific features or integrations you are interested in, such as exporting data from Zoho Books to Eclipse IDE or importing data into Zoho Books from Eclipse IDE?\n\nWe offer general instructions for integrating Zoho Books with various tools, but a customized approach would be more effective once we understand your particular requirements.\n\nIf you have any specific questions or need further assistance, please let us know a convenient time to contact you at <tel_num>. We are happy to schedule a call or provide priority support through <acc_num>. We look forward to assisting you.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 52511.6
+          },
+          {
+            "email_id": "EML12029",
+            "subject": "Concerns Over Digital Campaign Performance",
+            "body": "Customer Support,<br><br>The marketing agency's recent digital campaign strategies are underperforming, which is adversely affecting the brand's growth initiatives. The underperformance might be due to a misalignment with the target audience's preferences. To date, we have analyzed engagement metrics and adjusted the targeting parameters accordingly. Despite these efforts, the results have not been satisfactory.<br><br>We are seeking your assistance to identify the root cause of the issue and explore potential solutions to enhance the campaign's performance.",
+            "true_intent": "Product Support",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC019"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "I would be happy to assist with the digital campaign issue. Please provide details on the current targeting parameters and the engagement metrics that have been analyzed so far. We can schedule a call to discuss this further.",
+            "draft_body": "Hello,\n\nThank you for reaching out. We appreciate your detailed explanation of the underperformance in your recent digital campaign. To help us identify the root cause, could you please provide more specific details on the engagement metrics that have been analyzed and the targeting parameters that have been adjusted? Additionally, it would be helpful to know if there have been any recent changes in the target audience's preferences or behaviors that we might need to consider.\n\nWe can then schedule a call to discuss this further and explore potential solutions to enhance the campaign's performance.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 34061.5
+          },
+          {
+            "email_id": "EML07320",
+            "subject": "Problems with Several Products Not Resolved",
+            "body": "Several items such as the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon are not functioning properly. Steps taken to resolve the issue include restarting the devices and checking the connections, but the issues still persist. I am seeking further guidance on the next steps to resolve the problem.",
+            "true_intent": "Returns and Exchanges",
+            "pred_intent": "Technical Support",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC033",
+              "DOC035",
+              "DOC002"
+            ],
+            "cited_doc_ids": [
+              "DOC033",
+              "DOC035"
+            ],
+            "reference_answer": "Hello, sorry to hear about the issues you're experiencing with your products. To better assist you, could you please provide more details about the malfunctions, any error messages, and the symptoms you're seeing? Additionally, I have contacted the manufacturers of the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. I would be happy to help with troubleshooting or facilitate any repairs or replacements needed. Please call me at <tel_num> at your convenience to discuss this further.",
+            "draft_body": "Hello <name>,\n\nThank you for reaching out. I understand you are experiencing issues with your Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. You have already taken steps such as restarting the devices and checking connections, but the problems still persist. To assist you further, could you please provide more details about the malfunctions, any error messages, and the symptoms you are observing? This will help us better understand the issue and determine the next steps to resolve it.\n\nAdditionally, if you have not already done so, please ensure that the items are returned within the 30-day window for physical hardware devices [DOC033]. If the items are confirmed as defective upon arrival, you may be eligible for a free expedited advance replacement [DOC035].\n\nThank you for your patience, and I will be in touch with further instructions.\n\nBest regards,\n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 50602.7
+          },
+          {
+            "email_id": "EML20942",
+            "subject": "Cyber Security",
+            "body": "Dear Customer Support, I am inquiring about the recommended cybersecurity measures for securing medical data in healthcare settings. As you are aware, medical data is highly sensitive and needs strong protection to avoid unauthorized access and breaches. Could you please inform me about the best practices currently recognized in the industry? Are there specific protocols or technologies that are advised for securing medical data? I would also appreciate any guidance on how to implement these measures effectively. Additionally, are there any resources or guidelines available to ensure compliance with relevant regulations for healthcare organizations? I am looking forward to your response with more information on this topic. Thank you for your time and assistance.",
+            "true_intent": "Sales and Pre-Sales",
+            "pred_intent": "Customer Service",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC022",
+              "DOC040",
+              "DOC020"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [name], we value your interest in cybersecurity measures for securing medical data. Best practices include implementing strong access controls, encrypting sensitive data, and keeping software up to date. We recommend healthcare organizations adhere to industry standards such as HIPAA guidelines. For more detailed information and implementation guidance, we can provide additional resources and guidelines to ensure compliance with relevant regulations. If you wish to discuss further, please let us know a convenient time for a call at [tel_num].",
+            "draft_body": "Hello,\n\nThank you for your inquiry about recommended cybersecurity measures for securing medical data in healthcare settings. Here are some best practices and technologies that are commonly recognized in the industry:\n\n- **Data Encryption**: All external and internal service traffic should be encrypted in transit using TLS 1.2 or TLS 1.3 with strong forward-secrecy cipher suites. Customer databases, file attachments, and automated backups should be encrypted at rest using AES-256 managed via cloud Key Management Service (KMS) with annual key rotation. Enterprise plans optionally support customer-managed encryption keys (CMEK) for regulated workloads.\n- **Access Controls**: Implement strict access controls and authentication mechanisms to ensure that only authorized personnel have access to sensitive data.\n- **Network Security**: Use firewalls, intrusion detection systems, and other security tools to monitor and protect your network.\n- **Regular Audits and Monitoring**: Conduct regular security audits and continuous monitoring to identify and mitigate potential security risks.\n- **Compliance with Regulations**: Ensure compliance with relevant regulations such as HIPAA (Health Insurance Portability and Accountability Act) for healthcare organizations.\n\nFor more detailed information and guidance on implementing these measures, you may refer to the following resources:\n- [HIPAA Compliance Guide](https://www.hhs.gov/hipaa/for-professionals/special-topics/compliance-guide/index.html)\n- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)\n\nIf you need further assistance or have specific questions, please let us know.\n\nThank you for choosing our services, and we are here to help.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 67589.2
+          },
+          {
+            "email_id": "EML12058",
+            "subject": "Report on Significant Service Interruptions",
+            "body": "We encountered significant service outages impacting various tools.",
+            "true_intent": "Service Outages and Maintenance",
+            "pred_intent": "Service Outages and Maintenance",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> sincerely apologizes for the service outages experienced, which affected multiple tools. Could you please provide details on the times these outages occurred and any error messages you received? This information will help us investigate and resolve the issue promptly. If you need to discuss further, please contact <tel_num>.",
+            "draft_body": "Hello <name>, \n\nThank you for bringing this to our attention. We understand the impact of the service outages and are currently investigating the issue. Could you please provide details on the times these outages occurred and any error messages you received? This information will help us understand the situation better and resolve it as soon as possible. \n\nIf you need to discuss further, please contact us at <tel_num>. \n\nWe will keep you updated on the progress of our investigation. \n\nThank you for your patience.",
+            "stage3_ms": 33157.1
+          },
+          {
+            "email_id": "EML16397",
+            "subject": "Guidelines for Securing Medical Data in OBS Studio Software",
+            "body": "Seek information on securing medical data using OBS Studio 27 and Smart-Home-Kamera applications to maintain confidentiality and comply with regulations.",
+            "true_intent": "Technical Support",
+            "pred_intent": "Sales and Pre-Sales",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC020",
+              "DOC023"
+            ],
+            "cited_doc_ids": [
+              "DOC020",
+              "DOC023"
+            ],
+            "reference_answer": "Offer general security guidelines for OBS Studio and Smart-Home-Kamera applications to ensure confidentiality and regulatory compliance for medical data.",
+            "draft_body": "Hello,\n\nThank you for your request for information on securing medical data using OBS Studio 27 and Smart-Home-Kamera applications. Here are some general security guidelines to ensure confidentiality and regulatory compliance:\n\n- **OBS Studio 27**: \n  - Ensure that all data transmissions are encrypted in transit using TLS 1.2 or TLS 1.3 with strong forward-secrecy cipher suites [DOC020].\n  - For customer databases, file attachments, and automated backups, use AES-256 encryption at rest managed via cloud Key Management Service (KMS) with annual key rotation [DOC020].\n  - If you have a regulated workload, consider the option to use customer-managed encryption keys (CMEK) [DOC020].\n\n- **Smart-Home-Kamera**: \n  - Follow the same encryption standards as OBS Studio 27 for ensuring data security and compliance.\n\nFor more detailed information, you can refer to our SOC 2 Type II and ISO 27001 certifications, which cover security, availability, and confidentiality trust principles [DOC023]. These audit reports and compliance documentation are available under NDA from the Trust Portal.\n\nIf you have any specific questions or need further assistance, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]",
+            "stage3_ms": 54351.0
+          }
+        ],
+        "bertscore": {
+          "precision": 0.8278209567070007,
+          "recall": 0.903400719165802,
+          "f1": 0.8631001710891724
+        }
+      },
+      "policy_suite": {
+        "num_scenarios": 12,
+        "use_rag": true,
+        "use_few_shot": true,
+        "doc_retrieval_hit_rate": 1.0,
+        "target_citation_rate": 0.8333333333333334,
+        "policy_fact_recall": 0.8055555555555555,
+        "placeholder_leakage_rate": 0.5,
+        "scenarios": [
+          {
+            "scenario_id": "POL_TEST_01",
+            "expected_doc_id": "DOC001",
+            "retrieved_doc_ids": [
+              "DOC001",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [
+              "DOC001"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "Net 15",
+              "10 days"
+            ],
+            "draft_body": "Hello,\n\nInvoices are typically issued on the 1st day of each month for the previous month's usage. Payment terms are Net 15 from the invoice issue date, unless an enterprise Net 30 agreement is active [DOC001].\n\nRegarding payment terms, if balances are not settled within 10 days past the invoice issue date, automated reminder notices will be sent [DOC001].\n\nIf you need further assistance or have specific questions about your account, please provide your account number and any details of the overdue balance, and we will be happy to help.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_02",
+            "expected_doc_id": "DOC006",
+            "retrieved_doc_ids": [
+              "DOC006",
+              "DOC021",
+              "DOC022"
+            ],
+            "cited_doc_ids": [
+              "DOC006"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "10",
+              "Organization Admin"
+            ],
+            "draft_body": "Hello <name>, \n\nWe understand the urgency of this situation. When a user loses their authenticator device, they should first use one of the 10 single-use backup codes generated during enrollment. If backup codes are unavailable, Support will reset MFA only after identity verification from a designated Organization Admin via the verified support portal [DOC006].\n\nPlease have the designated Organization Admin contact our support team to initiate the MFA reset process. They will need to provide their credentials for verification.\n\nIf you have any further questions or need assistance with this process, please let us know. We will ensure that the reset is completed as soon as possible.\n\nThank you for your understanding."
+          },
+          {
+            "scenario_id": "POL_TEST_03",
+            "expected_doc_id": "DOC009",
+            "retrieved_doc_ids": [
+              "DOC009",
+              "DOC011",
+              "DOC012"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "120",
+              "600",
+              "Retry-After"
+            ],
+            "draft_body": "Hello <name>, \n\nThank you for reaching out. For standard workspaces, the per-minute API quota is 120 requests, and for enterprise workspaces, it is up to 600 requests per minute. When your integration script receives an HTTP 429 response, which indicates that you have hit the rate limit, you should honor the Retry-After header in the response to implement exponential backoff. This will allow your script to retry the request at an interval that increases exponentially, ensuring that you do not exceed the rate limit.\n\nIf you have any specific questions or need further assistance with your integration, please let me know. \n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_04",
+            "expected_doc_id": "DOC014",
+            "retrieved_doc_ids": [
+              "DOC014",
+              "DOC024",
+              "DOC013"
+            ],
+            "cited_doc_ids": [
+              "DOC014"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "500,000"
+            ],
+            "draft_body": "Hello,\n\nThank you for reaching out. Uploading a 400,000-row CSV file will exceed the import limit of 500,000 records per single upload job [DOC014]. The import will be queued asynchronously and will generate a completion email or webhook upon finishing [DOC014].\n\nIf you need the import to run synchronously, we recommend splitting the multi-million-row migration into sequential batches of 100,000 rows each to avoid memory pressure and speed up validation error reporting [DOC014].\n\nLet me know if you have any further questions or need assistance with this.\n\nBest,\n[Your Name]"
+          },
+          {
+            "scenario_id": "POL_TEST_05",
+            "expected_doc_id": "DOC017",
+            "retrieved_doc_ids": [
+              "DOC017",
+              "DOC018",
+              "DOC040"
+            ],
+            "cited_doc_ids": [
+              "DOC017",
+              "DOC040"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "Sundays",
+              "01:00",
+              "72 hours"
+            ],
+            "draft_body": "Hello,\n\nThank you for your inquiry. Our routine infrastructure maintenance is scheduled on Sundays between 01:00 and 04:00 UTC. We provide advance email notice at least 72 hours prior to any maintenance window that is expected to cause brief read-only periods or failovers [DOC017].\n\nIf you need to notify your operations team about our maintenance schedule, you can do so by visiting our website or by calling us at <tel_num> [DOC040].\n\nLet me know if you have any other questions.\n\nBest regards,"
+          },
+          {
+            "scenario_id": "POL_TEST_06",
+            "expected_doc_id": "DOC021",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [
+              "DOC021"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "14 days",
+              "30 days",
+              "7 years"
+            ],
+            "draft_body": "Hello,\n\nThank you for reaching out. Under the GDPR Data Subject Requests and Retention Policy [DOC021], verified deletion requests for production records will be purged within 14 days. Encrypted backup snapshots will be purged within 30 days.\n\nFor audit logs required for statutory financial recordkeeping, they are retained in anonymized form for 7 years [DOC021].\n\nIf you have any further questions or need additional assistance, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_07",
+            "expected_doc_id": "DOC024",
+            "retrieved_doc_ids": [
+              "DOC024",
+              "DOC014",
+              "DOC025"
+            ],
+            "cited_doc_ids": [
+              "DOC024"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "CSV",
+              "Parquet",
+              "48 hours"
+            ],
+            "draft_body": "Hello <name>, \n\nAnalytics dashboard exports support CSV, JSON, and Parquet formats with UTF-8 encoding. For exports exceeding 100,000 rows, they are generated asynchronously and delivered as a secure time-limited download link valid for 48 hours [DOC024]. \n\nIf you have any further questions or need assistance with this, please let me know. \n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_08",
+            "expected_doc_id": "DOC027",
+            "retrieved_doc_ids": [
+              "DOC027",
+              "DOC010",
+              "DOC009"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "SPF"
+            ],
+            "draft_body": "Hello <name>, \n\nBefore launching marketing sends on a new domain, the following DNS records are mandatory for outbound email campaigns:\n- SPF (Sender Policy Framework)\n- DKIM (DomainKeys Identified Mail)\n- DMARC (Domain-based Message Authentication, Reporting, and Conformance)\n\nThese records help ensure that emails are sent from authorized sources and prevent spoofing. \n\nIf your new domain experiences a spam complaint rate of 0.3% or a hard bounce rate of 5% or higher, your campaign will be paused automatically. This pause is to allow for a review of your list hygiene and to prevent further issues. \n\nPlease ensure that your domain has these records in place to proceed with your marketing sends. If you need assistance setting up these records, please let us know.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_09",
+            "expected_doc_id": "DOC031",
+            "retrieved_doc_ids": [
+              "DOC031",
+              "DOC021",
+              "DOC015"
+            ],
+            "cited_doc_ids": [
+              "DOC031"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "14-day",
+              "30-day",
+              "30 days"
+            ],
+            "draft_body": "Hello,\n\nThank you for your inquiry about the product trial and Proof of Concept (POC) evaluations. Here are the details:\n\n- New organizations receive a self-serve 14-day full-feature trial without requiring a credit card upfront [DOC031].\n- Qualified enterprise prospects can request a 30-day guided POC with dedicated Solutions Engineering support and sandbox data [DOC031].\n- Standard POC evaluations last for 30 days [DOC031].\n- Guided POC evaluations also last for 30 days and include dedicated Solutions Engineering support [DOC031].\n- Workspace configurations are retained for 30 days after the trial or POC workspace expiration, allowing teams to smoothly transition to a paid subscription [DOC031].\n\nIf you have any further questions or need additional information, please let me know.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_10",
+            "expected_doc_id": "DOC034",
+            "retrieved_doc_ids": [
+              "DOC034",
+              "DOC033",
+              "DOC035"
+            ],
+            "cited_doc_ids": [
+              "DOC034",
+              "DOC033"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "RMA",
+              "1 business day"
+            ],
+            "draft_body": "Hello <name>, thank you for reaching out. To return the faulty hardware unit, you will need to obtain an RMA (Return Merchandise Authorization) number first. This can be done by providing your order number, serial ID, and a brief description of the defect to our support team within 1 business day [DOC034]. Once we approve the RMA, you will receive a prepaid return shipping label to use for shipping the item back to our fulfillment center [DOC034]. Please ensure that the package includes the original packaging, power adapters, and any intact serial labels without physical misuse damage [DOC033]. \n\nIf you have any questions or need further assistance, please let us know. We aim to process your request within 1 business day."
+          },
+          {
+            "scenario_id": "POL_TEST_11",
+            "expected_doc_id": "DOC038",
+            "retrieved_doc_ids": [
+              "DOC038",
+              "DOC031",
+              "DOC018"
+            ],
+            "cited_doc_ids": [
+              "DOC038"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "5 business days",
+              "4-hour"
+            ],
+            "draft_body": "Hello,\n\nFor new hire IT access and laptop provisioning, IT access tickets and laptop requests should be submitted by the hiring manager at least 5 business days before the start date to ensure timely provisioning [DOC038].\n\nRegarding missing onboarding access, if the access is needed urgently during the onboarding week, it will be prioritized under an internal 4-hour resolution SLA [DOC038].\n\nIf you have any other questions or need further assistance, please let me know.\n\nBest regards,  \n[Your Name]  \n[Tel Number]  \n[Your Contact Information]"
+          },
+          {
+            "scenario_id": "POL_TEST_12",
+            "expected_doc_id": "DOC041",
+            "retrieved_doc_ids": [
+              "DOC041",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [
+              "DOC041",
+              "DOC019"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "Tier-2",
+              "4 business hours"
+            ],
+            "draft_body": "Hello,\n\nThank you for reaching out. To request a supervisor review for a stalled ticket, please reply to this email with your ticket reference ID. Escalated tickets will be reviewed by a Tier-2 Lead or Support Manager within 4 business hours [DOC041].\n\nRegarding the response time, a Tier-2 Lead or Support Manager will review your ticket and provide a resolution within 4 business hours [DOC041].\n\nIf your issue is related to an outage or maintenance, please tag your ticket with an active outage indicator to ensure it is automatically escalated to the on-call reliability rotation [DOC019].\n\nIf you have any additional details or context about your issue, please share them so we can assist you more effectively.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \n[Your Contact Information]"
+          }
+        ]
+      }
+    },
+    "sft_rag_0shot": {
+      "label": "LoRA SFT + RAG (0-Shot)",
+      "ollama_model": "draft-qwen25-3b",
+      "use_rag": true,
+      "use_few_shot": false,
+      "tickets": {
+        "num_samples": 10,
+        "use_rag": true,
+        "use_reranker": true,
+        "use_few_shot": false,
+        "model_name": "draft-qwen25-3b",
+        "classification": {
+          "intent_accuracy": 0.5,
+          "intent_macro_f1": 0.41666666666666663,
+          "urgency_accuracy": 0.7,
+          "urgency_macro_f1": 0.7111111111111111,
+          "combined_macro_f1": 0.5638888888888889
+        },
+        "rouge": {
+          "rouge1_f1": 0.713550755864376,
+          "rouge2_f1": 0.528255431633649,
+          "rougeL_f1": 0.6123052520717339
+        },
+        "policy_adherence": {
+          "citation_rate": 0.0,
+          "valid_citation_precision": 1.0,
+          "policy_lexical_overlap": 0.02759652739682712,
+          "urgency_alignment_rate": 0.0,
+          "placeholder_leakage_rate": 0.6
+        },
+        "placeholder_leakage_rate": 0.6,
+        "latency_ms": {
+          "stage1_ms": {
+            "mean": 5.499250000866596,
+            "p90": 6.406710001465399
+          },
+          "stage2_ms": {
+            "mean": 1419.3486899988784,
+            "p90": 1942.8271600023436
+          },
+          "stage3_ms": {
+            "mean": 43072.13651999991,
+            "p90": 51319.270649997634
+          },
+          "total_ms": {
+            "mean": 44496.98445999966,
+            "p90": 52591.92130999945
+          }
+        },
+        "samples": [
+          {
+            "email_id": "EML10784",
+            "subject": "Inquiry on Pricing for BenQ TK850 Projector",
+            "body": "I am interested in purchasing the BenQ TK850 Projector and would like to know the pricing options, its compatibility with IFTTT, and any available discounts or promotions. Please inform me about any additional costs related to accessories and maintenance.",
+            "true_intent": "Billing and Payments",
+            "pred_intent": "Billing and Payments",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC032",
+              "DOC030",
+              "DOC033"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "We can provide you with pricing options for the BenQ TK850 Projector, information on its compatibility with IFTTT, and details about available discounts and promotions. Please allow us some time to gather this information and we will contact you soon to discuss the details.",
+            "draft_body": "We can provide pricing options for the BenQ TK850 Projector, information on its compatibility with IFTTT, and details on any available discounts or promotions. Please allow us some time to review your request and we will contact you shortly to discuss the details.",
+            "stage3_ms": 52847.2
+          },
+          {
+            "email_id": "EML05360",
+            "subject": "DataRobot and Cassandra Integration for Enhanced Investment Analytics",
+            "body": "Dear Customer Support, I am seeking guidance on integrating DataRobot with Cassandra 4.0 to improve our investment analytics capabilities. Could you please provide comprehensive instructions for the integration process, including necessary configuration steps and optimization techniques? Examples and relevant documentation would be very helpful to facilitate a smooth setup. Our objective is to harness DataRobot's automation features alongside Cassandra's data management to make more informed investment decisions. Thank you for your assistance; I look forward to your response.",
+            "true_intent": "Customer Service",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC040",
+              "DOC026",
+              "DOC042"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>, thank you for contacting the Service Desk. I am happy to assist you with integrating DataRobot Cassandra 4.0. To provide detailed instructions, I will need some information about your current setup environment. Could you please share details regarding your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques; however, specific steps may vary based on your system. If you prefer, we can schedule a call at <tel_num> to discuss your requirements and provide tailored support. Please let me know a convenient time.",
+            "draft_body": "<name>, thank you for contacting the Service Desk. I am happy to assist with integrating DataRobot with Cassandra 4.0. To provide detailed instructions, I will need to understand your current setup environment. Could you please share information about your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques; however, specific steps may vary based on your system. If preferred, we can schedule a call at <tel_num> to discuss and provide tailored support. Please let me know a convenient time.",
+            "stage3_ms": 50633.3
+          },
+          {
+            "email_id": "EML21556",
+            "subject": "Enhancements to Investment Portfolio Analysis Tool",
+            "body": "Dear Customer Support, I am contacting you to propose improvements to the investment portfolio analysis tool. Currently, the tool offers a useful summary of my portfolio, but I need additional advanced analytical functionalities. I am particularly interested in detailed metrics such as risk assessment and performance monitoring. These enhancements would enable me to make more educated investment choices and improve my portfolio's optimization. We should consider incorporating these features in the tool. Furthermore, I would like to request more regular data updates to stay abreast of market trends. Thank you for your attention to this matter. I eagerly await your response. Warm regards, [Your Name]",
+            "true_intent": "General Inquiry",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC041",
+              "DOC031"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [Your Name], thank you for your feedback regarding the investment portfolio analysis tool. We value your suggestions for enhancements, including advanced analytics features such as risk assessment and performance tracking, as well as more frequent data updates. Our team will evaluate your requests and consider them for future development plans. To better understand your specific needs, we would like to discuss this further. Would you be available for a call at a convenient time? Please provide a suitable time and we'll reach out to you at [tel_num]. We appreciate your patience and look forward to speaking with you about your account [acc_num] and the investment portfolio analysis tool. Best regards, [Support Team Name]",
+            "draft_body": "<name>, thank you for your email and for sharing your thoughts on enhancing the investment portfolio analysis tool. We appreciate your feedback and are always seeking ways to improve our platform to better meet customer needs. Your suggestions for advanced features such as predictive modeling, risk assessment, portfolio stress testing, along with detailed customizable reports and real-time data updates are valuable. We would be happy to discuss these further. Please let us know a convenient time for a call at <tel_num> to explore the details.",
+            "stage3_ms": 50472.2
+          },
+          {
+            "email_id": "EML04765",
+            "subject": "Complete Failure of Digital Strategies",
+            "body": "The digital strategies employed by the marketing agency did not succeed in enhancing brand growth, likely due to ineffective targeting. Efforts such as campaign modifications were made, yet results remained unchanged. Despite these efforts, the brand's online visibility improved only marginally, with engagement metrics still falling short. It is crucial to reevaluate the targeting strategy and consider alternative approaches to reach the intended audience. A thorough analysis of the campaign's performance and a revised action plan are necessary to achieve the desired results.",
+            "true_intent": "Human Resources",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC027"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> understands the concerns regarding the digital strategies implemented by the marketing agency and their limited impact on brand growth. To provide better assistance, I would like to schedule a call to discuss the campaign details and the targeting approach used. Please let me know a convenient time for the call at <tel_num>. During the call, we can identify areas needing improvement and explore alternative strategies to reach the target audience. I will also provide a detailed analysis of the campaign's performance.",
+            "draft_body": "<name>, thank you for reaching out regarding the digital strategies employed by the marketing agency. To better assist you, could you please provide details on the specific campaigns and audience analyses conducted so far? Additionally, it would be helpful to know which metrics are not meeting expectations. I would like to arrange a call at <tel_num> to discuss potential solutions for enhancing brand growth. Please let me know a convenient time for the call.",
+            "stage3_ms": 46357.8
+          },
+          {
+            "email_id": "EML03450",
+            "subject": "Setup Assistance Needed for Zoho Books",
+            "body": "Could you supply comprehensive step-by-step instructions for integrating Zoho Books with Eclipse IDE via Pluralsight? I am seeking detailed guidance to ensure a smooth and seamless connection between the tools.",
+            "true_intent": "IT Support",
+            "pred_intent": "IT Support",
+            "true_urgency": "medium",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC011",
+              "DOC008",
+              "DOC007"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>,\n\nThank you for your interest in configuring Zoho Books with Eclipse IDE through Pluralsight. To assist with the integration process, we need some information about your current setup and the specific features you wish to connect. Please provide details about your Eclipse IDE and Pluralsight accounts, including account types and the tools you are currently using.\n\nWe offer a general guide for integrating Zoho Books applications. However, a customized approach requires a clearer understanding of your particular requirements.",
+            "draft_body": "Thank you for reaching out regarding the integration of Zoho Books with Eclipse IDE using Pluralsight. To assist you effectively, could you please provide more details about your current setup and the specific features you wish to connect? Additionally, it would be helpful to know your account types and the tools you are currently using. We can offer general instructions for integrating Zoho Books applications; however, a customized approach would be more effective once we understand your particular requirements.",
+            "stage3_ms": 46741.7
+          },
+          {
+            "email_id": "EML12029",
+            "subject": "Concerns Over Digital Campaign Performance",
+            "body": "Customer Support,<br><br>The marketing agency's recent digital campaign strategies are underperforming, which is adversely affecting the brand's growth initiatives. The underperformance might be due to a misalignment with the target audience's preferences. To date, we have analyzed engagement metrics and adjusted the targeting parameters accordingly. Despite these efforts, the results have not been satisfactory.<br><br>We are seeking your assistance to identify the root cause of the issue and explore potential solutions to enhance the campaign's performance.",
+            "true_intent": "Product Support",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC019"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "I would be happy to assist with the digital campaign issue. Please provide details on the current targeting parameters and the engagement metrics that have been analyzed so far. We can schedule a call to discuss this further.",
+            "draft_body": "I would be happy to assist with the digital campaign issue. Please provide details on the current targeting parameters and the engagement metrics that have been analyzed so far. We can then schedule a call to discuss this further.",
+            "stage3_ms": 24251.0
+          },
+          {
+            "email_id": "EML07320",
+            "subject": "Problems with Several Products Not Resolved",
+            "body": "Several items such as the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon are not functioning properly. Steps taken to resolve the issue include restarting the devices and checking the connections, but the issues still persist. I am seeking further guidance on the next steps to resolve the problem.",
+            "true_intent": "Returns and Exchanges",
+            "pred_intent": "Technical Support",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC033",
+              "DOC035",
+              "DOC002"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Hello, sorry to hear about the issues you're experiencing with your products. To better assist you, could you please provide more details about the malfunctions, any error messages, and the symptoms you're seeing? Additionally, I have contacted the manufacturers of the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. I would be happy to help with troubleshooting or facilitate any repairs or replacements needed. Please call me at <tel_num> at your convenience to discuss this further.",
+            "draft_body": "Hello <name>, thank you for reaching out regarding the malfunction of your Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. We are sorry to hear that restarting the devices and checking connections did not resolve the issue. To assist you better, could you please provide more details about the specific problems you are experiencing? Additionally, it would be helpful to know the exact error messages you are seeing. If necessary, we can arrange a call at <tel_num> to discuss further and determine the best course of action to resolve the issue.",
+            "stage3_ms": 51149.5
+          },
+          {
+            "email_id": "EML20942",
+            "subject": "Cyber Security",
+            "body": "Dear Customer Support, I am inquiring about the recommended cybersecurity measures for securing medical data in healthcare settings. As you are aware, medical data is highly sensitive and needs strong protection to avoid unauthorized access and breaches. Could you please inform me about the best practices currently recognized in the industry? Are there specific protocols or technologies that are advised for securing medical data? I would also appreciate any guidance on how to implement these measures effectively. Additionally, are there any resources or guidelines available to ensure compliance with relevant regulations for healthcare organizations? I am looking forward to your response with more information on this topic. Thank you for your time and assistance.",
+            "true_intent": "Sales and Pre-Sales",
+            "pred_intent": "Customer Service",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC022",
+              "DOC040",
+              "DOC020"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [name], we value your interest in cybersecurity measures for securing medical data. Best practices include implementing strong access controls, encrypting sensitive data, and keeping software up to date. We recommend healthcare organizations adhere to industry standards such as HIPAA guidelines. For more detailed information and implementation guidance, we can provide additional resources and guidelines to ensure compliance with relevant regulations. If you wish to discuss further, please let us know a convenient time for a call at [tel_num].",
+            "draft_body": "Hello <name>, thank you for reaching out regarding cybersecurity measures for securing medical data in healthcare settings. To protect sensitive patient information, it is recommended to implement encryption, access controls, and network security measures. For detailed information on practices for compliance with regulatory requirements like HIPAA, I would like to schedule a call at <tel_num> to discuss further. Please let me know a good time to talk.",
+            "stage3_ms": 42715.2
+          },
+          {
+            "email_id": "EML12058",
+            "subject": "Report on Significant Service Interruptions",
+            "body": "We encountered significant service outages impacting various tools.",
+            "true_intent": "Service Outages and Maintenance",
+            "pred_intent": "Service Outages and Maintenance",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> sincerely apologizes for the service outages experienced, which affected multiple tools. Could you please provide details on the times these outages occurred and any error messages you received? This information will help us investigate and resolve the issue promptly. If you need to discuss further, please contact <tel_num>.",
+            "draft_body": "<name> apologizes for the service disruptions experienced, which affected multiple tools. Could you please provide details on the times these outages occurred and any error messages received? This information will help us investigate and resolve the issue as soon as possible. If you need to discuss further, please contact <tel_num>.",
+            "stage3_ms": 35273.9
+          },
+          {
+            "email_id": "EML16397",
+            "subject": "Guidelines for Securing Medical Data in OBS Studio Software",
+            "body": "Seek information on securing medical data using OBS Studio 27 and Smart-Home-Kamera applications to maintain confidentiality and comply with regulations.",
+            "true_intent": "Technical Support",
+            "pred_intent": "Sales and Pre-Sales",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC020",
+              "DOC023"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Offer general security guidelines for OBS Studio and Smart-Home-Kamera applications to ensure confidentiality and regulatory compliance for medical data.",
+            "draft_body": "To secure medical data using OBS Studio 27 and Smart-Home-Kamera, it is recommended to implement strong encryption methods and adhere to regulatory compliance standards. Please refer to the provided security guidelines for detailed instructions on securing medical data.",
+            "stage3_ms": 30279.5
+          }
+        ],
+        "bertscore": {
+          "precision": 0.9201182126998901,
+          "recall": 0.9252532720565796,
+          "f1": 0.9226188659667969
+        }
+      },
+      "policy_suite": {
+        "num_scenarios": 12,
+        "use_rag": true,
+        "use_few_shot": false,
+        "doc_retrieval_hit_rate": 1.0,
+        "target_citation_rate": 0.25,
+        "policy_fact_recall": 0.6944444444444445,
+        "placeholder_leakage_rate": 0.9166666666666666,
+        "scenarios": [
+          {
+            "scenario_id": "POL_TEST_01",
+            "expected_doc_id": "DOC001",
+            "retrieved_doc_ids": [
+              "DOC001",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "first day of each month",
+              "Net 15",
+              "10 days"
+            ],
+            "draft_body": "Hello <name>, thank you for contacting us regarding your billing inquiries. Invoices are typically issued on the first day of each month and are sent via email. The payment term is Net 15 from the invoice issue date unless an enterprise Net 30 agreement is active. Copies of past PDF invoices and itemized usage breakdowns can be downloaded directly from the Billing Portal. Unpaid balances beyond 10 days past due trigger automated reminder notices prior to any temporary account restriction. Please let us know if you have any further questions or concerns."
+          },
+          {
+            "scenario_id": "POL_TEST_02",
+            "expected_doc_id": "DOC006",
+            "retrieved_doc_ids": [
+              "DOC006",
+              "DOC021",
+              "DOC022"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "Multi-Factor Authentication"
+            ],
+            "draft_body": "Hello <name>, we are here to assist you with the issue of your workspace admin losing their phone and needing help resetting Multi-Factor Authentication (MFA). To proceed, please provide your account number or the email address associated with the affected user. Once received, I will guide you through the next steps to reset MFA via the support portal. If you have any questions or concerns, feel free to reach out."
+          },
+          {
+            "scenario_id": "POL_TEST_03",
+            "expected_doc_id": "DOC009",
+            "retrieved_doc_ids": [
+              "DOC009",
+              "DOC011",
+              "DOC012"
+            ],
+            "cited_doc_ids": [
+              "DOC009"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "120",
+              "600",
+              "Retry-After"
+            ],
+            "draft_body": "Hello <name>, thank you for reaching out regarding the HTTP 429 error in your integration script. We are here to assist you with this issue. Per our Integrations policy [DOC009], Standard workspaces are allotted 120 requests per minute per token, while Enterprise workspaces support up to 600 requests per minute. Clients receiving HTTP 429 responses should honor the Retry-After header using exponential backoff rather than tight retry loops. Please provide your account number so we can review your specific usage and offer further guidance if needed."
+          },
+          {
+            "scenario_id": "POL_TEST_04",
+            "expected_doc_id": "DOC014",
+            "retrieved_doc_ids": [
+              "DOC014",
+              "DOC024",
+              "DOC013"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "50,000"
+            ],
+            "draft_body": "Hello <name>, thank you for contacting us regarding your CSV upload request. The platform has a limit of 250,000 rows per single upload job to maintain shared cluster stability. Large imports exceeding 50,000 rows are queued asynchronously and emit a completion email or webhook upon finishing. Please provide the file name so we can review it further."
+          },
+          {
+            "scenario_id": "POL_TEST_05",
+            "expected_doc_id": "DOC017",
+            "retrieved_doc_ids": [
+              "DOC017",
+              "DOC018",
+              "DOC040"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Thank you for reaching out regarding the maintenance schedule. We will review and update our notification procedures to ensure customers receive adequate notice before any maintenance windows. Please allow us to contact you at <tel_num> to discuss further details and address your concerns."
+          },
+          {
+            "scenario_id": "POL_TEST_06",
+            "expected_doc_id": "DOC021",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [
+              "DOC021"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "14 days",
+              "30 days",
+              "7 years"
+            ],
+            "draft_body": "Hello <name>, thank you for contacting support about your GDPR right-to-erasure request. Under our official Security and Compliance guidelines [DOC021], Workspace Owners can submit GDPR access, export, or right-to-erasure requests through the Privacy Center or by emailing our Data Protection Officer. Verified deletion requests purge primary production records within 14 days and expire encrypted backup snapshots within 30 days. Audit logs required for statutory financial recordkeeping are retained in anonymized form for 7 years. I will look into your account <acc_num> and get back to you shortly with the specific details of your records and backups."
+          },
+          {
+            "scenario_id": "POL_TEST_07",
+            "expected_doc_id": "DOC024",
+            "retrieved_doc_ids": [
+              "DOC024",
+              "DOC014",
+              "DOC025"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "CSV",
+              "Parquet",
+              "48 hours"
+            ],
+            "draft_body": "Hello <name>, thank you for contacting our support team regarding the file formats supported for dashboard exports and delivery options for large exports over 100,000 rows. Our supported file formats include CSV, JSON, and Parquet, with CSV being the default format. For exports exceeding 100,000 rows, we generate asynchronous downloads with secure time-limited links valid for 48 hours. Please let us know if you have any follow-up questions."
+          },
+          {
+            "scenario_id": "POL_TEST_08",
+            "expected_doc_id": "DOC027",
+            "retrieved_doc_ids": [
+              "DOC027",
+              "DOC010",
+              "DOC009"
+            ],
+            "cited_doc_ids": [
+              "DOC027"
+            ],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": true,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "SPF",
+              "5 percent"
+            ],
+            "draft_body": "Hello <name>, thank you for contacting our support team regarding the requirements for out-bound email domain authentication before sending campaigns. To ensure your messages reach the intended recipients, you must configure DNS records such as SPF, DKIM, and DMARC on your sender domain. Campaigns are paused automatically when the campaign's bounce rate exceeds 5 percent or the sender domain experiences a high number of spam complaints. Please review our Digital Marketing guidelines [DOC027] for detailed instructions and limitations."
+          },
+          {
+            "scenario_id": "POL_TEST_09",
+            "expected_doc_id": "DOC031",
+            "retrieved_doc_ids": [
+              "DOC031",
+              "DOC021",
+              "DOC015"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "30-day",
+              "30 days"
+            ],
+            "draft_body": "Hello <name>, thank you for contacting our support team about the product trial process. Standard prospects receive a 30-day free trial with no commitments, while enterprise clients get a 60-day evaluation period. A guided Proof of Concept is available upon request and typically lasts 14 days. Configuration settings are retained for 30 days after the trial expires so teams can smoothly transition to a paid subscription. Please let us know if you have any follow-up questions."
+          },
+          {
+            "scenario_id": "POL_TEST_10",
+            "expected_doc_id": "DOC034",
+            "retrieved_doc_ids": [
+              "DOC034",
+              "DOC033",
+              "DOC035"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "1 business day"
+            ],
+            "draft_body": "Hello <name>, thank you for reaching out regarding the return of your defective hardware unit. To proceed, please provide your order number and serial ID so we can verify the details and arrange a prepaid shipping label for your return. Typically, it takes 1 business day to process the label; if your current label is expired or missing, we will issue a new one. Please ensure the returned item is in its original packaging and includes all included accessories. If you have any questions or concerns, feel free to call us at <tel_num> for further assistance."
+          },
+          {
+            "scenario_id": "POL_TEST_11",
+            "expected_doc_id": "DOC038",
+            "retrieved_doc_ids": [
+              "DOC038",
+              "DOC031",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "5 business days",
+              "4-hour"
+            ],
+            "draft_body": "Hello <name>, thank you for reaching out regarding the laptop and access setup for your new engineer. New hire IT access tickets and laptop provisioning requests must be submitted by the hiring manager at least 5 business days before the start date. Identity accounts, email aliases, and role-based tool licenses are activated on the morning of the employee's start date following HR verification. Urgent missing access during onboarding week is prioritized under an internal 4-hour resolution SLA. Please let us know if you have any follow-up questions."
+          },
+          {
+            "scenario_id": "POL_TEST_12",
+            "expected_doc_id": "DOC041",
+            "retrieved_doc_ids": [
+              "DOC041",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 1.0,
+            "matched_facts": [
+              "Tier-2",
+              "4 business hours"
+            ],
+            "draft_body": "Thank you for reaching out regarding the stalled ticket. To proceed, please provide the ticket reference number so we can review it and determine the next steps for escalation to a Tier-2 Lead. Typically, a Tier-2 Lead responds within 4 business hours."
+          }
+        ]
+      }
+    },
+    "sft_rag_2shot": {
+      "label": "LoRA SFT + RAG + 2-Shot",
+      "ollama_model": "draft-qwen25-3b",
+      "use_rag": true,
+      "use_few_shot": true,
+      "tickets": {
+        "num_samples": 10,
+        "use_rag": true,
+        "use_reranker": true,
+        "use_few_shot": true,
+        "model_name": "draft-qwen25-3b",
+        "classification": {
+          "intent_accuracy": 0.5,
+          "intent_macro_f1": 0.41666666666666663,
+          "urgency_accuracy": 0.7,
+          "urgency_macro_f1": 0.7111111111111111,
+          "combined_macro_f1": 0.5638888888888889
+        },
+        "rouge": {
+          "rouge1_f1": 0.6899131822511226,
+          "rouge2_f1": 0.4807156193865067,
+          "rougeL_f1": 0.595891920327469
+        },
+        "policy_adherence": {
+          "citation_rate": 0.0,
+          "valid_citation_precision": 1.0,
+          "policy_lexical_overlap": 0.028556248336650446,
+          "urgency_alignment_rate": 0.0,
+          "placeholder_leakage_rate": 0.6
+        },
+        "placeholder_leakage_rate": 0.6,
+        "latency_ms": {
+          "stage1_ms": {
+            "mean": 4.861580000579124,
+            "p90": 7.022020001750207
+          },
+          "stage2_ms": {
+            "mean": 1272.9568500013556,
+            "p90": 1807.614870002726
+          },
+          "stage3_ms": {
+            "mean": 44394.13970999885,
+            "p90": 52798.92578000072
+          },
+          "total_ms": {
+            "mean": 45671.95814000079,
+            "p90": 54513.95284000246
+          }
+        },
+        "samples": [
+          {
+            "email_id": "EML10784",
+            "subject": "Inquiry on Pricing for BenQ TK850 Projector",
+            "body": "I am interested in purchasing the BenQ TK850 Projector and would like to know the pricing options, its compatibility with IFTTT, and any available discounts or promotions. Please inform me about any additional costs related to accessories and maintenance.",
+            "true_intent": "Billing and Payments",
+            "pred_intent": "Billing and Payments",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC032",
+              "DOC030",
+              "DOC033"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "We can provide you with pricing options for the BenQ TK850 Projector, information on its compatibility with IFTTT, and details about available discounts and promotions. Please allow us some time to gather this information and we will contact you soon to discuss the details.",
+            "draft_body": "We can provide pricing options for the BenQ TK850 Projector, along with information on its compatibility with IFTTT. Please allow us some time to review your request and we will contact you shortly to discuss the details.",
+            "stage3_ms": 53245.8
+          },
+          {
+            "email_id": "EML05360",
+            "subject": "DataRobot and Cassandra Integration for Enhanced Investment Analytics",
+            "body": "Dear Customer Support, I am seeking guidance on integrating DataRobot with Cassandra 4.0 to improve our investment analytics capabilities. Could you please provide comprehensive instructions for the integration process, including necessary configuration steps and optimization techniques? Examples and relevant documentation would be very helpful to facilitate a smooth setup. Our objective is to harness DataRobot's automation features alongside Cassandra's data management to make more informed investment decisions. Thank you for your assistance; I look forward to your response.",
+            "true_intent": "Customer Service",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "low",
+            "retrieved_doc_ids": [
+              "DOC040",
+              "DOC026",
+              "DOC042"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>, thank you for contacting the Service Desk. I am happy to assist you with integrating DataRobot Cassandra 4.0. To provide detailed instructions, I will need some information about your current setup environment. Could you please share details regarding your DataRobot and Cassandra configurations? I can offer general guidance on optimization techniques; however, specific steps may vary based on your system. If you prefer, we can schedule a call at <tel_num> to discuss your requirements and provide tailored support. Please let me know a convenient time.",
+            "draft_body": "<name>, thank you for contacting the Service Desk regarding the integration of DataRobot with Cassandra 4.0 for enhanced investment analytics. To provide detailed instructions, could you please share information about your current setup environment? Specifically, I would like to know about your DataRobot and Cassandra configurations. I can offer general guidance on optimization techniques; however, specific steps may vary based on your system. If preferred, we can schedule a call at <tel_num> to discuss and provide tailored support. Please let me know a convenient time.",
+            "stage3_ms": 52113.5
+          },
+          {
+            "email_id": "EML21556",
+            "subject": "Enhancements to Investment Portfolio Analysis Tool",
+            "body": "Dear Customer Support, I am contacting you to propose improvements to the investment portfolio analysis tool. Currently, the tool offers a useful summary of my portfolio, but I need additional advanced analytical functionalities. I am particularly interested in detailed metrics such as risk assessment and performance monitoring. These enhancements would enable me to make more educated investment choices and improve my portfolio's optimization. We should consider incorporating these features in the tool. Furthermore, I would like to request more regular data updates to stay abreast of market trends. Thank you for your attention to this matter. I eagerly await your response. Warm regards, [Your Name]",
+            "true_intent": "General Inquiry",
+            "pred_intent": "Customer Service",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC041",
+              "DOC031"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [Your Name], thank you for your feedback regarding the investment portfolio analysis tool. We value your suggestions for enhancements, including advanced analytics features such as risk assessment and performance tracking, as well as more frequent data updates. Our team will evaluate your requests and consider them for future development plans. To better understand your specific needs, we would like to discuss this further. Would you be available for a call at a convenient time? Please provide a suitable time and we'll reach out to you at [tel_num]. We appreciate your patience and look forward to speaking with you about your account [acc_num] and the investment portfolio analysis tool. Best regards, [Support Team Name]",
+            "draft_body": "Dear [Name], thank you for your email and for sharing your thoughts on enhancing the investment portfolio analysis tool. We appreciate your feedback and are always seeking ways to improve our platform to better meet customer needs. Your suggestions for advanced features such as predictive modeling, risk assessment, and performance monitoring, along with detailed customizable reports and real-time data updates, are valuable. We would be happy to discuss these further. Please let us know a suitable time for a call at [tel_num] to explore the details.",
+            "stage3_ms": 52749.3
+          },
+          {
+            "email_id": "EML04765",
+            "subject": "Complete Failure of Digital Strategies",
+            "body": "The digital strategies employed by the marketing agency did not succeed in enhancing brand growth, likely due to ineffective targeting. Efforts such as campaign modifications were made, yet results remained unchanged. Despite these efforts, the brand's online visibility improved only marginally, with engagement metrics still falling short. It is crucial to reevaluate the targeting strategy and consider alternative approaches to reach the intended audience. A thorough analysis of the campaign's performance and a revised action plan are necessary to achieve the desired results.",
+            "true_intent": "Human Resources",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC027"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> understands the concerns regarding the digital strategies implemented by the marketing agency and their limited impact on brand growth. To provide better assistance, I would like to schedule a call to discuss the campaign details and the targeting approach used. Please let me know a convenient time for the call at <tel_num>. During the call, we can identify areas needing improvement and explore alternative strategies to reach the target audience. I will also provide a detailed analysis of the campaign's performance.",
+            "draft_body": "Dear [Name], thank you for reaching out regarding the digital strategies that failed to enhance brand growth. We understand the challenges faced by your marketing agency in achieving the expected results. To better assist you, we would like to schedule a call to discuss the current targeting strategy and explore potential alternatives. Please let us know a convenient time for a call at [Phone Number]. We will work together to identify areas of improvement and develop a revised action plan to achieve the desired outcomes.",
+            "stage3_ms": 48908.1
+          },
+          {
+            "email_id": "EML03450",
+            "subject": "Setup Assistance Needed for Zoho Books",
+            "body": "Could you supply comprehensive step-by-step instructions for integrating Zoho Books with Eclipse IDE via Pluralsight? I am seeking detailed guidance to ensure a smooth and seamless connection between the tools.",
+            "true_intent": "IT Support",
+            "pred_intent": "IT Support",
+            "true_urgency": "medium",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC011",
+              "DOC008",
+              "DOC007"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name>,\n\nThank you for your interest in configuring Zoho Books with Eclipse IDE through Pluralsight. To assist with the integration process, we need some information about your current setup and the specific features you wish to connect. Please provide details about your Eclipse IDE and Pluralsight accounts, including account types and the tools you are currently using.\n\nWe offer a general guide for integrating Zoho Books applications. However, a customized approach requires a clearer understanding of your particular requirements.",
+            "draft_body": "Hello <name>, thank you for your interest in integrating Zoho Books with Eclipse IDE using Pluralsight. To assist you effectively, could you please provide details about your current setup and the specific features you wish to connect? Additionally, it would be helpful to know about your Pluralsight accounts, including account types and the tools you are currently using.\n\nWe offer general instructions for integrating Zoho Books applications; however, a customized approach would be more effective once we understand your particular requirements.",
+            "stage3_ms": 45220.6
+          },
+          {
+            "email_id": "EML12029",
+            "subject": "Concerns Over Digital Campaign Performance",
+            "body": "Customer Support,<br><br>The marketing agency's recent digital campaign strategies are underperforming, which is adversely affecting the brand's growth initiatives. The underperformance might be due to a misalignment with the target audience's preferences. To date, we have analyzed engagement metrics and adjusted the targeting parameters accordingly. Despite these efforts, the results have not been satisfactory.<br><br>We are seeking your assistance to identify the root cause of the issue and explore potential solutions to enhance the campaign's performance.",
+            "true_intent": "Product Support",
+            "pred_intent": "Product Support",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC029",
+              "DOC028",
+              "DOC019"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "I would be happy to assist with the digital campaign issue. Please provide details on the current targeting parameters and the engagement metrics that have been analyzed so far. We can schedule a call to discuss this further.",
+            "draft_body": "I would be happy to assist with the digital campaign issue. Please provide details on the current targeting parameters and engagement metrics that have been analyzed so far. We can then schedule a call to discuss this further.",
+            "stage3_ms": 27267.2
+          },
+          {
+            "email_id": "EML07320",
+            "subject": "Problems with Several Products Not Resolved",
+            "body": "Several items such as the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon are not functioning properly. Steps taken to resolve the issue include restarting the devices and checking the connections, but the issues still persist. I am seeking further guidance on the next steps to resolve the problem.",
+            "true_intent": "Returns and Exchanges",
+            "pred_intent": "Technical Support",
+            "true_urgency": "low",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC033",
+              "DOC035",
+              "DOC002"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Hello, sorry to hear about the issues you're experiencing with your products. To better assist you, could you please provide more details about the malfunctions, any error messages, and the symptoms you're seeing? Additionally, I have contacted the manufacturers of the Cooler Master MasterBox Q300L and Lenovo ThinkPad X1 Carbon. I would be happy to help with troubleshooting or facilitate any repairs or replacements needed. Please call me at <tel_num> at your convenience to discuss this further.",
+            "draft_body": "Hello <name>, thank you for reaching out regarding the malfunctioning products. To assist you better, could you please provide details about the specific products that are not working and any error messages you are encountering? Additionally, it would be helpful to know the exact steps you have taken so far. If necessary, we can schedule a call at <tel_num> to discuss this further and provide personalized guidance on how to resolve the issue.",
+            "stage3_ms": 37163.9
+          },
+          {
+            "email_id": "EML20942",
+            "subject": "Cyber Security",
+            "body": "Dear Customer Support, I am inquiring about the recommended cybersecurity measures for securing medical data in healthcare settings. As you are aware, medical data is highly sensitive and needs strong protection to avoid unauthorized access and breaches. Could you please inform me about the best practices currently recognized in the industry? Are there specific protocols or technologies that are advised for securing medical data? I would also appreciate any guidance on how to implement these measures effectively. Additionally, are there any resources or guidelines available to ensure compliance with relevant regulations for healthcare organizations? I am looking forward to your response with more information on this topic. Thank you for your time and assistance.",
+            "true_intent": "Sales and Pre-Sales",
+            "pred_intent": "Customer Service",
+            "true_urgency": "medium",
+            "pred_urgency": "medium",
+            "retrieved_doc_ids": [
+              "DOC022",
+              "DOC040",
+              "DOC020"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Dear [name], we value your interest in cybersecurity measures for securing medical data. Best practices include implementing strong access controls, encrypting sensitive data, and keeping software up to date. We recommend healthcare organizations adhere to industry standards such as HIPAA guidelines. For more detailed information and implementation guidance, we can provide additional resources and guidelines to ensure compliance with relevant regulations. If you wish to discuss further, please let us know a convenient time for a call at [tel_num].",
+            "draft_body": "Hello <name>, thank you for reaching out regarding the security of medical data in healthcare settings. To protect sensitive patient information, it is recommended to implement robust access controls, encryption, and regular software updates. For specific protocols and technologies, I would be happy to provide more detailed guidance. To ensure compliance with regulations like HIPAA, healthcare organizations should establish comprehensive incident response plans and conduct regular security audits. I can offer resources and best practices for implementing these measures effectively. If you wish to discuss this further, please let me know a convenient time for a call at <tel_num>.",
+            "stage3_ms": 51579.6
+          },
+          {
+            "email_id": "EML12058",
+            "subject": "Report on Significant Service Interruptions",
+            "body": "We encountered significant service outages impacting various tools.",
+            "true_intent": "Service Outages and Maintenance",
+            "pred_intent": "Service Outages and Maintenance",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC016",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "<name> sincerely apologizes for the service outages experienced, which affected multiple tools. Could you please provide details on the times these outages occurred and any error messages you received? This information will help us investigate and resolve the issue promptly. If you need to discuss further, please contact <tel_num>.",
+            "draft_body": "<name> apologizes for the service disruptions experienced, which affected multiple tools. Could you please provide details on the times these outages occurred and any error messages received? This information will help us investigate and resolve the issue as promptly as possible. If needed, we can discuss further at a later time; please contact <tel_num>.",
+            "stage3_ms": 38261.0
+          },
+          {
+            "email_id": "EML16397",
+            "subject": "Guidelines for Securing Medical Data in OBS Studio Software",
+            "body": "Seek information on securing medical data using OBS Studio 27 and Smart-Home-Kamera applications to maintain confidentiality and comply with regulations.",
+            "true_intent": "Technical Support",
+            "pred_intent": "Sales and Pre-Sales",
+            "true_urgency": "high",
+            "pred_urgency": "high",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC020",
+              "DOC023"
+            ],
+            "cited_doc_ids": [],
+            "reference_answer": "Offer general security guidelines for OBS Studio and Smart-Home-Kamera applications to ensure confidentiality and regulatory compliance for medical data.",
+            "draft_body": "To secure medical data using OBS Studio 27 and Smart-Home-Kamera, ensure that the software is updated to the latest version and that strong passwords are used. Implement encryption for sensitive information and restrict access to authorized personnel only. Regularly back up data and store backups securely. For more detailed guidance, please contact us at <tel_num> for a discussion on specific security measures.",
+            "stage3_ms": 37432.4
+          }
+        ],
+        "bertscore": {
+          "precision": 0.9086571931838989,
+          "recall": 0.9193739891052246,
+          "f1": 0.913682758808136
+        }
+      },
+      "policy_suite": {
+        "num_scenarios": 12,
+        "use_rag": true,
+        "use_few_shot": true,
+        "doc_retrieval_hit_rate": 1.0,
+        "target_citation_rate": 0.0,
+        "policy_fact_recall": 0.23611111111111108,
+        "placeholder_leakage_rate": 0.75,
+        "scenarios": [
+          {
+            "scenario_id": "POL_TEST_01",
+            "expected_doc_id": "DOC001",
+            "retrieved_doc_ids": [
+              "DOC001",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Hello <name>, thank you for contacting us regarding your billing inquiries. Invoices are typically issued on the 15th or last day of the month and are emailed to the billing contact. Full payment is due within 30 days from the invoice issue date. Late payments beyond 30 days may incur a penalty fee of 2% per month until the balance is settled. We will send reminder emails 10 and 3 days before the payment due date. If you have any questions or concerns, please do not hesitate to reach out."
+          },
+          {
+            "scenario_id": "POL_TEST_02",
+            "expected_doc_id": "DOC006",
+            "retrieved_doc_ids": [
+              "DOC006",
+              "DOC021",
+              "DOC022"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Hello <name>, thank you for reaching out regarding the issue with your workspace admin's MFA. I understand that they have already tried using backup codes but are still facing login difficulties due to losing their phone. To proceed, please provide your account number and a preferred alternative authentication method or phone number where we can send a verification code. Once received, we will guide you through the process of resetting your MFA. If you need further assistance, feel free to call us at <tel_num> for a discussion."
+          },
+          {
+            "scenario_id": "POL_TEST_03",
+            "expected_doc_id": "DOC009",
+            "retrieved_doc_ids": [
+              "DOC009",
+              "DOC011",
+              "DOC012"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Hello, thank you for reaching out regarding the HTTP 429 error in your integration script. We will look into this matter and provide guidance on per-minute API quotas and retry strategies for standard and enterprise plans. Please allow us to contact you at <tel_num> to discuss further."
+          },
+          {
+            "scenario_id": "POL_TEST_04",
+            "expected_doc_id": "DOC014",
+            "retrieved_doc_ids": [
+              "DOC014",
+              "DOC024",
+              "DOC013"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "50,000"
+            ],
+            "draft_body": "Hello <name>, thank you for reaching out regarding your CSV upload request. Files exceeding 250,000 rows are processed asynchronously and may take up to 12 hours to complete. The migration status can be checked via the project dashboard. If you need immediate assistance or have any questions, please let us know."
+          },
+          {
+            "scenario_id": "POL_TEST_05",
+            "expected_doc_id": "DOC017",
+            "retrieved_doc_ids": [
+              "DOC017",
+              "DOC018",
+              "DOC040"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Hello, thank you for reaching out regarding the notification policy for your planned weekend maintenance. We will review and confirm the standard practice for advance notice on your account. Please allow us some time to gather this information and get back to you shortly. If you have any urgent questions or concerns during the maintenance window, please let us know a suitable contact number so we can assist you accordingly."
+          },
+          {
+            "scenario_id": "POL_TEST_06",
+            "expected_doc_id": "DOC021",
+            "retrieved_doc_ids": [
+              "DOC021",
+              "DOC002",
+              "DOC036"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "14 days",
+              "7 years"
+            ],
+            "draft_body": "Hello [Name], we appreciate your reaching out to us regarding the GDPR right to erasure request for your account. Under GDPR guidelines, production records and active backups are deleted within 14 days, while compliant retention backups are maintained for 7 years in accordance with regulatory requirements. Audit logs required for statutory financial recordkeeping are retained in anonymized form for 7 years. For more detailed information or to discuss your specific account, please let us know a convenient time for a call at [Tel Number]."
+          },
+          {
+            "scenario_id": "POL_TEST_07",
+            "expected_doc_id": "DOC024",
+            "retrieved_doc_ids": [
+              "DOC024",
+              "DOC014",
+              "DOC025"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.6666666666666666,
+            "matched_facts": [
+              "CSV",
+              "48 hours"
+            ],
+            "draft_body": "Hello [name], thank you for contacting us regarding the file formats supported for dashboard exports and delivery options for large exports exceeding 100,000 rows. We currently support CSV and JSON export formats, and exports over 100,000 rows are delivered via a secure download link valid for 48 hours. Please let us know if you have any follow-up questions."
+          },
+          {
+            "scenario_id": "POL_TEST_08",
+            "expected_doc_id": "DOC027",
+            "retrieved_doc_ids": [
+              "DOC027",
+              "DOC010",
+              "DOC009"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "SPF"
+            ],
+            "draft_body": "Hello <name>, thank you for contacting us regarding the requirements for outbound email domain authentication before launching marketing campaigns. To ensure deliverability and compliance, please verify that your DNS settings include the following: SPF, DKIM, and DMARC records pointing to your verified domain. Campaigns may be paused if your sender reputation is flagged due to high bounce rates or spam complaints. We recommend monitoring your campaign performance closely and adjusting your targeting parameters as needed. If you have any further questions, feel free to reach out."
+          },
+          {
+            "scenario_id": "POL_TEST_09",
+            "expected_doc_id": "DOC031",
+            "retrieved_doc_ids": [
+              "DOC031",
+              "DOC021",
+              "DOC015"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Hello <name>, thank you for reaching out to our support team. In general, prospects do not need a credit card to access a trial workspace; they can start evaluating the product directly. Standard Proof of Concept (POC) evaluations typically last 14 days, while Guided POCs are usually structured sessions lasting 2-3 hours. Configuration settings are retained within the trial period, but any custom integrations or data mappings created during the trial may not be carried over to a paid subscription. Please let us know if you have any follow-up questions."
+          },
+          {
+            "scenario_id": "POL_TEST_10",
+            "expected_doc_id": "DOC034",
+            "retrieved_doc_ids": [
+              "DOC034",
+              "DOC033",
+              "DOC035"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.3333333333333333,
+            "matched_facts": [
+              "1 business day"
+            ],
+            "draft_body": "Hello <name>, thank you for reaching out regarding the return of your defective hardware unit. To proceed, please provide your order number and a detailed description of the defect. Typically, we require authorization from our support team before initiating the return process. Once approved, a prepaid shipping label will be issued to you via email. Please allow up to 1 business day for processing. If you have any further questions or concerns, feel free to contact us at <tel_num>."
+          },
+          {
+            "scenario_id": "POL_TEST_11",
+            "expected_doc_id": "DOC038",
+            "retrieved_doc_ids": [
+              "DOC038",
+              "DOC031",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.5,
+            "matched_facts": [
+              "5 business days"
+            ],
+            "draft_body": "Hello <name>, thank you for reaching out regarding your new engineer's laptop and access setup. Typically, IT provisioning should be submitted at least 5 business days before the employee's start date to ensure adequate preparation. In case of missing onboarding access during this period, please contact us as soon as possible via email or phone to resolve the issue promptly."
+          },
+          {
+            "scenario_id": "POL_TEST_12",
+            "expected_doc_id": "DOC041",
+            "retrieved_doc_ids": [
+              "DOC041",
+              "DOC019",
+              "DOC018"
+            ],
+            "cited_doc_ids": [],
+            "doc_retrieval_hit": true,
+            "target_citation_hit": false,
+            "fact_recall": 0.0,
+            "matched_facts": [],
+            "draft_body": "Hello <name>, thank you for reaching out regarding the escalated ticket. We understand that your issue is still unresolved despite previous support attempts. To assist you further, could you please provide details on the specific problems you are experiencing with the marketing agency's campaigns? This information will help us better understand the situation and determine the next steps in resolving the matter. If needed, we can schedule a call at <tel_num> to discuss this further. Please let us know a convenient time for you."
+          }
+        ]
+      }
+    }
+  }
+}

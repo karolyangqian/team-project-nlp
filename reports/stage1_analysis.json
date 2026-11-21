@@ -1,0 +1,358 @@
+{
+  "latency_ms": {
+    "baseline": {
+      "mean_ms": 1.0973740005283616,
+      "p90_ms": 1.5522900012001628
+    },
+    "transformer": {
+      "mean_ms": 164.1297759997542,
+      "p90_ms": 213.42290999818945
+    }
+  },
+  "top_intent_confusions": {
+    "baseline": [
+      {
+        "true": "Technical Support",
+        "pred": "Product Support",
+        "count": 90,
+        "row_share": 0.13157894736842105
+      },
+      {
+        "true": "Technical Support",
+        "pred": "IT Support",
+        "count": 88,
+        "row_share": 0.1286549707602339
+      },
+      {
+        "true": "Product Support",
+        "pred": "Technical Support",
+        "count": 82,
+        "row_share": 0.18552036199095023
+      },
+      {
+        "true": "Technical Support",
+        "pred": "Customer Service",
+        "count": 58,
+        "row_share": 0.0847953216374269
+      },
+      {
+        "true": "Customer Service",
+        "pred": "Technical Support",
+        "count": 58,
+        "row_share": 0.16246498599439776
+      },
+      {
+        "true": "IT Support",
+        "pred": "Technical Support",
+        "count": 46,
+        "row_share": 0.1625441696113074
+      },
+      {
+        "true": "Product Support",
+        "pred": "Customer Service",
+        "count": 41,
+        "row_share": 0.09276018099547512
+      },
+      {
+        "true": "Product Support",
+        "pred": "IT Support",
+        "count": 40,
+        "row_share": 0.09049773755656108
+      }
+    ],
+    "transformer": [
+      {
+        "true": "Technical Support",
+        "pred": "IT Support",
+        "count": 155,
+        "row_share": 0.22660818713450293
+      },
+      {
+        "true": "Product Support",
+        "pred": "Technical Support",
+        "count": 88,
+        "row_share": 0.19909502262443438
+      },
+      {
+        "true": "Technical Support",
+        "pred": "Product Support",
+        "count": 69,
+        "row_share": 0.10087719298245613
+      },
+      {
+        "true": "Product Support",
+        "pred": "IT Support",
+        "count": 69,
+        "row_share": 0.15610859728506787
+      },
+      {
+        "true": "IT Support",
+        "pred": "Technical Support",
+        "count": 58,
+        "row_share": 0.2049469964664311
+      },
+      {
+        "true": "Customer Service",
+        "pred": "Returns and Exchanges",
+        "count": 55,
+        "row_share": 0.15406162464985995
+      },
+      {
+        "true": "Product Support",
+        "pred": "Returns and Exchanges",
+        "count": 54,
+        "row_share": 0.12217194570135746
+      },
+      {
+        "true": "Technical Support",
+        "pred": "Service Outages and Maintenance",
+        "count": 53,
+        "row_share": 0.07748538011695906
+      }
+    ]
+  },
+  "top_urgency_confusions": {
+    "baseline": [
+      {
+        "true": "high",
+        "pred": "medium",
+        "count": 213,
+        "row_share": 0.23278688524590163
+      },
+      {
+        "true": "medium",
+        "pred": "high",
+        "count": 209,
+        "row_share": 0.2147995889003083
+      },
+      {
+        "true": "medium",
+        "pred": "low",
+        "count": 188,
+        "row_share": 0.1932168550873587
+      },
+      {
+        "true": "low",
+        "pred": "medium",
+        "count": 133,
+        "row_share": 0.27593360995850624
+      },
+      {
+        "true": "high",
+        "pred": "low",
+        "count": 121,
+        "row_share": 0.13224043715846995
+      },
+      {
+        "true": "low",
+        "pred": "high",
+        "count": 83,
+        "row_share": 0.17219917012448133
+      }
+    ],
+    "transformer": [
+      {
+        "true": "medium",
+        "pred": "high",
+        "count": 293,
+        "row_share": 0.3011305241521069
+      },
+      {
+        "true": "medium",
+        "pred": "low",
+        "count": 244,
+        "row_share": 0.25077081192189105
+      },
+      {
+        "true": "high",
+        "pred": "medium",
+        "count": 226,
+        "row_share": 0.24699453551912567
+      },
+      {
+        "true": "low",
+        "pred": "medium",
+        "count": 137,
+        "row_share": 0.2842323651452282
+      },
+      {
+        "true": "high",
+        "pred": "low",
+        "count": 136,
+        "row_share": 0.14863387978142076
+      },
+      {
+        "true": "low",
+        "pred": "high",
+        "count": 84,
+        "row_share": 0.17427385892116182
+      }
+    ]
+  },
+  "sample_errors": {
+    "baseline": [
+      {
+        "email_id": "EML04416",
+        "subject": "Support Request for Overbilled Invoice",
+        "body_preview": "The client was billed incorrectly on the most recent invoice, likely due to a system malfunction. After reaching out to support and receiving a response, the problem persists, resu",
+        "true_intent": "Billing and Payments",
+        "pred_intent": "Billing and Payments",
+        "intent_conf": 0.3265,
+        "true_urgency": "medium",
+        "pred_urgency": "high"
+      },
+      {
+        "email_id": "EML02722",
+        "subject": "Problems with Marketing Campaign",
+        "body_preview": "Customer support has brought to our attention that the digital marketing campaign managed by our agency is underperforming. Despite implementing various measures, the campaign has ",
+        "true_intent": "Customer Service",
+        "pred_intent": "Returns and Exchanges",
+        "intent_conf": 0.2101,
+        "true_urgency": "low",
+        "pred_urgency": "medium"
+      },
+      {
+        "email_id": "EML21556",
+        "subject": "Enhancements to Investment Portfolio Analysis Tool",
+        "body_preview": "Dear Customer Support, I am contacting you to propose improvements to the investment portfolio analysis tool. Currently, the tool offers a useful summary of my portfolio, but I nee",
+        "true_intent": "General Inquiry",
+        "pred_intent": "Customer Service",
+        "intent_conf": 0.2162,
+        "true_urgency": "low",
+        "pred_urgency": "medium"
+      },
+      {
+        "email_id": "EML08787",
+        "subject": "QuickBooks Online Integration Choices",
+        "body_preview": "Is it possible to get information on integration options for a QuickBooks Online project management SaaS? I would really appreciate it if you could provide detailed information and",
+        "true_intent": "General Inquiry",
+        "pred_intent": "Customer Service",
+        "intent_conf": 0.3252,
+        "true_urgency": "medium",
+        "pred_urgency": "low"
+      },
+      {
+        "email_id": "EML02299",
+        "subject": "Assistance Needed for Digital Tools Integration Problem",
+        "body_preview": "Customer Support, I am reaching out regarding a concern with our marketing agency's integration across various digital platforms. It seems that recent updates have led to compatibi",
+        "true_intent": "General Inquiry",
+        "pred_intent": "Product Support",
+        "intent_conf": 0.2179,
+        "true_urgency": "low",
+        "pred_urgency": "medium"
+      },
+      {
+        "email_id": "EML08359",
+        "subject": "Medical Data Protection Enhancements",
+        "body_preview": "Requesting improvements in security measures for medical data protection within our hospital infrastructure to comply with regulatory standards. This involves the implementation of",
+        "true_intent": "General Inquiry",
+        "pred_intent": "Returns and Exchanges",
+        "intent_conf": 0.2208,
+        "true_urgency": "medium",
+        "pred_urgency": "medium"
+      },
+      {
+        "email_id": "EML02667",
+        "subject": "Enhancement of Customer Support Systems",
+        "body_preview": "Drafting a request to optimize integrations, bolster security across various platforms, and enhance SaaS scalability and performance. The existing system is encountering challenges",
+        "true_intent": "General Inquiry",
+        "pred_intent": "General Inquiry",
+        "intent_conf": 0.3501,
+        "true_urgency": "low",
+        "pred_urgency": "medium"
+      },
+      {
+        "email_id": "EML04765",
+        "subject": "Complete Failure of Digital Strategies",
+        "body_preview": "The digital strategies employed by the marketing agency did not succeed in enhancing brand growth, likely due to ineffective targeting. Efforts such as campaign modifications were ",
+        "true_intent": "Human Resources",
+        "pred_intent": "Product Support",
+        "intent_conf": 0.2096,
+        "true_urgency": "medium",
+        "pred_urgency": "medium"
+      }
+    ],
+    "transformer": [
+      {
+        "email_id": "EML08132",
+        "subject": "Problems with Billing",
+        "body_preview": "Noted unexpected discrepancies in billing across different platforms, which might be due to a system update or a manual error. After reviewing transaction records and attempting to",
+        "true_intent": "Billing and Payments",
+        "pred_intent": "Billing and Payments",
+        "intent_conf": 0.997,
+        "true_urgency": "medium",
+        "pred_urgency": "low"
+      },
+      {
+        "email_id": "EML04416",
+        "subject": "Support Request for Overbilled Invoice",
+        "body_preview": "The client was billed incorrectly on the most recent invoice, likely due to a system malfunction. After reaching out to support and receiving a response, the problem persists, resu",
+        "true_intent": "Billing and Payments",
+        "pred_intent": "Billing and Payments",
+        "intent_conf": 0.997,
+        "true_urgency": "medium",
+        "pred_urgency": "low"
+      },
+      {
+        "email_id": "EML05360",
+        "subject": "DataRobot and Cassandra Integration for Enhanced Investment Analytics",
+        "body_preview": "Dear Customer Support, I am seeking guidance on integrating DataRobot with Cassandra 4.0 to improve our investment analytics capabilities. Could you please provide comprehensive in",
+        "true_intent": "Customer Service",
+        "pred_intent": "Customer Service",
+        "intent_conf": 0.2443,
+        "true_urgency": "low",
+        "pred_urgency": "medium"
+      },
+      {
+        "email_id": "EML22015",
+        "subject": "Improve Encryption Security of Medical Data",
+        "body_preview": "Hello Customer Support, I hope this message finds you well. I am contacting you to seek help in improving the data encryption security for medical records across all hospital devic",
+        "true_intent": "Customer Service",
+        "pred_intent": "Returns and Exchanges",
+        "intent_conf": 0.2925,
+        "true_urgency": "medium",
+        "pred_urgency": "low"
+      },
+      {
+        "email_id": "EML16986",
+        "subject": "Collaboration Tools for Team Management Software",
+        "body_preview": "I am reaching out to inquire about the collaboration features included in your team project management SaaS. Specifically, I am interested in understanding how your system handles ",
+        "true_intent": "Customer Service",
+        "pred_intent": "Returns and Exchanges",
+        "intent_conf": 0.3495,
+        "true_urgency": "medium",
+        "pred_urgency": "low"
+      },
+      {
+        "email_id": "EML21715",
+        "subject": "Guidance for Enhancing Digital Marketing Strategies",
+        "body_preview": "Respected Customer Support, I am reaching out to seek advice on enhancing our digital marketing strategies for listed products to bolster brand growth and customer interaction onli",
+        "true_intent": "Customer Service",
+        "pred_intent": "IT Support",
+        "intent_conf": 0.2733,
+        "true_urgency": "medium",
+        "pred_urgency": "high"
+      },
+      {
+        "email_id": "EML02722",
+        "subject": "Problems with Marketing Campaign",
+        "body_preview": "Customer support has brought to our attention that the digital marketing campaign managed by our agency is underperforming. Despite implementing various measures, the campaign has ",
+        "true_intent": "Customer Service",
+        "pred_intent": "Returns and Exchanges",
+        "intent_conf": 0.3437,
+        "true_urgency": "low",
+        "pred_urgency": "medium"
+      },
+      {
+        "email_id": "EML21556",
+        "subject": "Enhancements to Investment Portfolio Analysis Tool",
+        "body_preview": "Dear Customer Support, I am contacting you to propose improvements to the investment portfolio analysis tool. Currently, the tool offers a useful summary of my portfolio, but I nee",
+        "true_intent": "General Inquiry",
+        "pred_intent": "Returns and Exchanges",
+        "intent_conf": 0.2447,
+        "true_urgency": "low",
+        "pred_urgency": "medium"
+      }
+    ]
+  }
+}

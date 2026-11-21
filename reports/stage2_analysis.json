@@ -1,0 +1,664 @@
+{
+  "policy_suite_retrieval": {
+    "baseline_rerank_off": {
+      "classifier": "baseline",
+      "reranker": false,
+      "exact_doc_hit@1": 0.8333333333333334,
+      "exact_doc_hit@3": 0.9166666666666666,
+      "exact_category_hit@1": 0.8333333333333334,
+      "scenarios": [
+        {
+          "scenario_id": "POL_TEST_01",
+          "expected_doc_id": "DOC001",
+          "expected_category": "Billing and Payments",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC001",
+            "DOC002",
+            "DOC003"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_02",
+          "expected_doc_id": "DOC006",
+          "expected_category": "Account and Access",
+          "pred_intent": "Technical Support",
+          "retrieved_doc_ids": [
+            "DOC006",
+            "DOC005",
+            "DOC021"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_03",
+          "expected_doc_id": "DOC009",
+          "expected_category": "Integrations",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC009",
+            "DOC010",
+            "DOC012"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_04",
+          "expected_doc_id": "DOC014",
+          "expected_category": "Performance",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC014",
+            "DOC024",
+            "DOC026"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_05",
+          "expected_doc_id": "DOC017",
+          "expected_category": "Outages and Maintenance",
+          "pred_intent": "Service Outages and Maintenance",
+          "retrieved_doc_ids": [
+            "DOC017",
+            "DOC021",
+            "DOC016"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_06",
+          "expected_doc_id": "DOC021",
+          "expected_category": "Security and Compliance",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC002",
+            "DOC036",
+            "DOC001"
+          ],
+          "top1_hit": false,
+          "top3_hit": false
+        },
+        {
+          "scenario_id": "POL_TEST_07",
+          "expected_doc_id": "DOC024",
+          "expected_category": "Data Analytics",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC024",
+            "DOC014",
+            "DOC025"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_08",
+          "expected_doc_id": "DOC027",
+          "expected_category": "Digital Marketing",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC027",
+            "DOC003",
+            "DOC034"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_09",
+          "expected_doc_id": "DOC031",
+          "expected_category": "Sales and Pre-Sales",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC015",
+            "DOC006",
+            "DOC031"
+          ],
+          "top1_hit": false,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_10",
+          "expected_doc_id": "DOC034",
+          "expected_category": "Returns and Exchanges",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC034",
+            "DOC033",
+            "DOC035"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_11",
+          "expected_doc_id": "DOC038",
+          "expected_category": "Human Resources",
+          "pred_intent": "Human Resources",
+          "retrieved_doc_ids": [
+            "DOC038",
+            "DOC037",
+            "DOC018"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_12",
+          "expected_doc_id": "DOC041",
+          "expected_category": "General Inquiry",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC041",
+            "DOC005",
+            "DOC009"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        }
+      ]
+    },
+    "baseline_rerank_on": {
+      "classifier": "baseline",
+      "reranker": true,
+      "exact_doc_hit@1": 1.0,
+      "exact_doc_hit@3": 1.0,
+      "exact_category_hit@1": 1.0,
+      "scenarios": [
+        {
+          "scenario_id": "POL_TEST_01",
+          "expected_doc_id": "DOC001",
+          "expected_category": "Billing and Payments",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC001",
+            "DOC002",
+            "DOC036"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_02",
+          "expected_doc_id": "DOC006",
+          "expected_category": "Account and Access",
+          "pred_intent": "Technical Support",
+          "retrieved_doc_ids": [
+            "DOC006",
+            "DOC021",
+            "DOC022"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_03",
+          "expected_doc_id": "DOC009",
+          "expected_category": "Integrations",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC009",
+            "DOC011",
+            "DOC012"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_04",
+          "expected_doc_id": "DOC014",
+          "expected_category": "Performance",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC014",
+            "DOC024",
+            "DOC013"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_05",
+          "expected_doc_id": "DOC017",
+          "expected_category": "Outages and Maintenance",
+          "pred_intent": "Service Outages and Maintenance",
+          "retrieved_doc_ids": [
+            "DOC017",
+            "DOC018",
+            "DOC040"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_06",
+          "expected_doc_id": "DOC021",
+          "expected_category": "Security and Compliance",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC021",
+            "DOC002",
+            "DOC036"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_07",
+          "expected_doc_id": "DOC024",
+          "expected_category": "Data Analytics",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC024",
+            "DOC014",
+            "DOC025"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_08",
+          "expected_doc_id": "DOC027",
+          "expected_category": "Digital Marketing",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC027",
+            "DOC010",
+            "DOC009"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_09",
+          "expected_doc_id": "DOC031",
+          "expected_category": "Sales and Pre-Sales",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC031",
+            "DOC021",
+            "DOC015"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_10",
+          "expected_doc_id": "DOC034",
+          "expected_category": "Returns and Exchanges",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC034",
+            "DOC033",
+            "DOC035"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_11",
+          "expected_doc_id": "DOC038",
+          "expected_category": "Human Resources",
+          "pred_intent": "Human Resources",
+          "retrieved_doc_ids": [
+            "DOC038",
+            "DOC031",
+            "DOC018"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_12",
+          "expected_doc_id": "DOC041",
+          "expected_category": "General Inquiry",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC041",
+            "DOC019",
+            "DOC018"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        }
+      ]
+    },
+    "transformer_rerank_off": {
+      "classifier": "transformer",
+      "reranker": false,
+      "exact_doc_hit@1": 0.9166666666666666,
+      "exact_doc_hit@3": 0.9166666666666666,
+      "exact_category_hit@1": 0.9166666666666666,
+      "scenarios": [
+        {
+          "scenario_id": "POL_TEST_01",
+          "expected_doc_id": "DOC001",
+          "expected_category": "Billing and Payments",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC001",
+            "DOC002",
+            "DOC003"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_02",
+          "expected_doc_id": "DOC006",
+          "expected_category": "Account and Access",
+          "pred_intent": "IT Support",
+          "retrieved_doc_ids": [
+            "DOC006",
+            "DOC005",
+            "DOC021"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_03",
+          "expected_doc_id": "DOC009",
+          "expected_category": "Integrations",
+          "pred_intent": "Technical Support",
+          "retrieved_doc_ids": [
+            "DOC009",
+            "DOC010",
+            "DOC012"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_04",
+          "expected_doc_id": "DOC014",
+          "expected_category": "Performance",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC014",
+            "DOC024",
+            "DOC026"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_05",
+          "expected_doc_id": "DOC017",
+          "expected_category": "Outages and Maintenance",
+          "pred_intent": "Service Outages and Maintenance",
+          "retrieved_doc_ids": [
+            "DOC017",
+            "DOC021",
+            "DOC016"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_06",
+          "expected_doc_id": "DOC021",
+          "expected_category": "Security and Compliance",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC002",
+            "DOC036",
+            "DOC001"
+          ],
+          "top1_hit": false,
+          "top3_hit": false
+        },
+        {
+          "scenario_id": "POL_TEST_07",
+          "expected_doc_id": "DOC024",
+          "expected_category": "Data Analytics",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC024",
+            "DOC014",
+            "DOC025"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_08",
+          "expected_doc_id": "DOC027",
+          "expected_category": "Digital Marketing",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC027",
+            "DOC009",
+            "DOC010"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_09",
+          "expected_doc_id": "DOC031",
+          "expected_category": "Sales and Pre-Sales",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC031",
+            "DOC036",
+            "DOC035"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_10",
+          "expected_doc_id": "DOC034",
+          "expected_category": "Returns and Exchanges",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC034",
+            "DOC033",
+            "DOC035"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_11",
+          "expected_doc_id": "DOC038",
+          "expected_category": "Human Resources",
+          "pred_intent": "Human Resources",
+          "retrieved_doc_ids": [
+            "DOC038",
+            "DOC037",
+            "DOC018"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_12",
+          "expected_doc_id": "DOC041",
+          "expected_category": "General Inquiry",
+          "pred_intent": "Human Resources",
+          "retrieved_doc_ids": [
+            "DOC041",
+            "DOC037",
+            "DOC018"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        }
+      ]
+    },
+    "transformer_rerank_on": {
+      "classifier": "transformer",
+      "reranker": true,
+      "exact_doc_hit@1": 1.0,
+      "exact_doc_hit@3": 1.0,
+      "exact_category_hit@1": 1.0,
+      "scenarios": [
+        {
+          "scenario_id": "POL_TEST_01",
+          "expected_doc_id": "DOC001",
+          "expected_category": "Billing and Payments",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC001",
+            "DOC002",
+            "DOC036"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_02",
+          "expected_doc_id": "DOC006",
+          "expected_category": "Account and Access",
+          "pred_intent": "IT Support",
+          "retrieved_doc_ids": [
+            "DOC006",
+            "DOC021",
+            "DOC022"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_03",
+          "expected_doc_id": "DOC009",
+          "expected_category": "Integrations",
+          "pred_intent": "Technical Support",
+          "retrieved_doc_ids": [
+            "DOC009",
+            "DOC011",
+            "DOC012"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_04",
+          "expected_doc_id": "DOC014",
+          "expected_category": "Performance",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC014",
+            "DOC024",
+            "DOC013"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_05",
+          "expected_doc_id": "DOC017",
+          "expected_category": "Outages and Maintenance",
+          "pred_intent": "Service Outages and Maintenance",
+          "retrieved_doc_ids": [
+            "DOC017",
+            "DOC018",
+            "DOC040"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_06",
+          "expected_doc_id": "DOC021",
+          "expected_category": "Security and Compliance",
+          "pred_intent": "Billing and Payments",
+          "retrieved_doc_ids": [
+            "DOC021",
+            "DOC002",
+            "DOC036"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_07",
+          "expected_doc_id": "DOC024",
+          "expected_category": "Data Analytics",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC024",
+            "DOC014",
+            "DOC025"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_08",
+          "expected_doc_id": "DOC027",
+          "expected_category": "Digital Marketing",
+          "pred_intent": "Product Support",
+          "retrieved_doc_ids": [
+            "DOC027",
+            "DOC010",
+            "DOC009"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_09",
+          "expected_doc_id": "DOC031",
+          "expected_category": "Sales and Pre-Sales",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC031",
+            "DOC021",
+            "DOC035"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_10",
+          "expected_doc_id": "DOC034",
+          "expected_category": "Returns and Exchanges",
+          "pred_intent": "Returns and Exchanges",
+          "retrieved_doc_ids": [
+            "DOC034",
+            "DOC033",
+            "DOC035"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_11",
+          "expected_doc_id": "DOC038",
+          "expected_category": "Human Resources",
+          "pred_intent": "Human Resources",
+          "retrieved_doc_ids": [
+            "DOC038",
+            "DOC031",
+            "DOC018"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        },
+        {
+          "scenario_id": "POL_TEST_12",
+          "expected_doc_id": "DOC041",
+          "expected_category": "General Inquiry",
+          "pred_intent": "Human Resources",
+          "retrieved_doc_ids": [
+            "DOC041",
+            "DOC038",
+            "DOC019"
+          ],
+          "top1_hit": true,
+          "top3_hit": true
+        }
+      ]
+    }
+  }
+}
