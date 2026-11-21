@@ -13,10 +13,17 @@ from draft.classifier.baseline import TfidfBaselineClassifier
 from draft.config import AppConfig, load_config
 from draft.data.acquisition import DataAcquisitionService
 from draft.data.org_docs import load_org_docs
+from draft.generation.backends import (
+    MockGenerator,
+    OllamaGenerator,
+    OpenAICompatibleGenerator,
+)
+from draft.generation.prompts import PromptBuilder, build_reply_subject, extract_cited_doc_ids
+from draft.generation.sft_dataset import SftDatasetBuilder
 from draft.retrieval.dual_retriever import DualSourceRetriever
 from draft.retrieval.encoders import SentenceTransformerEncoder
 from draft.retrieval.metrics import run_retrieval_ablations
-from draft.schemas import IncomingEmail, IntentLabel
+from draft.schemas import DraftResponse, IncomingEmail, IntentLabel
 
 app = typer.Typer(help="DRAFT: Dual-source RAG and classification CLI.")
 
@@ -26,6 +33,15 @@ class ClassifierBackend(StrEnum):
 
     BASELINE = "baseline"
     TRANSFORMER = "transformer"
+
+
+class GeneratorBackend(StrEnum):
+    """Available Stage 3 draft generator backends."""
+
+    MOCK = "mock"
+    OLLAMA = "ollama"
+    HF = "hf"
+    OPENAI = "openai"
 
 
 class EvalSplit(StrEnum):
@@ -60,6 +76,48 @@ def _load_stage1_classifier(cfg: AppConfig, backend: ClassifierBackend):
     from draft.classifier.multitask import TransformerEmailClassifier
 
     return TransformerEmailClassifier.load(cfg.paths.artifacts_dir / "classifier")
+
+
+def _load_stage3_generator(
+    cfg: AppConfig,
+    backend: GeneratorBackend,
+    adapter_dir: Path | None,
+    api_base_url: str | None = None,
+    api_model: str | None = None,
+    api_key: str | None = None,
+):
+    """Instantiate the configured Stage 3 generator backend."""
+    if backend == GeneratorBackend.MOCK:
+        return MockGenerator()
+    if backend == GeneratorBackend.OLLAMA:
+        return OllamaGenerator(
+            model_name=cfg.generation.ollama_model,
+            base_url=cfg.generation.ollama_base_url,
+            default_max_new_tokens=cfg.generation.max_new_tokens,
+            default_temperature=cfg.generation.temperature,
+        )
+    if backend == GeneratorBackend.OPENAI:
+        return OpenAICompatibleGenerator(
+            model_name=api_model or cfg.generation.base_model,
+            base_url=api_base_url or "http://localhost:8000/v1",
+            api_key=api_key,
+            default_max_new_tokens=cfg.generation.max_new_tokens,
+            default_temperature=cfg.generation.temperature,
+        )
+    from draft.generation.hf_backend import HFPeftGenerator
+
+    default_adapter = cfg.paths.artifacts_dir / "llm" / "lora_adapter"
+    resolved_adapter = (
+        adapter_dir
+        if adapter_dir is not None
+        else (default_adapter if default_adapter.exists() else None)
+    )
+    return HFPeftGenerator(
+        base_model_name=cfg.generation.base_model,
+        adapter_dir=resolved_adapter,
+        default_max_new_tokens=cfg.generation.max_new_tokens,
+        default_temperature=cfg.generation.temperature,
+    )
 
 
 @app.command("prepare-data")
@@ -297,3 +355,109 @@ def eval_retrieval(
             f"tag_hit@3={tag_h3:.4f}"
         )
     typer.echo(f"  [report] {report_path}")
+
+
+@app.command("build-sft-data")
+def build_sft_data(
+    config: Annotated[
+        Path, typer.Option(help="Path to YAML config file.")
+    ] = Path("configs/default.yaml"),
+    num_ticket_samples: Annotated[
+        int, typer.Option(help="Number of stratified training tickets to include.")
+    ] = 3000,
+    policy_upsample: Annotated[
+        int, typer.Option(help="Replication factor for policy-grounded examples.")
+    ] = 3,
+    output_dir: Annotated[
+        Path | None, typer.Option(help="Output directory for SFT JSONL files.")
+    ] = None,
+    rerank: Annotated[
+        bool, typer.Option(help="Apply Cross-Encoder reranking while building SFT context.")
+    ] = False,
+) -> None:
+    """Build leakage-free RAG SFT datasets from train tickets and organization docs."""
+    cfg = load_config(config)
+    train_df = pd.read_parquet(cfg.paths.processed_dir / "train.parquet")
+    org_docs = load_org_docs(cfg.paths.org_docs_file)
+    retriever = DualSourceRetriever.load(cfg, enable_reranker=rerank)
+    prompt_builder = PromptBuilder(cfg.paths.prompts_dir)
+
+    summary = SftDatasetBuilder(cfg, retriever, prompt_builder).build(
+        train_df=train_df,
+        org_docs=org_docs,
+        output_dir=output_dir,
+        num_ticket_samples=num_ticket_samples,
+        policy_upsample=policy_upsample,
+        use_reranker=rerank,
+    )
+    typer.echo("RAG SFT dataset built:")
+    typer.echo(
+        f"  Total={summary['total_examples']} (train={summary['train_examples']}, "
+        f"eval={summary['eval_examples']})"
+    )
+    typer.echo(
+        f"  Sources: tickets={summary['ticket_examples']}, "
+        f"policy_grounded={summary['policy_grounded_examples']} "
+        f"(upsample={summary['policy_upsample']})"
+    )
+    typer.echo(f"  Prompt chars p50/p90/max: {summary['prompt_chars']}")
+    for label, path in summary["output_paths"].items():
+        typer.echo(f"  [{label}] {path}")
+
+
+@app.command("generate-draft")
+def generate_draft(
+    body: Annotated[str, typer.Option(help="Customer email body text.")],
+    subject: Annotated[str, typer.Option(help="Customer email subject line.")] = "",
+    classifier_backend: Annotated[
+        ClassifierBackend, typer.Option(help="Stage 1 classifier backend.")
+    ] = ClassifierBackend.BASELINE,
+    generator_backend: Annotated[
+        GeneratorBackend, typer.Option(help="Stage 3 generator backend.")
+    ] = GeneratorBackend.MOCK,
+    adapter_dir: Annotated[
+        Path | None, typer.Option(help="Optional LoRA adapter directory for HF backend.")
+    ] = None,
+    rerank: Annotated[
+        bool, typer.Option(help="Apply Cross-Encoder reranking on retrieved org docs.")
+    ] = True,
+    config: Annotated[
+        Path, typer.Option(help="Path to YAML config file.")
+    ] = Path("configs/default.yaml"),
+) -> None:
+    """Run all three DRAFT stages to classify, retrieve context, and draft a reply."""
+    cfg = load_config(config)
+    email = IncomingEmail(subject=subject, body=body)
+    clf_result = _load_stage1_classifier(cfg, classifier_backend).predict(email)
+    retriever = DualSourceRetriever.load(cfg, enable_reranker=rerank)
+    context = retriever.retrieve(email=email, intent=clf_result.intent, use_reranker=rerank)
+
+    prompt_builder = PromptBuilder(cfg.paths.prompts_dir)
+    messages = prompt_builder.render(email, clf_result, context)
+    generator = _load_stage3_generator(cfg, generator_backend, adapter_dir)
+    draft_body = generator.generate(messages)
+
+    valid_ids = {doc.doc_id for doc in context.top_k_docs}
+    draft = DraftResponse(
+        subject=build_reply_subject(email.subject),
+        body=draft_body,
+        classification=clf_result,
+        retrieved_context=context,
+        cited_doc_ids=extract_cited_doc_ids(draft_body, valid_ids),
+        model_name=generator.model_name,
+    )
+    typer.echo(
+        f"Stage 1: intent={draft.classification.intent} "
+        f"({draft.classification.intent_confidence:.4f}), "
+        f"urgency={draft.classification.urgency} "
+        f"({draft.classification.urgency_confidence:.4f})"
+    )
+    typer.echo(
+        f"Stage 2 Docs: {[doc.doc_id for doc in draft.retrieved_context.top_k_docs]}"
+    )
+    typer.echo(
+        f"Stage 2 Refs: {[resp.email_id for resp in draft.retrieved_context.top_k_responses]}"
+    )
+    typer.echo(f"Cited Docs:   {draft.cited_doc_ids}")
+    typer.echo(f"Model:        {draft.model_name}")
+    typer.echo(f"\nSubject: {draft.subject}\n\n{draft.body}")

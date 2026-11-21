@@ -1,0 +1,34 @@
+### Ticket Classification
+Intent: {{ intent }}
+Urgency: {{ urgency }}
+
+### Organization Policy Documents
+{% if docs %}
+{% for doc in docs %}
+[{{ doc.doc_id }}] {{ doc.title }} ({{ doc.category }})
+{{ doc.content }}
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+{% else %}
+None retrieved.
+{% endif %}
+
+### Reference Replies (Style Examples)
+{% if responses %}
+{% for resp in responses %}
+Example {{ loop.index }} ({{ resp.intent }} | {{ resp.urgency }}):
+{{ resp.answer }}
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+{% else %}
+None retrieved.
+{% endif %}
+
+### Incoming Customer Email
+{{ email_text }}
+
+### Draft Reply
