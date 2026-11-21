@@ -10,20 +10,17 @@ import typer
 
 from draft.classifier.base import LabelEncoderPair
 from draft.classifier.baseline import TfidfBaselineClassifier
-from draft.config import AppConfig, load_config
+from draft.config import load_config
 from draft.data.acquisition import DataAcquisitionService
 from draft.data.org_docs import load_org_docs
-from draft.generation.backends import (
-    MockGenerator,
-    OllamaGenerator,
-    OpenAICompatibleGenerator,
-)
-from draft.generation.prompts import PromptBuilder, build_reply_subject, extract_cited_doc_ids
+from draft.evaluation.evaluator import PipelineEvaluator
+from draft.generation.prompts import PromptBuilder
 from draft.generation.sft_dataset import SftDatasetBuilder
+from draft.pipeline import DraftPipeline
 from draft.retrieval.dual_retriever import DualSourceRetriever
 from draft.retrieval.encoders import SentenceTransformerEncoder
 from draft.retrieval.metrics import run_retrieval_ablations
-from draft.schemas import DraftResponse, IncomingEmail, IntentLabel
+from draft.schemas import IncomingEmail, IntentLabel
 
 app = typer.Typer(help="DRAFT: Dual-source RAG and classification CLI.")
 
@@ -31,6 +28,7 @@ app = typer.Typer(help="DRAFT: Dual-source RAG and classification CLI.")
 class ClassifierBackend(StrEnum):
     """Available Stage 1 classifier backends."""
 
+    AUTO = "auto"
     BASELINE = "baseline"
     TRANSFORMER = "transformer"
 
@@ -69,54 +67,19 @@ def _echo_split_metrics(label: str, metrics: dict) -> None:
     )
 
 
-def _load_stage1_classifier(cfg: AppConfig, backend: ClassifierBackend):
-    """Load the configured Stage 1 classifier backend."""
-    if backend == ClassifierBackend.BASELINE:
-        return TfidfBaselineClassifier.load(cfg.paths.artifacts_dir / "classifier_baseline")
-    from draft.classifier.multitask import TransformerEmailClassifier
-
-    return TransformerEmailClassifier.load(cfg.paths.artifacts_dir / "classifier")
-
-
-def _load_stage3_generator(
-    cfg: AppConfig,
-    backend: GeneratorBackend,
-    adapter_dir: Path | None,
-    api_base_url: str | None = None,
-    api_model: str | None = None,
-    api_key: str | None = None,
-):
-    """Instantiate the configured Stage 3 generator backend."""
-    if backend == GeneratorBackend.MOCK:
-        return MockGenerator()
-    if backend == GeneratorBackend.OLLAMA:
-        return OllamaGenerator(
-            model_name=cfg.generation.ollama_model,
-            base_url=cfg.generation.ollama_base_url,
-            default_max_new_tokens=cfg.generation.max_new_tokens,
-            default_temperature=cfg.generation.temperature,
-        )
-    if backend == GeneratorBackend.OPENAI:
-        return OpenAICompatibleGenerator(
-            model_name=api_model or cfg.generation.base_model,
-            base_url=api_base_url or "http://localhost:8000/v1",
-            api_key=api_key,
-            default_max_new_tokens=cfg.generation.max_new_tokens,
-            default_temperature=cfg.generation.temperature,
-        )
-    from draft.generation.hf_backend import HFPeftGenerator
-
-    default_adapter = cfg.paths.artifacts_dir / "llm" / "lora_adapter"
-    resolved_adapter = (
-        adapter_dir
-        if adapter_dir is not None
-        else (default_adapter if default_adapter.exists() else None)
-    )
-    return HFPeftGenerator(
-        base_model_name=cfg.generation.base_model,
-        adapter_dir=resolved_adapter,
-        default_max_new_tokens=cfg.generation.max_new_tokens,
-        default_temperature=cfg.generation.temperature,
+def _echo_pipeline_eval(label: str, ticket_res: dict, policy_res: dict) -> None:
+    """Print concise end-to-end pipeline evaluation metrics for one configuration."""
+    rouge = ticket_res["rouge"]
+    adherence = ticket_res["policy_adherence"]
+    bscore = ticket_res.get("bertscore", {}).get("f1")
+    bscore_str = f" bertscore_f1={bscore:.4f}" if bscore is not None else ""
+    mean_ms = ticket_res["latency_ms"]["total_ms"]["mean"]
+    typer.echo(
+        f"  [{label}] "
+        f"rougeL={rouge['rougeL_f1']:.4f}{bscore_str} "
+        f"cite_rate={adherence['citation_rate']:.4f} "
+        f"policy_fact_recall={policy_res['policy_fact_recall']:.4f} "
+        f"mean_latency_ms={mean_ms:.1f}"
     )
 
 
@@ -193,14 +156,14 @@ def classify(
     subject: Annotated[str, typer.Option(help="Customer email subject line.")] = "",
     backend: Annotated[
         ClassifierBackend, typer.Option(help="Stage 1 classifier backend.")
-    ] = ClassifierBackend.BASELINE,
+    ] = ClassifierBackend.AUTO,
     config: Annotated[
         Path, typer.Option(help="Path to YAML config file.")
     ] = Path("configs/default.yaml"),
 ) -> None:
     """Predict intent and urgency for a single customer email."""
     app_config = load_config(config)
-    classifier = _load_stage1_classifier(app_config, backend)
+    classifier = DraftPipeline.load_classifier(app_config, backend=backend.value)
     result = classifier.predict(IncomingEmail(subject=subject, body=body))
     top_intents = sorted(result.intent_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]
 
@@ -264,7 +227,7 @@ def retrieve(
     ] = None,
     classifier_backend: Annotated[
         ClassifierBackend, typer.Option(help="Classifier backend when intent is omitted.")
-    ] = ClassifierBackend.BASELINE,
+    ] = ClassifierBackend.AUTO,
     rerank: Annotated[
         bool, typer.Option(help="Apply Cross-Encoder reranking on retrieved org docs.")
     ] = True,
@@ -281,7 +244,9 @@ def retrieve(
     email = IncomingEmail(subject=subject, body=body)
     active_intent = intent
     if active_intent is None:
-        clf_result = _load_stage1_classifier(cfg, classifier_backend).predict(email)
+        clf_result = DraftPipeline.load_classifier(cfg, backend=classifier_backend.value).predict(
+            email
+        )
         active_intent = clf_result.intent
         typer.echo(
             f"Stage 1 Prediction: intent={clf_result.intent}, urgency={clf_result.urgency}"
@@ -411,7 +376,7 @@ def generate_draft(
     subject: Annotated[str, typer.Option(help="Customer email subject line.")] = "",
     classifier_backend: Annotated[
         ClassifierBackend, typer.Option(help="Stage 1 classifier backend.")
-    ] = ClassifierBackend.BASELINE,
+    ] = ClassifierBackend.AUTO,
     generator_backend: Annotated[
         GeneratorBackend, typer.Option(help="Stage 3 generator backend.")
     ] = GeneratorBackend.MOCK,
@@ -427,25 +392,16 @@ def generate_draft(
 ) -> None:
     """Run all three DRAFT stages to classify, retrieve context, and draft a reply."""
     cfg = load_config(config)
-    email = IncomingEmail(subject=subject, body=body)
-    clf_result = _load_stage1_classifier(cfg, classifier_backend).predict(email)
-    retriever = DualSourceRetriever.load(cfg, enable_reranker=rerank)
-    context = retriever.retrieve(email=email, intent=clf_result.intent, use_reranker=rerank)
-
-    prompt_builder = PromptBuilder(cfg.paths.prompts_dir)
-    messages = prompt_builder.render(email, clf_result, context)
-    generator = _load_stage3_generator(cfg, generator_backend, adapter_dir)
-    draft_body = generator.generate(messages)
-
-    valid_ids = {doc.doc_id for doc in context.top_k_docs}
-    draft = DraftResponse(
-        subject=build_reply_subject(email.subject),
-        body=draft_body,
-        classification=clf_result,
-        retrieved_context=context,
-        cited_doc_ids=extract_cited_doc_ids(draft_body, valid_ids),
-        model_name=generator.model_name,
+    pipeline = DraftPipeline.from_config(
+        config=cfg,
+        classifier_backend=classifier_backend.value,
+        generator_backend=generator_backend.value,
+        adapter_dir=adapter_dir,
+        enable_reranker=rerank,
     )
+    email = IncomingEmail(subject=subject, body=body)
+    draft, timings = pipeline.run_with_timing(email=email, use_rag=True, use_reranker=rerank)
+
     typer.echo(
         f"Stage 1: intent={draft.classification.intent} "
         f"({draft.classification.intent_confidence:.4f}), "
@@ -460,4 +416,90 @@ def generate_draft(
     )
     typer.echo(f"Cited Docs:   {draft.cited_doc_ids}")
     typer.echo(f"Model:        {draft.model_name}")
+    typer.echo(
+        f"Latency:      total={timings['total_ms']:.1f}ms "
+        f"(s1={timings['stage1_ms']:.1f}ms, s2={timings['stage2_ms']:.1f}ms, "
+        f"s3={timings['stage3_ms']:.1f}ms)"
+    )
     typer.echo(f"\nSubject: {draft.subject}\n\n{draft.body}")
+
+
+@app.command("eval-pipeline")
+def eval_pipeline(
+    split: Annotated[EvalSplit, typer.Option(help="Split to evaluate.")] = EvalSplit.TEST,
+    max_samples: Annotated[int, typer.Option(help="Maximum tickets to evaluate.")] = 50,
+    classifier_backend: Annotated[
+        ClassifierBackend, typer.Option(help="Stage 1 classifier backend.")
+    ] = ClassifierBackend.AUTO,
+    generator_backend: Annotated[
+        GeneratorBackend, typer.Option(help="Stage 3 generator backend.")
+    ] = GeneratorBackend.MOCK,
+    adapter_dir: Annotated[
+        Path | None, typer.Option(help="Optional LoRA adapter directory for HF backend.")
+    ] = None,
+    rerank: Annotated[
+        bool, typer.Option(help="Enable Cross-Encoder reranking in Stage 2.")
+    ] = True,
+    bertscore: Annotated[
+        bool, typer.Option(help="Compute BERTScore over generated drafts.")
+    ] = False,
+    ablation: Annotated[
+        bool, typer.Option(help="Compare no_rag vs with_rag modes.")
+    ] = False,
+    output_file: Annotated[
+        Path | None, typer.Option(help="Path to write JSON evaluation report.")
+    ] = None,
+    config: Annotated[
+        Path, typer.Option(help="Path to YAML config file.")
+    ] = Path("configs/default.yaml"),
+) -> None:
+    """Evaluate end-to-end DRAFT pipeline on tickets and unseen policy scenarios."""
+    cfg = load_config(config)
+    eval_df = pd.read_parquet(cfg.paths.processed_dir / f"{split.value}.parquet")
+    org_docs = load_org_docs(cfg.paths.org_docs_file)
+    pipeline = DraftPipeline.from_config(
+        config=cfg,
+        classifier_backend=classifier_backend.value,
+        generator_backend=generator_backend.value,
+        adapter_dir=adapter_dir,
+        enable_reranker=rerank,
+    )
+    evaluator = PipelineEvaluator(pipeline)
+
+    if ablation:
+        report: dict = {
+            "split": split.value,
+            "ablation": evaluator.run_ablation(
+                eval_df=eval_df,
+                org_docs=org_docs,
+                max_samples=max_samples,
+                use_reranker=rerank,
+                include_bertscore=bertscore,
+                seed=cfg.data.random_seed,
+            ),
+        }
+        typer.echo(f"Pipeline ablation evaluation ({split.value}, max_samples={max_samples}):")
+        for mode_name, mode_data in report["ablation"].items():
+            _echo_pipeline_eval(mode_name, mode_data["tickets"], mode_data["policy_suite"])
+    else:
+        tickets_res = evaluator.evaluate_tickets(
+            eval_df=eval_df,
+            max_samples=max_samples,
+            use_rag=True,
+            use_reranker=rerank,
+            include_bertscore=bertscore,
+            seed=cfg.data.random_seed,
+        )
+        policy_res = evaluator.evaluate_policy_suite(
+            org_docs=org_docs,
+            use_rag=True,
+            use_reranker=rerank,
+        )
+        report = {"split": split.value, "tickets": tickets_res, "policy_suite": policy_res}
+        typer.echo(f"Pipeline evaluation ({split.value}, max_samples={max_samples}):")
+        _echo_pipeline_eval("with_rag", tickets_res, policy_res)
+
+    target_path = output_file or (cfg.paths.reports_dir / "pipeline_eval.json")
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    target_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    typer.echo(f"  [report] {target_path}")
