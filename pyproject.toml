@@ -29,6 +29,8 @@ inference = [
     "transformers>=4.46",
     "sentence-transformers>=3.3",
     "safetensors>=0.4",
+    "sentencepiece>=0.2",
+    "protobuf>=4.25",
 ]
 train = [
     "torch>=2.4",
@@ -39,6 +41,8 @@ train = [
     "trl>=0.12",
     "bitsandbytes>=0.44",
     "scipy>=1.14",
+    "sentencepiece>=0.2",
+    "protobuf>=4.25",
 ]
 eval = [
     "rouge-score>=0.1.2",
