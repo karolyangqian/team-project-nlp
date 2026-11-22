@@ -111,7 +111,7 @@ class DataAcquisitionService:
         force_download: bool = False,
         overwrite_org_docs: bool = False,
     ) -> dict[str, Any]:
-        """Execute full Phase 1 acquisition, cleaning, splitting, and EDA reporting."""
+        """Execute full data acquisition, cleaning, splitting, and EDA reporting."""
         raw_df = self.download_raw_emails(force=force_download)
         valid_intents = {str(item) for item in self.config.taxonomy.intents}
         valid_urgencies = {str(item) for item in self.config.taxonomy.urgencies}
