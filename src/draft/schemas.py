@@ -56,20 +56,6 @@ def format_email_text(subject: str, body: str) -> str:
     return clean_body
 
 
-class EmailRecord(BaseModel):
-    """Cleaned customer support email record with labels and staff answer."""
-
-    email_id: str
-    subject: str = ""
-    body: str
-    email: str
-    intent: IntentLabel
-    urgency: UrgencyLevel
-    answer: str
-    ticket_type: str = ""
-    tags: list[str] = Field(default_factory=list)
-
-
 class OrgDocument(BaseModel):
     """Organizational policy or guideline document used for factual grounding."""
 

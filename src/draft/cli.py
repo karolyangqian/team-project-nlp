@@ -527,3 +527,7 @@ def eval_pipeline(
     target_path.parent.mkdir(parents=True, exist_ok=True)
     target_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     typer.echo(f"  [report] {target_path}")
+
+
+if __name__ == "__main__":
+    app()
