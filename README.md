@@ -35,8 +35,9 @@ Sebelum menjalankan instalasi penuh, perhatikan perkiraan ukuran unduhan dan keb
 | :--- | :---: | :--- | :---: |
 | `uv sync --extra dev` + `uv run pytest` | ~300–400 MB | Berjalan offline tanpa unduh model (~15–30 detik) | Opsional (cek cepat) |
 | `uv sync --extra inference --extra ui` | **~1,5–2,5 GB** | Memasang PyTorch CPU, Transformers, FAISS, dan Streamlit | Wajib untuk jalan lokal |
-| `download_artifacts.py --profile core` | ~187 MB | Baseline TF-IDF + encoder & indeks retrieval siap pakai | Disarankan |
-| `download_artifacts.py --profile full` | **~4,0 GB** | Menambah checkpoint DeBERTa (547 MB) & GGUF fine-tuned (3,26 GB) | Opsional |
+| `download_artifacts.py --profile core` | ~142 MB | Baseline TF-IDF + encoder & indeks retrieval siap pakai | Disarankan |
+| `download_artifacts.py --profile no_llm` | ~541 MB | Menambah checkpoint DeBERTa-v3-small (399 MB zip) | Opsional |
+| `download_artifacts.py --profile full` | **~3,8 GB** | Menambah artefak GGUF fine-tuned (~3,26 GB) untuk perbandingan LoRA | Opsional |
 | `ollama pull qwen2.5:3b` | **~1,9 GB** | Butuh ~4 GB RAM; CPU ~30–60 detik/email (`< 2 detik` di GPU) | Wajib untuk LLM lokal |
 | `--extra eval` + `--bertscore` | ~270 MB | Mengunduh `distilbert-base-uncased` untuk BERTScore | Opsional (evaluasi) |
 | `--generator-backend hf` | **~6,2 GB** | Mengunduh bobot FP16 `Qwen2.5-3B-Instruct`; hindari di CPU | Tidak disarankan di CPU |
@@ -64,10 +65,13 @@ uv sync --extra inference --extra ui
 Pilihan paling cepat tanpa perlu melatih atau mengindeks ulang dari awal:
 
 ```powershell
-# Profil core (~187 MB): TF-IDF baseline + encoder & indeks retrieval siap pakai
+# Profil core (~142 MB): TF-IDF baseline + encoder & indeks retrieval siap pakai
 uv run --with gdown python scripts/download_artifacts.py --profile core
 
-# Atau profil full (~4,0 GB): semua artefak termasuk DeBERTa-v3-small dan GGUF fine-tuned
+# Profil no_llm (~541 MB): termasuk checkpoint DeBERTa-v3-small
+uv run --with gdown python scripts/download_artifacts.py --profile no_llm
+
+# Profil full (~3,8 GB): seluruh artefak termasuk GGUF fine-tuned
 uv run --with gdown python scripts/download_artifacts.py --profile full
 ```
 

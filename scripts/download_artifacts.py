@@ -20,28 +20,28 @@ class ArtifactBundle:
     description: str
 
 
-# Replace placeholder IDs with public Google Drive file IDs ("Anyone with the link").
+# Public Google Drive file IDs ("Anyone with the link").
 ARTIFACT_BUNDLES: dict[str, ArtifactBundle] = {
     "classifier_baseline": ArtifactBundle(
         key="classifier_baseline",
-        gdrive_file_id="REPLACE_WITH_GDRIVE_ID_CLASSIFIER_BASELINE",
-        size_mb=4.2,
+        gdrive_file_id="1yaTsjZjV1Gszmu02EltGubgyNZzkj-61",
+        size_mb=3.2,
         target_subdir="classifier_baseline",
         marker_relpath="vectorizer.joblib",
         description="Stage 1 TF-IDF + LogisticRegression baseline",
     ),
     "retriever": ArtifactBundle(
         key="retriever",
-        gdrive_file_id="REPLACE_WITH_GDRIVE_ID_RETRIEVER",
-        size_mb=183.1,
+        gdrive_file_id="1NG8N1d4sFlQufDfqLPOhf6SgeaULsWkc",
+        size_mb=139.0,
         target_subdir="retriever",
         marker_relpath="index/index_meta.json",
         description="Stage 2 fine-tuned BGE-small encoder + dual FAISS/BM25 index",
     ),
     "classifier_transformer": ArtifactBundle(
         key="classifier_transformer",
-        gdrive_file_id="REPLACE_WITH_GDRIVE_ID_CLASSIFIER_TRANSFORMER",
-        size_mb=547.0,
+        gdrive_file_id="1EZMEmAI16wbhANoHW9A9yDWJ25D8wJqh",
+        size_mb=399.0,
         target_subdir="classifier",
         marker_relpath="model.safetensors",
         description="Stage 1 fine-tuned DeBERTa-v3-small multi-task classifier",
@@ -58,6 +58,7 @@ ARTIFACT_BUNDLES: dict[str, ArtifactBundle] = {
 
 PROFILES: dict[str, list[str]] = {
     "core": ["classifier_baseline", "retriever"],
+    "no_llm": ["classifier_baseline", "retriever", "classifier_transformer"],
     "full": ["classifier_baseline", "retriever", "classifier_transformer", "llm_ollama"],
 }
 
@@ -118,9 +119,8 @@ def _download_one(bundle: ArtifactBundle, artifacts_dir: Path, force: bool) -> N
     artifacts_dir.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp_str:
         zip_path = Path(tmp_str) / f"{bundle.key}.zip"
-        url = f"https://drive.google.com/uc?id={bundle.gdrive_file_id}"
         print(f"  [download] {bundle.key} (~{bundle.size_mb:.1f} MB)...")
-        out = gdown.download(url, str(zip_path), quiet=False, fuzzy=True)
+        out = gdown.download(id=bundle.gdrive_file_id, output=str(zip_path), quiet=False)
         if not out or not zip_path.exists():
             raise RuntimeError(
                 f"Failed to download '{bundle.key}' from Google Drive (id={bundle.gdrive_file_id})."
@@ -138,7 +138,7 @@ def parse_args() -> argparse.Namespace:
         "--profile",
         choices=sorted(PROFILES.keys()),
         default="core",
-        help="core (~187 MB: baseline + retriever) or full (~4.0 GB: all stages including GGUF).",
+        help="core (~142 MB), no_llm (~541 MB), or full (~3.8 GB).",
     )
     parser.add_argument(
         "--components",
