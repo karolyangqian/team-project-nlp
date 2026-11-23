@@ -311,6 +311,15 @@ class DualSourceRetriever:
     ) -> "DualSourceRetriever":
         """Load persisted dual-source indices and resolve encoder and optional reranker."""
         resolved_index = index_dir or (config.paths.artifacts_dir / "retriever" / "index")
+        missing_org = not (resolved_index / "org_docs").exists()
+        missing_ref = not (resolved_index / "ref_emails").exists()
+        if missing_org or missing_ref:
+            raise FileNotFoundError(
+                f"Dual-source retrieval index not found in {resolved_index}. "
+                "Download pre-built artifacts with "
+                "`uv run --with gdown python scripts/download_artifacts.py --profile core` "
+                "or build locally with `uv run draft prepare-data` and `uv run draft build-index`."
+            )
         org_store = HybridVectorStore.load(resolved_index / "org_docs")
         ref_store = HybridVectorStore.load(resolved_index / "ref_emails")
 

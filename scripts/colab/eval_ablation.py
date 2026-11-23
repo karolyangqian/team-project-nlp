@@ -1,4 +1,4 @@
-"""Colab GPU 3-way ablation script comparing zero-shot, zero-shot+RAG, and fine-tuned+RAG."""
+"""Colab GPU 4-way ablation comparing base No-RAG, base+RAG (0/2-shot), and LoRA SFT+RAG."""
 
 import argparse
 import gc
@@ -39,16 +39,18 @@ def _print_ablation_row(name: str, mode_result: dict[str, Any]) -> None:
     rouge_l = tickets["rouge"]["rougeL_f1"]
     bscore = tickets.get("bertscore", {}).get("f1", 0.0)
     cite_rate = tickets["policy_adherence"]["citation_rate"]
+    leak_rate = tickets["policy_adherence"].get("placeholder_leakage_rate", 0.0)
     fact_rec = policy["policy_fact_recall"]
     total_ms = tickets["latency_ms"]["total_ms"]["mean"]
     print(
-        f"  {name:20s} ROUGE-L={rouge_l:.4f} BERTScore={bscore:.4f} "
-        f"CiteRate={cite_rate:.4f} PolicyFactRecall={fact_rec:.4f} MeanMs={total_ms:.1f}"
+        f"  {name:22s} ROUGE-L={rouge_l:.4f} BERTScore={bscore:.4f} "
+        f"CiteRate={cite_rate:.4f} Leak={leak_rate:.2%} "
+        f"PolicyFactRecall={fact_rec:.4f} MeanMs={total_ms:.1f}"
     )
 
 
 def main() -> None:
-    """Evaluate base_no_rag, base_with_rag, and finetuned_with_rag and save JSON report."""
+    """Evaluate 4 generation modes and save JSON ablation report."""
     args = parse_args()
     cfg = load_config(args.config)
     eval_df = pd.read_parquet(cfg.paths.processed_dir / f"{args.split}.parquet")
@@ -71,13 +73,19 @@ def main() -> None:
     base_pipeline = DraftPipeline(cfg, classifier, retriever, prompt_builder, base_gen)
     base_eval = PipelineEvaluator(base_pipeline)
 
-    for mode_name, use_rag in (("base_no_rag", False), ("base_with_rag", True)):
+    base_modes = (
+        ("base_no_rag", False, False),
+        ("base_with_rag_0shot", True, False),
+        ("base_with_rag_2shot", True, True),
+    )
+    for mode_name, use_rag, use_few_shot in base_modes:
         results["modes"][mode_name] = {
             "tickets": base_eval.evaluate_tickets(
                 eval_df=eval_df,
                 max_samples=args.max_samples,
                 use_rag=use_rag,
                 use_reranker=args.rerank,
+                use_few_shot=use_few_shot,
                 include_bertscore=args.bertscore,
                 seed=cfg.data.random_seed,
             ),
@@ -85,6 +93,7 @@ def main() -> None:
                 org_docs=org_docs,
                 use_rag=use_rag,
                 use_reranker=args.rerank,
+                use_few_shot=use_few_shot,
             ),
         }
 
@@ -109,6 +118,7 @@ def main() -> None:
             max_samples=args.max_samples,
             use_rag=True,
             use_reranker=args.rerank,
+            use_few_shot=False,
             include_bertscore=args.bertscore,
             seed=cfg.data.random_seed,
         ),
@@ -116,6 +126,7 @@ def main() -> None:
             org_docs=org_docs,
             use_rag=True,
             use_reranker=args.rerank,
+            use_few_shot=False,
         ),
     }
 
@@ -123,7 +134,7 @@ def main() -> None:
     report_path = cfg.paths.reports_dir / "ablation_table.json"
     report_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
 
-    print(f"3-way ablation results on {args.split} ({args.max_samples} samples):")
+    print(f"4-way ablation results on {args.split} ({args.max_samples} samples):")
     for mode_name, mode_data in results["modes"].items():
         _print_ablation_row(mode_name, mode_data)
     print(f"  [report] {report_path}")

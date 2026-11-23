@@ -11,5 +11,6 @@ build/
 data/raw/
 data/processed/
 artifacts/
-reports/
-scratch/
+reports/pipeline_eval.json
+reports/*.tmp
+*.zip

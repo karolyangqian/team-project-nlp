@@ -126,8 +126,23 @@ class DraftPipeline:
                 else "baseline"
             )
         if mode == "baseline":
+            if not (baseline_dir / "vectorizer.joblib").exists():
+                raise FileNotFoundError(
+                    f"Baseline classifier artifacts not found in {baseline_dir}. "
+                    "Download pre-trained weights with "
+                    "`uv run --with gdown python scripts/download_artifacts.py --profile core` "
+                    "or train locally with `uv run draft prepare-data` and "
+                    "`uv run draft train-baseline`."
+                )
             return TfidfBaselineClassifier.load(baseline_dir)
         if mode == "transformer":
+            if not (transformer_dir / "model.safetensors").exists():
+                raise FileNotFoundError(
+                    f"Transformer classifier checkpoint not found in {transformer_dir}. "
+                    "Download full artifacts with "
+                    "`uv run --with gdown python scripts/download_artifacts.py --profile full` "
+                    "or use `--classifier-backend baseline`."
+                )
             from draft.classifier.multitask import TransformerEmailClassifier
 
             return TransformerEmailClassifier.load(transformer_dir)
