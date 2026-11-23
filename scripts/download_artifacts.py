@@ -48,8 +48,8 @@ ARTIFACT_BUNDLES: dict[str, ArtifactBundle] = {
     ),
     "llm_ollama": ArtifactBundle(
         key="llm_ollama",
-        gdrive_file_id="REPLACE_WITH_GDRIVE_ID_LLM_OLLAMA",
-        size_mb=3258.4,
+        gdrive_file_id="1s-7doOlG0ELp5dXtz5oehiG0vTiNGvrh",
+        size_mb=3072.0,
         target_subdir="llm",
         marker_relpath="draft-qwen25-3b-q8_0.gguf",
         description="Stage 3 fine-tuned Qwen2.5-3B Q8_0 GGUF, Modelfile, and LoRA adapter",
@@ -138,7 +138,7 @@ def parse_args() -> argparse.Namespace:
         "--profile",
         choices=sorted(PROFILES.keys()),
         default="core",
-        help="core (~142 MB), no_llm (~541 MB), or full (~3.8 GB).",
+        help="core (~142 MB), no_llm (~541 MB), or full (~3.6 GB).",
     )
     parser.add_argument(
         "--components",
