@@ -8,8 +8,8 @@ __pycache__/
 dist/
 build/
 .env
-data/raw/
-data/processed/
+# data/raw/
+# data/processed/
 artifacts/
 reports/pipeline_eval.json
 reports/*.tmp

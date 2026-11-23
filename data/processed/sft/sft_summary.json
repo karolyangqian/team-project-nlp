@@ -1,0 +1,25 @@
+{
+  "total_examples": 3252,
+  "train_examples": 3089,
+  "eval_examples": 163,
+  "ticket_examples": 3000,
+  "policy_grounded_examples": 252,
+  "policy_upsample": 3,
+  "zero_self_leakage": true,
+  "prompt_chars": {
+    "min": 3137,
+    "p50": 4345,
+    "p90": 4963,
+    "max": 7488
+  },
+  "completion_chars": {
+    "min": 21,
+    "p50": 396,
+    "p90": 618,
+    "max": 1298
+  },
+  "output_paths": {
+    "train": "data\\processed\\sft\\sft_train.jsonl",
+    "eval": "data\\processed\\sft\\sft_eval.jsonl"
+  }
+}
